@@ -186,7 +186,8 @@ namespace autoDATA
         //AUTÓMÁRKÁK betöltése TXT FÁJLBÓL:
         private void loadCarMakesForAdminSearch()
         {
-            FileStream fs = new FileStream("carmakes.txt", FileMode.Open, FileAccess.Read);
+            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
+            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
             List<string> carmakes = new List<string>();
@@ -207,7 +208,8 @@ namespace autoDATA
 
         private void loadCarMakesForAdmin()
         {
-            FileStream fs = new FileStream("carmakes.txt", FileMode.Open, FileAccess.Read);
+            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
+            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
             List<string> carmakes = new List<string>();
@@ -275,127 +277,127 @@ namespace autoDATA
             switch (cbAdminCarsMakeSearch.Text)
             {
                 case "Alfa Romeo":
-                    loadCarmodelsforAdminSearch("alfamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
                     break;
                 case "Alpina":
-                    loadCarmodelsforAdminSearch("alpinamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
                     break;
                 case "Aston Martin":
-                    loadCarmodelsforAdminSearch("astonmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
                     break;
                 case "Bentley":
-                    loadCarmodelsforAdminSearch("bentleymodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
                     break;
                 case "Audi":
-                    loadCarmodelsforAdminSearch("audimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
                     break;
                 case "BMW":
-                    loadCarmodelsforAdminSearch("bmwmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
                     break;
                 case "Citroen":
-                    loadCarmodelsforAdminSearch("citroenmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
                     break;
                 case "Dacia":
-                    loadCarmodelsforAdminSearch("daciamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
                     break;
                 case "Ferrari":
-                    loadCarmodelsforAdminSearch("ferrarimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
                     break;
                 case "Fiat":
-                    loadCarmodelsforAdminSearch("fiatmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
                     break;
                 case "Ford":
-                    loadCarmodelsforAdminSearch("fordmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
                     break;
                 case "Honda":
-                    loadCarmodelsforAdminSearch("hondamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
                     break;
                 case "Hyundai":
-                    loadCarmodelsforAdminSearch("hyundaimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
                     break;
                 case "Jaguar":
-                    loadCarmodelsforAdminSearch("jaguarmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
                     break;
                 case "Jeep":
-                    loadCarmodelsforAdminSearch("jeepmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
                     break;
                 case "Kia":
-                    loadCarmodelsforAdminSearch("kiamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
                     break;
                 case "Lada":
-                    loadCarmodelsforAdminSearch("ladamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
                     break;
                 case "Lamborghini":
-                    loadCarmodelsforAdminSearch("lamborghinimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
                     break;
                 case "Lancia":
-                    loadCarmodelsforAdminSearch("lanciamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
                     break;
                 case "Land Rover":
-                    loadCarmodelsforAdminSearch("landrovermodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
                     break;
                 case "Lexus":
-                    loadCarmodelsforAdminSearch("lexusmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
                     break;
                 case "Mazda":
-                    loadCarmodelsforAdminSearch("mazdamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
                     break;
                 case "Mercedes-Benz":
-                    loadCarmodelsforAdminSearch("mercedesbenzmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
                     break;
                 case "Mercedes-AMG":
-                    loadCarmodelsforAdminSearch("mercedesamgmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
                     break;
                 case "Mini":
-                    loadCarmodelsforAdminSearch("minimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
                     break;
                 case "Mitsubishi":
-                    loadCarmodelsforAdminSearch("mitsubishimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
                     break;
                 case "Nissan":
-                    loadCarmodelsforAdminSearch("nissanmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
                     break;
                 case "Opel":
-                    loadCarmodelsforAdminSearch("opelmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
                     break;
                 case "Peugeot":
-                    loadCarmodelsforAdminSearch("peugeotmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
                     break;
                 case "Renault":
-                    loadCarmodelsforAdminSearch("renaultmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
                     break;
                 case "Rolls-Royce":
-                    loadCarmodelsforAdminSearch("rollsroycemodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
                     break;
                 case "Saab":
-                    loadCarmodelsforAdminSearch("saabmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
                     break;
                 case "SEAT":
-                    loadCarmodelsforAdminSearch("seatmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
                     break;
                 case "Smart":
-                    loadCarmodelsforAdminSearch("smartmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
                     break;
                 case "Ssangyong":
-                    loadCarmodelsforAdminSearch("ssangyongmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
                     break;
                 case "Subaru":
-                    loadCarmodelsforAdminSearch("subarumodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
                     break;
                 case "Suzuki":
-                    loadCarmodelsforAdminSearch("suzukimodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
                     break;
                 case "Tesla":
-                    loadCarmodelsforAdminSearch("teslamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
                     break;
                 case "Toyota":
-                    loadCarmodelsforAdminSearch("toyotamodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
                     break;
                 case "Volkswagen":
-                    loadCarmodelsforAdminSearch("vwmodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
                     break;
                 case "Volvo":
-                    loadCarmodelsforAdminSearch("volvomodels.txt");
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
                     break;
             }
         }
@@ -407,127 +409,127 @@ namespace autoDATA
             {
 
                 case "Alfa Romeo":
-                    loadCarmodelsforAdmin("alfamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
                     break;
                 case "Alpina":
-                    loadCarmodelsforAdmin("alpinamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
                     break;
                 case "Aston Martin":
-                    loadCarmodelsforAdmin("astonmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
                     break;
                 case "Bentley":
-                    loadCarmodelsforAdmin("bentleymodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
                     break;
                 case "Audi":
-                    loadCarmodelsforAdmin("audimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
                     break;
                 case "BMW":
-                    loadCarmodelsforAdmin("bmwmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
                     break;
                 case "Citroen":
-                    loadCarmodelsforAdmin("citroenmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
                     break;
                 case "Dacia":
-                    loadCarmodelsforAdmin("daciamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
                     break;
                 case "Ferrari":
-                    loadCarmodelsforAdmin("ferrarimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
                     break;
                 case "Fiat":
-                    loadCarmodelsforAdmin("fiatmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
                     break;
                 case "Ford":
-                    loadCarmodelsforAdmin("fordmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
                     break;
                 case "Honda":
-                    loadCarmodelsforAdmin("hondamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
                     break;
                 case "Hyundai":
-                    loadCarmodelsforAdmin("hyundaimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
                     break;
                 case "Jaguar":
-                    loadCarmodelsforAdmin("jaguarmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
                     break;
                 case "Jeep":
-                    loadCarmodelsforAdmin("jeepmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
                     break;
                 case "Kia":
-                    loadCarmodelsforAdmin("kiamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
                     break;
                 case "Lada":
-                    loadCarmodelsforAdmin("ladamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
                     break;
                 case "Lamborghini":
-                    loadCarmodelsforAdmin("lamborghinimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
                     break;
                 case "Lancia":
-                    loadCarmodelsforAdmin("lanciamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
                     break;
                 case "Land Rover":
-                    loadCarmodelsforAdmin("landrovermodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
                     break;
                 case "Lexus":
-                    loadCarmodelsforAdmin("lexusmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
                     break;
                 case "Mazda":
-                    loadCarmodelsforAdmin("mazdamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
                     break;
                 case "Mercedes-Benz":
-                    loadCarmodelsforAdmin("mercedesbenzmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
                     break;
                 case "Mercedes-AMG":
-                    loadCarmodelsforAdmin("mercedesamgmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
                     break;
                 case "Mini":
-                    loadCarmodelsforAdmin("minimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
                     break;
                 case "Mitsubishi":
-                    loadCarmodelsforAdmin("mitsubishimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
                     break;
                 case "Nissan":
-                    loadCarmodelsforAdmin("nissanmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
                     break;
                 case "Opel":
-                    loadCarmodelsforAdmin("opelmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
                     break;
                 case "Peugeot":
-                    loadCarmodelsforAdmin("peugeotmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
                     break;
                 case "Renault":
-                    loadCarmodelsforAdmin("renaultmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
                     break;
                 case "Rolls-Royce":
-                    loadCarmodelsforAdmin("rollsroycemodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
                     break;
                 case "Saab":
-                    loadCarmodelsforAdmin("saabmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
                     break;
                 case "SEAT":
-                    loadCarmodelsforAdmin("seatmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
                     break;
                 case "Smart":
-                    loadCarmodelsforAdmin("smartmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
                     break;
                 case "Ssangyong":
-                    loadCarmodelsforAdmin("ssangyongmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
                     break;
                 case "Subaru":
-                    loadCarmodelsforAdmin("subarumodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
                     break;
                 case "Suzuki":
-                    loadCarmodelsforAdmin("suzukimodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
                     break;
                 case "Tesla":
-                    loadCarmodelsforAdmin("teslamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
                     break;
                 case "Toyota":
-                    loadCarmodelsforAdmin("toyotamodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
                     break;
                 case "Volkswagen":
-                    loadCarmodelsforAdmin("vwmodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
                     break;
                 case "Volvo":
-                    loadCarmodelsforAdmin("volvomodels.txt");
+                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
                     break;
             }
         }
@@ -788,127 +790,127 @@ namespace autoDATA
                 switch (cbAdminCarsMake.Text)
                 {
                     case "Alfa Romeo":
-                        addNewModel("alfamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
                         break;
                     case "Alpina":
-                        addNewModel("alpinamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
                         break;
                     case "Aston Martin":
-                        addNewModel("astonmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
                         break;
                     case "Bentley":
-                        addNewModel("bentleymodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
                         break;
                     case "Audi":
-                        addNewModel("audimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
                         break;
                     case "BMW":
-                        addNewModel("bmwmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
                         break;
                     case "Citroen":
-                        addNewModel("citroenmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
                         break;
                     case "Dacia":
-                        addNewModel("daciamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
                         break;
                     case "Ferrari":
-                        addNewModel("ferrarimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
                         break;
                     case "Fiat":
-                        addNewModel("fiatmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
                         break;
                     case "Ford":
-                        addNewModel("fordmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
                         break;
                     case "Honda":
-                        addNewModel("hondamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
                         break;
                     case "Hyundai":
-                        addNewModel("hyundaimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
                         break;
                     case "Jaguar":
-                        addNewModel("jaguarmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
                         break;
                     case "Jeep":
-                        addNewModel("jeepmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
                         break;
                     case "Kia":
-                        addNewModel("kiamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
                         break;
                     case "Lada":
-                        addNewModel("ladamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
                         break;
                     case "Lamborghini":
-                        addNewModel("lamborghinimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
                         break;
                     case "Lancia":
-                        addNewModel("lanciamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
                         break;
                     case "Land Rover":
-                        addNewModel("landrovermodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
                         break;
                     case "Lexus":
-                        addNewModel("lexusmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
                         break;
                     case "Mazda":
-                        addNewModel("mazdamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
                         break;
                     case "Mercedes-Benz":
-                        addNewModel("mercedesbenzmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
                         break;
                     case "Mercedes-AMG":
-                        addNewModel("mercedesamgmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
                         break;
                     case "Mini":
-                        addNewModel("minimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
                         break;
                     case "Mitsubishi":
-                        addNewModel("mitsubishimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
                         break;
                     case "Nissan":
-                        addNewModel("nissanmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
                         break;
                     case "Opel":
-                        addNewModel("opelmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
                         break;
                     case "Peugeot":
-                        addNewModel("peugeotmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
                         break;
                     case "Renault":
-                        addNewModel("renaultmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
                         break;
                     case "Rolls-Royce":
-                        addNewModel("rollsroycemodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
                         break;
                     case "Saab":
-                        addNewModel("saabmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
                         break;
                     case "SEAT":
-                        addNewModel("seatmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
                         break;
                     case "Smart":
-                        addNewModel("smartmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
                         break;
                     case "Ssangyong":
-                        addNewModel("ssangyongmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
                         break;
                     case "Subaru":
-                        addNewModel("subarumodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
                         break;
                     case "Suzuki":
-                        addNewModel("suzukimodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
                         break;
                     case "Tesla":
-                        addNewModel("teslamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
                         break;
                     case "Toyota":
-                        addNewModel("toyotamodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
                         break;
                     case "Volkswagen":
-                        addNewModel("vwmodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
                         break;
                     case "Volvo":
-                        addNewModel("volvomodels.txt");
+                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
                         break;
                 }
             }

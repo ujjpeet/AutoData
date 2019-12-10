@@ -1,0 +1,44 @@
+﻿válasszon
+Alfa Romeo
+Alpina
+Aston Martin
+Audi
+Bentley
+BMW
+Citroen
+Dacia
+Ferrari
+Fiat
+Ford
+Honda
+Hyundai
+Jaguar
+Jeep
+Kia
+Lada
+Lamborghini
+Lancia
+Land Rover
+Lexus
+Mazda
+Mercedes-Benz
+Mercedes-AMG
+Mini
+Mitsubishi
+Nissan
+Opel
+Peugeot
+Porsche
+Renault
+Rolls-Royce
+Saab
+SEAT
+Skoda
+Smart
+Ssangyong
+Subaru
+Suzuki
+Tesla
+Toyota
+Volkswagen
+Volvo
