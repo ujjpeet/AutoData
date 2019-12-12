@@ -27,7 +27,7 @@ namespace autoDATA
         {
             //FELHASZNÁLÓ REGISZTRÁCIÓ munkakörök betöltése string ARRAY :
             string[] positions = new string[]
-                { "válasszon", "újságíró", "szerkesztő", "főszerkesztő", "fotós", "vágó"};
+                { "válasszon", "adminisztrátor","újságíró", "szerkesztő", "főszerkesztő", "fotós", "vágó"};
             cbRegPosition.DataSource = positions;
 
             //FELHASZNÁLÓ REGISZTRÁCIÓ születési dátumok:
@@ -66,7 +66,7 @@ namespace autoDATA
             string result1 = RemoveSpecialCharacters(toreplace1);
             string result2 = RemoveSpecialCharacters(toreplace2);
 
-            lbAutUsername.Text = result1 + "." + result2;
+            lbAutUsername.Text = result1 + result2;
         }
 
         private void tbRegFirstName_TextChanged(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace autoDATA
             string result1 = RemoveSpecialCharacters(toreplace1);
             string result2 = RemoveSpecialCharacters(toreplace2);
 
-            lbAutUsername.Text = result1 + "." + result2;
+            lbAutUsername.Text = result1 + result2;
         }
 
         public static string RemoveSpecialCharacters(string str)
@@ -100,7 +100,7 @@ namespace autoDATA
         //REGISZTRÁCIÓ GOMB click esemény:
         private void bnRegSave_Click(object sender, EventArgs e)
         {
-            if (tbRegFirstName.Text == "" || tbRegFamilyName.Text == "" || cbRegPosition.Text == ""
+           if (tbRegFirstName.Text == "" || tbRegFamilyName.Text == "" || cbRegPosition.Text == ""
                 || cbUserRegYear.Text == "válasszon"
                 || cbUserRegMonth.Text == "válasszon"
                 || cbUserRegDays.Text == "válasszon"
