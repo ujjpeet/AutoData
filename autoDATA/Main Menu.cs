@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,10 +12,7 @@ using System.Windows.Forms;
 namespace autoDATA
 {
     public partial class Form1 : Form
-    {
-        public static String user;
-        public static String password;
-        public static String userpassword;
+    {            
 
         public Form1()
         {
@@ -30,6 +28,8 @@ namespace autoDATA
            bnDatabase.Enabled = false;
            bnLogout.Enabled = false;
            bnLogin.Enabled = true;
+
+
         }       
 
         //KONVERTÁLÓK GOMB click esemény:
@@ -145,7 +145,7 @@ namespace autoDATA
             {
                 a.Dispose();
             }
-        }
+        }      
 
         //PROGRAM BEZÁRÁSA GOMB click esemény:
         private void bnCloseProgram_Click(object sender, EventArgs e)

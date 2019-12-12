@@ -43,23 +43,24 @@
             this.bnLoginOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bnLoginOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bnLoginOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnLoginOK.Location = new System.Drawing.Point(76, 94);
-            this.bnLoginOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bnLoginOK.Location = new System.Drawing.Point(101, 116);
+            this.bnLoginOK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnLoginOK.Name = "bnLoginOK";
-            this.bnLoginOK.Size = new System.Drawing.Size(73, 28);
+            this.bnLoginOK.Size = new System.Drawing.Size(97, 34);
             this.bnLoginOK.TabIndex = 1;
             this.bnLoginOK.Text = "Belépés";
             this.bnLoginOK.UseVisualStyleBackColor = false;
+            this.bnLoginOK.Click += new System.EventHandler(this.bnLoginOK_Click);
             // 
             // bnLoginCancel
             // 
             this.bnLoginCancel.BackColor = System.Drawing.Color.Red;
             this.bnLoginCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bnLoginCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnLoginCancel.Location = new System.Drawing.Point(175, 94);
-            this.bnLoginCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bnLoginCancel.Location = new System.Drawing.Point(233, 116);
+            this.bnLoginCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnLoginCancel.Name = "bnLoginCancel";
-            this.bnLoginCancel.Size = new System.Drawing.Size(65, 28);
+            this.bnLoginCancel.Size = new System.Drawing.Size(87, 34);
             this.bnLoginCancel.TabIndex = 4;
             this.bnLoginCancel.Text = "Mégse";
             this.bnLoginCancel.UseVisualStyleBackColor = false;
@@ -68,30 +69,27 @@
             // lbUsername
             // 
             this.lbUsername.AutoSize = true;
-            this.lbUsername.Location = new System.Drawing.Point(20, 24);
-            this.lbUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbUsername.Location = new System.Drawing.Point(27, 30);
             this.lbUsername.Name = "lbUsername";
-            this.lbUsername.Size = new System.Drawing.Size(84, 13);
+            this.lbUsername.Size = new System.Drawing.Size(111, 17);
             this.lbUsername.TabIndex = 5;
             this.lbUsername.Text = "Felhasználónév:";
             // 
             // lbPassword
             // 
             this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(20, 50);
-            this.lbPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbPassword.Location = new System.Drawing.Point(27, 62);
             this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(39, 13);
+            this.lbPassword.Size = new System.Drawing.Size(52, 17);
             this.lbPassword.TabIndex = 6;
             this.lbPassword.Text = "Jelszó:";
             // 
             // lbReg
             // 
             this.lbReg.AutoSize = true;
-            this.lbReg.Location = new System.Drawing.Point(77, 133);
-            this.lbReg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbReg.Location = new System.Drawing.Point(103, 164);
             this.lbReg.Name = "lbReg";
-            this.lbReg.Size = new System.Drawing.Size(65, 13);
+            this.lbReg.Size = new System.Drawing.Size(86, 17);
             this.lbReg.TabIndex = 7;
             this.lbReg.Text = "Regisztráció";
             this.lbReg.Click += new System.EventHandler(this.lbReg_Click);
@@ -99,35 +97,34 @@
             // lbForgotPassword
             // 
             this.lbForgotPassword.AutoSize = true;
-            this.lbForgotPassword.Location = new System.Drawing.Point(175, 133);
-            this.lbForgotPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbForgotPassword.Location = new System.Drawing.Point(233, 164);
             this.lbForgotPassword.Name = "lbForgotPassword";
-            this.lbForgotPassword.Size = new System.Drawing.Size(79, 13);
+            this.lbForgotPassword.Size = new System.Drawing.Size(106, 17);
             this.lbForgotPassword.TabIndex = 8;
             this.lbForgotPassword.Text = "Elfelejtett jelszó";
             // 
             // tbUsername
             // 
-            this.tbUsername.Location = new System.Drawing.Point(117, 24);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbUsername.Location = new System.Drawing.Point(156, 30);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(138, 20);
+            this.tbUsername.Size = new System.Drawing.Size(183, 22);
             this.tbUsername.TabIndex = 9;
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(117, 50);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPassword.Location = new System.Drawing.Point(156, 62);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
-            this.tbPassword.Size = new System.Drawing.Size(138, 20);
+            this.tbPassword.Size = new System.Drawing.Size(183, 22);
             this.tbPassword.TabIndex = 10;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 160);
+            this.ClientSize = new System.Drawing.Size(417, 197);
             this.ControlBox = false;
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbUsername);
@@ -137,7 +134,7 @@
             this.Controls.Add(this.lbUsername);
             this.Controls.Add(this.bnLoginCancel);
             this.Controls.Add(this.bnLoginOK);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.Text = "Belépés";
             this.ResumeLayout(false);
