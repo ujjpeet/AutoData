@@ -46,7 +46,6 @@
             this.lbRegPos = new System.Windows.Forms.Label();
             this.lbRegName = new System.Windows.Forms.Label();
             this.bnAdminUsersClearFields = new System.Windows.Forms.Button();
-            this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpUsers = new System.Windows.Forms.TabPage();
             this.tbAdminUsersFirstName = new System.Windows.Forms.TextBox();
@@ -57,6 +56,14 @@
             this.tbAdminUsersID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tpCars = new System.Windows.Forms.TabPage();
+            this.nudAdminCarsRange = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsBatCap = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsConsmp = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsVmax = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsAcc200 = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsAcc100 = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsTorque = new System.Windows.Forms.NumericUpDown();
+            this.nudAdminCarsPower = new System.Windows.Forms.NumericUpDown();
             this.cbAdminCarsBody = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnAdminCarsAddModel = new System.Windows.Forms.Button();
@@ -116,27 +123,20 @@
             this.label66 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.lbAdminConnection = new System.Windows.Forms.Label();
-            this.nudAdminCarsPower = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsTorque = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsAcc100 = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsAcc200 = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsVmax = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsConsmp = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsBatCap = new System.Windows.Forms.NumericUpDown();
-            this.nudAdminCarsRange = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
+            this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             this.tpCars.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdminCars)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsPower)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsTorque)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc100)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc200)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsVmax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsConsmp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsBatCap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsRange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsBatCap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsConsmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsVmax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc200)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc100)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsTorque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsPower)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdminCars)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // bnCloseWindow
@@ -154,13 +154,6 @@
             // cbAdminUsersPosition
             // 
             this.cbAdminUsersPosition.FormattingEnabled = true;
-            this.cbAdminUsersPosition.Items.AddRange(new object[] {
-            "Újságíró",
-            "Szerkesztő",
-            "Főszerkesztő",
-            "Vezetőség",
-            "Fotós",
-            "Vágó"});
             this.cbAdminUsersPosition.Location = new System.Drawing.Point(163, 167);
             this.cbAdminUsersPosition.Name = "cbAdminUsersPosition";
             this.cbAdminUsersPosition.Size = new System.Drawing.Size(121, 24);
@@ -300,15 +293,6 @@
             this.bnAdminUsersClearFields.TabIndex = 43;
             this.bnAdminUsersClearFields.Text = "Mezők törlése";
             this.bnAdminUsersClearFields.UseVisualStyleBackColor = true;
-            // 
-            // dataGridUsers
-            // 
-            this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridUsers.Location = new System.Drawing.Point(35, 423);
-            this.dataGridUsers.Name = "dataGridUsers";
-            this.dataGridUsers.RowTemplate.Height = 24;
-            this.dataGridUsers.Size = new System.Drawing.Size(1027, 272);
-            this.dataGridUsers.TabIndex = 44;
             // 
             // tabControl1
             // 
@@ -490,6 +474,106 @@
             this.tpCars.TabIndex = 1;
             this.tpCars.Text = "Autók";
             this.tpCars.UseVisualStyleBackColor = true;
+            // 
+            // nudAdminCarsRange
+            // 
+            this.nudAdminCarsRange.Location = new System.Drawing.Point(607, 362);
+            this.nudAdminCarsRange.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsRange.Name = "nudAdminCarsRange";
+            this.nudAdminCarsRange.Size = new System.Drawing.Size(82, 22);
+            this.nudAdminCarsRange.TabIndex = 222;
+            // 
+            // nudAdminCarsBatCap
+            // 
+            this.nudAdminCarsBatCap.DecimalPlaces = 1;
+            this.nudAdminCarsBatCap.Location = new System.Drawing.Point(607, 337);
+            this.nudAdminCarsBatCap.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsBatCap.Name = "nudAdminCarsBatCap";
+            this.nudAdminCarsBatCap.Size = new System.Drawing.Size(82, 22);
+            this.nudAdminCarsBatCap.TabIndex = 221;
+            // 
+            // nudAdminCarsConsmp
+            // 
+            this.nudAdminCarsConsmp.DecimalPlaces = 1;
+            this.nudAdminCarsConsmp.Location = new System.Drawing.Point(607, 277);
+            this.nudAdminCarsConsmp.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudAdminCarsConsmp.Name = "nudAdminCarsConsmp";
+            this.nudAdminCarsConsmp.Size = new System.Drawing.Size(65, 22);
+            this.nudAdminCarsConsmp.TabIndex = 220;
+            // 
+            // nudAdminCarsVmax
+            // 
+            this.nudAdminCarsVmax.Location = new System.Drawing.Point(607, 248);
+            this.nudAdminCarsVmax.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsVmax.Name = "nudAdminCarsVmax";
+            this.nudAdminCarsVmax.Size = new System.Drawing.Size(82, 22);
+            this.nudAdminCarsVmax.TabIndex = 219;
+            // 
+            // nudAdminCarsAcc200
+            // 
+            this.nudAdminCarsAcc200.DecimalPlaces = 1;
+            this.nudAdminCarsAcc200.Location = new System.Drawing.Point(607, 221);
+            this.nudAdminCarsAcc200.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsAcc200.Name = "nudAdminCarsAcc200";
+            this.nudAdminCarsAcc200.Size = new System.Drawing.Size(65, 22);
+            this.nudAdminCarsAcc200.TabIndex = 218;
+            // 
+            // nudAdminCarsAcc100
+            // 
+            this.nudAdminCarsAcc100.DecimalPlaces = 1;
+            this.nudAdminCarsAcc100.Location = new System.Drawing.Point(607, 193);
+            this.nudAdminCarsAcc100.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsAcc100.Name = "nudAdminCarsAcc100";
+            this.nudAdminCarsAcc100.Size = new System.Drawing.Size(65, 22);
+            this.nudAdminCarsAcc100.TabIndex = 217;
+            // 
+            // nudAdminCarsTorque
+            // 
+            this.nudAdminCarsTorque.Location = new System.Drawing.Point(607, 44);
+            this.nudAdminCarsTorque.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsTorque.Name = "nudAdminCarsTorque";
+            this.nudAdminCarsTorque.Size = new System.Drawing.Size(65, 22);
+            this.nudAdminCarsTorque.TabIndex = 216;
+            // 
+            // nudAdminCarsPower
+            // 
+            this.nudAdminCarsPower.Location = new System.Drawing.Point(607, 17);
+            this.nudAdminCarsPower.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudAdminCarsPower.Name = "nudAdminCarsPower";
+            this.nudAdminCarsPower.Size = new System.Drawing.Size(65, 22);
+            this.nudAdminCarsPower.TabIndex = 215;
             // 
             // cbAdminCarsBody
             // 
@@ -1068,105 +1152,14 @@
             this.lbAdminConnection.TabIndex = 46;
             this.lbAdminConnection.Text = "Kapcsolat";
             // 
-            // nudAdminCarsPower
+            // dataGridUsers
             // 
-            this.nudAdminCarsPower.Location = new System.Drawing.Point(607, 17);
-            this.nudAdminCarsPower.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsPower.Name = "nudAdminCarsPower";
-            this.nudAdminCarsPower.Size = new System.Drawing.Size(65, 22);
-            this.nudAdminCarsPower.TabIndex = 215;
-            // 
-            // nudAdminCarsTorque
-            // 
-            this.nudAdminCarsTorque.Location = new System.Drawing.Point(607, 44);
-            this.nudAdminCarsTorque.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsTorque.Name = "nudAdminCarsTorque";
-            this.nudAdminCarsTorque.Size = new System.Drawing.Size(65, 22);
-            this.nudAdminCarsTorque.TabIndex = 216;
-            // 
-            // nudAdminCarsAcc100
-            // 
-            this.nudAdminCarsAcc100.DecimalPlaces = 1;
-            this.nudAdminCarsAcc100.Location = new System.Drawing.Point(607, 193);
-            this.nudAdminCarsAcc100.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsAcc100.Name = "nudAdminCarsAcc100";
-            this.nudAdminCarsAcc100.Size = new System.Drawing.Size(65, 22);
-            this.nudAdminCarsAcc100.TabIndex = 217;
-            // 
-            // nudAdminCarsAcc200
-            // 
-            this.nudAdminCarsAcc200.DecimalPlaces = 1;
-            this.nudAdminCarsAcc200.Location = new System.Drawing.Point(607, 221);
-            this.nudAdminCarsAcc200.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsAcc200.Name = "nudAdminCarsAcc200";
-            this.nudAdminCarsAcc200.Size = new System.Drawing.Size(65, 22);
-            this.nudAdminCarsAcc200.TabIndex = 218;
-            // 
-            // nudAdminCarsVmax
-            // 
-            this.nudAdminCarsVmax.Location = new System.Drawing.Point(607, 248);
-            this.nudAdminCarsVmax.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsVmax.Name = "nudAdminCarsVmax";
-            this.nudAdminCarsVmax.Size = new System.Drawing.Size(82, 22);
-            this.nudAdminCarsVmax.TabIndex = 219;
-            // 
-            // nudAdminCarsConsmp
-            // 
-            this.nudAdminCarsConsmp.DecimalPlaces = 1;
-            this.nudAdminCarsConsmp.Location = new System.Drawing.Point(607, 277);
-            this.nudAdminCarsConsmp.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudAdminCarsConsmp.Name = "nudAdminCarsConsmp";
-            this.nudAdminCarsConsmp.Size = new System.Drawing.Size(65, 22);
-            this.nudAdminCarsConsmp.TabIndex = 220;
-            // 
-            // nudAdminCarsBatCap
-            // 
-            this.nudAdminCarsBatCap.DecimalPlaces = 1;
-            this.nudAdminCarsBatCap.Location = new System.Drawing.Point(607, 337);
-            this.nudAdminCarsBatCap.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsBatCap.Name = "nudAdminCarsBatCap";
-            this.nudAdminCarsBatCap.Size = new System.Drawing.Size(82, 22);
-            this.nudAdminCarsBatCap.TabIndex = 221;
-            // 
-            // nudAdminCarsRange
-            // 
-            this.nudAdminCarsRange.Location = new System.Drawing.Point(607, 362);
-            this.nudAdminCarsRange.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.nudAdminCarsRange.Name = "nudAdminCarsRange";
-            this.nudAdminCarsRange.Size = new System.Drawing.Size(82, 22);
-            this.nudAdminCarsRange.TabIndex = 222;
+            this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUsers.Location = new System.Drawing.Point(492, 25);
+            this.dataGridUsers.Name = "dataGridUsers";
+            this.dataGridUsers.RowTemplate.Height = 24;
+            this.dataGridUsers.Size = new System.Drawing.Size(581, 353);
+            this.dataGridUsers.TabIndex = 44;
             // 
             // Admin
             // 
@@ -1180,21 +1173,21 @@
             this.Name = "Admin";
             this.Text = "Adminisztrátori felület";
             this.Load += new System.EventHandler(this.Admin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tpUsers.ResumeLayout(false);
             this.tpUsers.PerformLayout();
             this.tpCars.ResumeLayout(false);
             this.tpCars.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAdminCars)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsPower)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsTorque)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc100)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc200)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsVmax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsConsmp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsBatCap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsRange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsBatCap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsConsmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsVmax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc200)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsAcc100)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsTorque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsPower)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdminCars)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1220,7 +1213,6 @@
         private System.Windows.Forms.Label lbRegPos;
         private System.Windows.Forms.Label lbRegName;
         private System.Windows.Forms.Button bnAdminUsersClearFields;
-        private System.Windows.Forms.DataGridView dataGridUsers;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tpUsers;
         private System.Windows.Forms.TextBox tbAdminUsersID;
@@ -1298,5 +1290,6 @@
         private System.Windows.Forms.NumericUpDown nudAdminCarsAcc100;
         private System.Windows.Forms.NumericUpDown nudAdminCarsTorque;
         private System.Windows.Forms.NumericUpDown nudAdminCarsPower;
+        private System.Windows.Forms.DataGridView dataGridUsers;
     }
 }

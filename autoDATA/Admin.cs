@@ -31,12 +31,12 @@ namespace autoDATA
             loadCarMakesForAdminSearch();
             loadCarMakesForAdmin();
 
-            //string ARRAY:
-            //üzemanyagok:
+            //AUTÓK üzemanyagai:
+            //string ARRAY:           
             string[] fuels = new string[] { "válasszon", "benzin", "dízel", "LPG", "CNG", "hibrid", "elektromos", "üzemanyagcella" };
             cbAdminCarsFuel.DataSource = fuels;
 
-            //lökettérfogat:
+            //AUTÓK lökettérfogata:
             string[] disparray = new string[] {
                 "válasszon","0,1","0,2","0,3","0,4","0,5","0,6","0,7","0,8","0,9",
                 "1,0","1,1","1,2","1,3","1,4","1,5","1,6","1,7","1,8","1,9",
@@ -50,7 +50,7 @@ namespace autoDATA
             };
             cbAdminCarsDisp.DataSource = disparray;
 
-            //gyártási évek:
+            //AUTÓK gyártási évei:
             string[] prodyearsarray = new string[] {
                 "1900","1901","1902","1903","1904","1905","1906","1907","1908","1909","1910",
                 "1911","1912","1913","1914","1915","1916","1917","1918","1919","1920",
@@ -87,12 +87,12 @@ namespace autoDATA
             Array.Reverse(prodyearsarray);
             cbAdminCarsProdEnd.DataSource = prodyearsarray2;
 
-            //hengerszám betöltése:
+            //AUTÓK hengerszámának betöltése:
             string[] cylinderarray = new string[] { "válasszon", "nincs", "1", "2", "3", "4", "5", "6", "8", "10", "12", "16" };
             cbAdminCarsCyl.DataSource = cylinderarray;
 
-            //string LIST:
-            //karosszériatípusok betöltése:
+            //AUTÓK karosszériatípusainak betöltése:
+            //string LIST:            
             List<string> bodylist = new List<string>();
             bodylist.Add("válasszon");
             bodylist.Add("ferdehátú");
@@ -106,9 +106,13 @@ namespace autoDATA
             bodylist.Add("terepjáró");
             cbAdminCarsBody.DataSource = bodylist;
 
+            //FELHASZNÁLÓK munkakörei string ARRAY :
+            string[] positions = new string[]
+                { "válasszon", "újságíró", "szerkesztő", "főszerkesztő", "fotós", "vágó"};
+            cbAdminUsersPosition.DataSource = positions;
         }
 
-        //VÁLTÓFAJTÁK betöltése ADATBÁZISBÓL:
+        //AUTÓK VÁLTÓFAJTÁK betöltése ADATBÁZISBÓL:
         private void loadGerarbox()
         {
             if (con.State != ConnectionState.Open)
@@ -271,7 +275,7 @@ namespace autoDATA
             fs.Close();
         }
 
-        //Ha a KERESŐBEN ki lett választva egy MÁRKA:
+        //Ha az AUTÓ KERESŐBEN ki lett választva egy MÁRKA:
         private void cbAdminCarsMakeSearch_TextChanged(object sender, EventArgs e)
         {
             switch (cbAdminCarsMakeSearch.Text)
@@ -402,7 +406,7 @@ namespace autoDATA
             }
         }
 
-        //Ha egy MÁRKA ki lett választva 
+        //Ha egy MÁRKA ki lett választva az AUTÓ keresőben
         private void cbAdminCarsMake_TextChanged(object sender, EventArgs e)
         {
             switch (cbAdminCarsMake.Text)
@@ -534,7 +538,7 @@ namespace autoDATA
             }
         }
 
-        //KERESÉS gomb esemény:
+        //AUTÓ KERESÉS gomb esemény:
         private void bnAdminCarsSearch_Click(object sender, EventArgs e)
         {
             tbAdminCarsID.Clear();
@@ -623,7 +627,7 @@ namespace autoDATA
             };
         }
 
-        //MÓDOSÍTÁS gomb esemény:
+        //AUTÓ MÓDOSÍTÁS gomb esemény:
         private void bnAdminCarsMod_Click(object sender, EventArgs e)
         {
             if (cbAdminCarsCategory.Text == "válasszon"
@@ -704,7 +708,7 @@ namespace autoDATA
             }
         }
 
-        //TÖRLÉS gomb esemény:
+        //AUTÓ TÖRLÉS gomb esemény:
         private void bnAdminCarsDel_Click(object sender, EventArgs e)
         {
             if (tbAdminCarsID.Text == "")
@@ -740,7 +744,7 @@ namespace autoDATA
 
         }
 
-        //KATTINTÁS esemény a datagrid-be:
+        //AUTÓ KATTINTÁS esemény a datagrid-be:
         private void dgvAdminCars_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -939,23 +943,7 @@ namespace autoDATA
             fs.Close();
         }
 
-        //BEZÁRÁS gomb esemény:
-        private void bnCloseWindow_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
-            dr = a.ShowDialog();
-            if (dr == DialogResult.Yes)
-            {
-                this.Close();
-            }
-            else if (dr == DialogResult.No)
-            {
-                a.Dispose();
-            }
-        }
-
-        //MEZŐK TÖRLÉSE gomb esemény:
+        //AUTÓ MEZŐK TÖRLÉSE gomb esemény:
         private void bnAdminCarsClearFields_Click(object sender, EventArgs e)
         {
             tbAdminCarsID.Clear();
@@ -983,5 +971,23 @@ namespace autoDATA
             nudAdminCarsBatCap.Value = 0;
             nudAdminCarsRange.Value = 0;
         }
+
+        //BEZÁRÁS gomb esemény:
+        private void bnCloseWindow_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = new DialogResult();
+            Confirm a = new Confirm();
+            dr = a.ShowDialog();
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else if (dr == DialogResult.No)
+            {
+                a.Dispose();
+            }
+        }
+
+        
     }
 }

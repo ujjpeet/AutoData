@@ -33,6 +33,10 @@
             this.label28 = new System.Windows.Forms.Label();
             this.lbLoggedInAs2 = new System.Windows.Forms.Label();
             this.tpCarRegDel = new System.Windows.Forms.TabPage();
+            this.nudCarRegRange = new System.Windows.Forms.NumericUpDown();
+            this.nudCarRegBatCap = new System.Windows.Forms.NumericUpDown();
+            this.nudCarRegConsmp = new System.Windows.Forms.NumericUpDown();
+            this.nudCarRegVmax = new System.Windows.Forms.NumericUpDown();
             this.nudCarRegAcc200 = new System.Windows.Forms.NumericUpDown();
             this.nudCarRegAcc100 = new System.Windows.Forms.NumericUpDown();
             this.nudCarRegPower = new System.Windows.Forms.NumericUpDown();
@@ -153,11 +157,11 @@
             this.bnExportData = new System.Windows.Forms.Button();
             this.bnCarSearchSearch = new System.Windows.Forms.Button();
             this.tcCarDatabase = new System.Windows.Forms.TabControl();
-            this.nudCarRegVmax = new System.Windows.Forms.NumericUpDown();
-            this.nudCarRegConsmp = new System.Windows.Forms.NumericUpDown();
-            this.nudCarRegBatCap = new System.Windows.Forms.NumericUpDown();
-            this.nudCarRegRange = new System.Windows.Forms.NumericUpDown();
             this.tpCarRegDel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegRange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegBatCap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegConsmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegVmax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegAcc200)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegAcc100)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegPower)).BeginInit();
@@ -166,10 +170,6 @@
             this.tpCarSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarSearch)).BeginInit();
             this.tcCarDatabase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegVmax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegConsmp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegBatCap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegRange)).BeginInit();
             this.SuspendLayout();
             // 
             // lbConnect
@@ -282,6 +282,41 @@
             this.tpCarRegDel.TabIndex = 2;
             this.tpCarRegDel.Text = "Rögzítés";
             this.tpCarRegDel.UseVisualStyleBackColor = true;
+            // 
+            // nudCarRegRange
+            // 
+            this.nudCarRegRange.Location = new System.Drawing.Point(672, 301);
+            this.nudCarRegRange.Name = "nudCarRegRange";
+            this.nudCarRegRange.Size = new System.Drawing.Size(65, 22);
+            this.nudCarRegRange.TabIndex = 105;
+            // 
+            // nudCarRegBatCap
+            // 
+            this.nudCarRegBatCap.DecimalPlaces = 1;
+            this.nudCarRegBatCap.Location = new System.Drawing.Point(672, 273);
+            this.nudCarRegBatCap.Name = "nudCarRegBatCap";
+            this.nudCarRegBatCap.Size = new System.Drawing.Size(65, 22);
+            this.nudCarRegBatCap.TabIndex = 104;
+            // 
+            // nudCarRegConsmp
+            // 
+            this.nudCarRegConsmp.DecimalPlaces = 1;
+            this.nudCarRegConsmp.Location = new System.Drawing.Point(672, 218);
+            this.nudCarRegConsmp.Name = "nudCarRegConsmp";
+            this.nudCarRegConsmp.Size = new System.Drawing.Size(54, 22);
+            this.nudCarRegConsmp.TabIndex = 103;
+            // 
+            // nudCarRegVmax
+            // 
+            this.nudCarRegVmax.Location = new System.Drawing.Point(672, 191);
+            this.nudCarRegVmax.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudCarRegVmax.Name = "nudCarRegVmax";
+            this.nudCarRegVmax.Size = new System.Drawing.Size(79, 22);
+            this.nudCarRegVmax.TabIndex = 102;
             // 
             // nudCarRegAcc200
             // 
@@ -1513,41 +1548,6 @@
             this.tcCarDatabase.Size = new System.Drawing.Size(1071, 891);
             this.tcCarDatabase.TabIndex = 7;
             // 
-            // nudCarRegVmax
-            // 
-            this.nudCarRegVmax.Location = new System.Drawing.Point(672, 191);
-            this.nudCarRegVmax.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudCarRegVmax.Name = "nudCarRegVmax";
-            this.nudCarRegVmax.Size = new System.Drawing.Size(79, 22);
-            this.nudCarRegVmax.TabIndex = 102;
-            // 
-            // nudCarRegConsmp
-            // 
-            this.nudCarRegConsmp.DecimalPlaces = 1;
-            this.nudCarRegConsmp.Location = new System.Drawing.Point(672, 218);
-            this.nudCarRegConsmp.Name = "nudCarRegConsmp";
-            this.nudCarRegConsmp.Size = new System.Drawing.Size(54, 22);
-            this.nudCarRegConsmp.TabIndex = 103;
-            // 
-            // nudCarRegBatCap
-            // 
-            this.nudCarRegBatCap.DecimalPlaces = 1;
-            this.nudCarRegBatCap.Location = new System.Drawing.Point(672, 273);
-            this.nudCarRegBatCap.Name = "nudCarRegBatCap";
-            this.nudCarRegBatCap.Size = new System.Drawing.Size(65, 22);
-            this.nudCarRegBatCap.TabIndex = 104;
-            // 
-            // nudCarRegRange
-            // 
-            this.nudCarRegRange.Location = new System.Drawing.Point(672, 301);
-            this.nudCarRegRange.Name = "nudCarRegRange";
-            this.nudCarRegRange.Size = new System.Drawing.Size(65, 22);
-            this.nudCarRegRange.TabIndex = 105;
-            // 
             // carDataBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1565,6 +1565,10 @@
             this.Load += new System.EventHandler(this.carDataBase_Load);
             this.tpCarRegDel.ResumeLayout(false);
             this.tpCarRegDel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegRange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegBatCap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegConsmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegVmax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegAcc200)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegAcc100)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegPower)).EndInit();
@@ -1574,10 +1578,6 @@
             this.tpCarSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarSearch)).EndInit();
             this.tcCarDatabase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegVmax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegConsmp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegBatCap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCarRegRange)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

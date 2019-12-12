@@ -763,6 +763,15 @@ namespace autoDATA
             }
             else
             {
+                int whoisloggedin;
+                switch (lbLoggedInAs2.Text)
+                {
+                    case "Admin":
+                        whoisloggedin = 2;
+                        break;
+
+                }
+
                 string insertQuery = "INSERT INTO cars " +
                     "(category, make, model, code, body, fuel_type, cylinder_number, cylinder_arrangement, aspiration, power, torque, " +
                     "displacement, gearbox_type, gears, powertrain, acceleration100, acceleration200, vmax, consumption," +

@@ -30,24 +30,7 @@ namespace autoDATA
            bnDatabase.Enabled = false;
            bnLogout.Enabled = false;
            bnLogin.Enabled = true;
-        }
-
-        //PROGRAM BEZÁRÁSA GOMB click esemény:
-        private void bnCloseProgram_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
-            dr = a.ShowDialog();
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-            else if (dr == DialogResult.No)
-            {
-                a.Dispose();
-            }
-            
-        }
+        }       
 
         //KONVERTÁLÓK GOMB click esemény:
         private void bnConverters_Click(object sender, EventArgs e)
@@ -71,8 +54,6 @@ namespace autoDATA
                 myconverter.BringToFront();
                 myconverter.Activate();
             }
-
-
         }
 
         //AUTÓ ADATBÁZIS GOMB click esemény:
@@ -116,7 +97,6 @@ namespace autoDATA
             if (IsOpen == false)
             {
                 mysettings = new Settings();
-
                 mysettings.Show();
                 mysettings.BringToFront();
                 mysettings.Activate();
@@ -140,7 +120,6 @@ namespace autoDATA
             if (IsOpen == false)
             {
                 myadmin = new Admin();
-
                 myadmin.Show();
                 myadmin.BringToFront();
                 myadmin.Activate();
@@ -163,6 +142,22 @@ namespace autoDATA
                 bnLogin.Enabled = false;
             }
             else
+            {
+                a.Dispose();
+            }
+        }
+
+        //PROGRAM BEZÁRÁSA GOMB click esemény:
+        private void bnCloseProgram_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = new DialogResult();
+            Confirm a = new Confirm();
+            dr = a.ShowDialog();
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else if (dr == DialogResult.No)
             {
                 a.Dispose();
             }
