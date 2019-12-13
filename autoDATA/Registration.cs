@@ -15,8 +15,6 @@ namespace autoDATA
 {
     public partial class Registration : Form
     {
-        public static int register;
-
         public Registration()
         {
             InitializeComponent();
@@ -47,7 +45,7 @@ namespace autoDATA
             string[] month = new string[]                {"válasszon","január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"};
             cbUserRegMonth.DataSource = month;
 
-            string[] days = new string[]               {"válasszon","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31" };
+            string[] days = new string[]               {"válasszon","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
             cbUserRegDays.DataSource = days;
        }
 
@@ -55,18 +53,31 @@ namespace autoDATA
         private void bnRegCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }      
+        }
 
         //FELHASZNÁLÓNÉV mező kitöltése automatikusan:
+
+        //metódus ami átalakítja a speciális karaktereket:
+        public static string RemoveAccents(string source)
+        {
+            //8 bit characters 
+            byte[] b = Encoding.GetEncoding(1251).GetBytes(source);
+
+            string t = Encoding.ASCII.GetString(b);
+            Regex re = new Regex("[^a-zA-Z0-9]=-_/");
+            string c = re.Replace(t, " ");
+            return c;
+        }
+
         private void tbRegFamilyName_TextChanged(object sender, EventArgs e)
         {
             string toreplace1 = tbRegFirstName.Text.ToLower();
             string toreplace2 = tbRegFamilyName.Text.ToLower();
 
-            string result1 = RemoveSpecialCharacters(toreplace1);
-            string result2 = RemoveSpecialCharacters(toreplace2);
+            string result1 = RemoveAccents(toreplace1);
+            string result2 = RemoveAccents(toreplace2);           
 
-            lbAutUsername.Text = result1 + result2;
+            lbAutUsername.Text = result1 + "." + result2;
         }
 
         private void tbRegFirstName_TextChanged(object sender, EventArgs e)
@@ -74,16 +85,11 @@ namespace autoDATA
             string toreplace1 = tbRegFirstName.Text.ToLower();
             string toreplace2 = tbRegFamilyName.Text.ToLower();
 
-            string result1 = RemoveSpecialCharacters(toreplace1);
-            string result2 = RemoveSpecialCharacters(toreplace2);
+            string result1 = RemoveAccents(toreplace1);
+            string result2 = RemoveAccents(toreplace2);
 
-            lbAutUsername.Text = result1 + result2;
-        }
-
-        public static string RemoveSpecialCharacters(string str)
-        {
-            return Regex.Replace(str, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled);
-        }
+            lbAutUsername.Text = result1 + "." + result2;
+        }       
 
         //beírt JELSZAVAKNAK meg kell egyezniük (textbox leave esemény):
         private void tbRegPasswordAgain_Leave(object sender, EventArgs e)

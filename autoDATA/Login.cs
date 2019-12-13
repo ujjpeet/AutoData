@@ -100,6 +100,12 @@ namespace autoDATA
             {
                 MessageBox.Show(ex.Message);
             }
-        }       
+        }
+
+        //ELFELEJTETT JELSZÓ kattintás:
+        private void lbForgotPassword_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Küldjön egy emailt az ujjpetertamas@gmail.com emailcímre!");
+        }
     }
 }

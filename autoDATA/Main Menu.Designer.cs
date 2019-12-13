@@ -37,6 +37,7 @@
             this.bnSettings = new System.Windows.Forms.Button();
             this.lbLoggedInAs = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbAdminContact = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bnLogin
@@ -69,7 +70,7 @@
             // 
             this.bnAdmin.BackColor = System.Drawing.SystemColors.Menu;
             this.bnAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnAdmin.Location = new System.Drawing.Point(79, 389);
+            this.bnAdmin.Location = new System.Drawing.Point(81, 361);
             this.bnAdmin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnAdmin.Name = "bnAdmin";
             this.bnAdmin.Size = new System.Drawing.Size(133, 34);
@@ -121,7 +122,7 @@
             // 
             this.bnSettings.BackColor = System.Drawing.SystemColors.Menu;
             this.bnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnSettings.Location = new System.Drawing.Point(79, 348);
+            this.bnSettings.Location = new System.Drawing.Point(81, 320);
             this.bnSettings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnSettings.Name = "bnSettings";
             this.bnSettings.Size = new System.Drawing.Size(133, 34);
@@ -148,6 +149,18 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Belépve, mint:";
             // 
+            // lbAdminContact
+            // 
+            this.lbAdminContact.AutoSize = true;
+            this.lbAdminContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbAdminContact.ForeColor = System.Drawing.Color.Blue;
+            this.lbAdminContact.Location = new System.Drawing.Point(25, 416);
+            this.lbAdminContact.Name = "lbAdminContact";
+            this.lbAdminContact.Size = new System.Drawing.Size(259, 17);
+            this.lbAdminContact.TabIndex = 10;
+            this.lbAdminContact.Text = "Lépjen kapcsolatba az adminisztrátorral";
+            this.lbAdminContact.Click += new System.EventHandler(this.lbAdminContact_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -155,6 +168,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(310, 453);
             this.ControlBox = false;
+            this.Controls.Add(this.lbAdminContact);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbLoggedInAs);
             this.Controls.Add(this.bnSettings);
@@ -184,6 +198,7 @@
         private System.Windows.Forms.Button bnSettings;
         public System.Windows.Forms.Label lbLoggedInAs;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbAdminContact;
     }
 }
 

@@ -87,6 +87,8 @@
             // lbReg
             // 
             this.lbReg.AutoSize = true;
+            this.lbReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbReg.ForeColor = System.Drawing.Color.Blue;
             this.lbReg.Location = new System.Drawing.Point(103, 164);
             this.lbReg.Name = "lbReg";
             this.lbReg.Size = new System.Drawing.Size(86, 17);
@@ -97,11 +99,14 @@
             // lbForgotPassword
             // 
             this.lbForgotPassword.AutoSize = true;
+            this.lbForgotPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbForgotPassword.ForeColor = System.Drawing.Color.Blue;
             this.lbForgotPassword.Location = new System.Drawing.Point(233, 164);
             this.lbForgotPassword.Name = "lbForgotPassword";
             this.lbForgotPassword.Size = new System.Drawing.Size(106, 17);
             this.lbForgotPassword.TabIndex = 8;
             this.lbForgotPassword.Text = "Elfelejtett jelszó";
+            this.lbForgotPassword.Click += new System.EventHandler(this.lbForgotPassword_Click);
             // 
             // tbUsername
             // 

@@ -28,8 +28,6 @@ namespace autoDATA
            bnLogout.Enabled = false;
            bnLogin.Enabled = true;
         }     
-        
-      
 
         //KONVERTÁLÓK GOMB click esemény:
         private void bnConverters_Click(object sender, EventArgs e)
@@ -181,6 +179,12 @@ namespace autoDATA
             bnDatabase.Enabled = false;
             bnLogout.Enabled = false;
             bnLogin.Enabled = true;
+        }
+
+        //ADMIN KONTAKT kattintás:
+        private void lbAdminContact_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Küldjön egy emailt az ujjpetertamas@gmail.com emailcímre!");
         }
     }
 }
