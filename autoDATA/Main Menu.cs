@@ -56,7 +56,7 @@ namespace autoDATA
         //AUTÓ ADATBÁZIS GOMB click esemény:
         private void bnDatabase_Click(object sender, EventArgs e)
         {
-            carDataBase mycardatabasemain = new carDataBase();
+            carDataBase mycardatabasemain = new carDataBase(lbLoggedInAs.Text);
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -69,7 +69,7 @@ namespace autoDATA
             }
             if (IsOpen == false)
             {
-                mycardatabasemain = new carDataBase();
+                mycardatabasemain = new carDataBase(lbLoggedInAs.Text);
 
                 mycardatabasemain.Show();
                 mycardatabasemain.BringToFront();

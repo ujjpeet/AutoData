@@ -30,8 +30,6 @@
         {
             this.lbConnect = new System.Windows.Forms.Label();
             this.bnCloseWindow = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.lbLoggedInAs2 = new System.Windows.Forms.Label();
             this.tpCarRegDel = new System.Windows.Forms.TabPage();
             this.nudCarRegRange = new System.Windows.Forms.NumericUpDown();
             this.nudCarRegBatCap = new System.Windows.Forms.NumericUpDown();
@@ -157,6 +155,8 @@
             this.bnExportData = new System.Windows.Forms.Button();
             this.bnCarSearchSearch = new System.Windows.Forms.Button();
             this.tcCarDatabase = new System.Windows.Forms.TabControl();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tpCarRegDel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCarRegBatCap)).BeginInit();
@@ -193,25 +193,6 @@
             this.bnCloseWindow.Text = "Bezárás";
             this.bnCloseWindow.UseVisualStyleBackColor = false;
             this.bnCloseWindow.Click += new System.EventHandler(this.bnCloseWindow_Click);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(12, 9);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(97, 17);
-            this.label28.TabIndex = 11;
-            this.label28.Text = "Belépve, mint:";
-            // 
-            // lbLoggedInAs2
-            // 
-            this.lbLoggedInAs2.AutoSize = true;
-            this.lbLoggedInAs2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbLoggedInAs2.Location = new System.Drawing.Point(115, 9);
-            this.lbLoggedInAs2.Name = "lbLoggedInAs2";
-            this.lbLoggedInAs2.Size = new System.Drawing.Size(52, 17);
-            this.lbLoggedInAs2.TabIndex = 10;
-            this.lbLoggedInAs2.Text = "Admin";
             // 
             // tpCarRegDel
             // 
@@ -1548,14 +1529,31 @@
             this.tcCarDatabase.Size = new System.Drawing.Size(1071, 891);
             this.tcCarDatabase.TabIndex = 7;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 17);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "label6";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(78, 5);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 11;
+            // 
             // carDataBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1579, 937);
             this.ControlBox = false;
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.lbLoggedInAs2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lbConnect);
             this.Controls.Add(this.tcCarDatabase);
             this.Controls.Add(this.bnCloseWindow);
@@ -1586,8 +1584,6 @@
         #endregion
         private System.Windows.Forms.Label lbConnect;
         private System.Windows.Forms.Button bnCloseWindow;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label lbLoggedInAs2;
         private System.Windows.Forms.TabPage tpCarRegDel;
         private System.Windows.Forms.ComboBox cbCarRegProdEnd;
         private System.Windows.Forms.ComboBox cbCarRegProdStart;
@@ -1713,5 +1709,7 @@
         private System.Windows.Forms.NumericUpDown nudCarRegConsmp;
         private System.Windows.Forms.NumericUpDown nudCarRegRange;
         private System.Windows.Forms.NumericUpDown nudCarRegBatCap;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

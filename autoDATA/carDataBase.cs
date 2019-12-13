@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace autoDATA
 {
@@ -18,14 +19,18 @@ namespace autoDATA
         MySqlConnection con;
         public string query = "";
 
-        public carDataBase()
+        public carDataBase(string user)
         {
             InitializeComponent();
+            label6.Text = user;
         }
 
         //Form LOAD esemény:
         private void carDataBase_Load(object sender, EventArgs e)
         {
+            label6.Visible = false;    
+            textBox1.Visible = false;
+
             lbCarSearchBatCap.Visible = false;
             tbCarSearchBatCap.Visible = false;
             lbCarSearchBatCapkw.Visible = false;
@@ -41,6 +46,7 @@ namespace autoDATA
             lbCarRegFuelRangekm.Visible = false;
 
             databaseConnect();
+
             loadCarMakesForCarSearch();
             loadCarMakesForCarReg();
             loadCarCategoriesForCarReg();
@@ -65,6 +71,23 @@ namespace autoDATA
             bodylist.Add("pickup");
             bodylist.Add("terepjáró");
             cbCarRegBody.DataSource = bodylist;
+            
+            //meg kell tudni h ki van belogolva és hogy milyen id tartozik a userhez:
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+
+            try
+            {                
+                query = "SELECT id FROM users WHERE username = '" + label6.Text + "'";
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                textBox1.Text = cmd.ExecuteScalar().ToString();         
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //MYSQL adatbázis kapcsolat metódus:
@@ -762,15 +785,11 @@ namespace autoDATA
                 MessageBox.Show("A csillaggal jelölt mezők kitöltése kötelező!");
             }
             else
-            {
-                int whoisloggedin;
-                switch (lbLoggedInAs2.Text)
+            {                
+                if (con.State != ConnectionState.Open)
                 {
-                    case "Admin":
-                        whoisloggedin = 2;
-                        break;
-
-                }
+                    con.Open();
+                }           
 
                 string insertQuery = "INSERT INTO cars " +
                     "(category, make, model, code, body, fuel_type, cylinder_number, cylinder_arrangement, aspiration, power, torque, " +
@@ -801,16 +820,11 @@ namespace autoDATA
                     "'" + cbCarRegProdEnd.Text + "'," +
                     "'" + nudCarRegBatCap.Value + "'," +
                     "'" + nudCarRegRange.Value + "'," +
-                    "2)";
-
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }
-
-                MySqlCommand insert = new MySqlCommand(insertQuery, con);
+                    "'"+textBox1.Text+"')";               
+                
                 try
                 {
+                    MySqlCommand insert = new MySqlCommand(insertQuery, con);
                     if (insert.ExecuteNonQuery() == 1)
                     {
                         MessageBox.Show("Gépjármű regisztrálva");
