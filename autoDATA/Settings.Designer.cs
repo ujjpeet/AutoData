@@ -30,10 +30,11 @@
         {
             this.lbNewPassword = new System.Windows.Forms.Label();
             this.lbNewPasswordAgain = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbSettingsNewPassword = new System.Windows.Forms.TextBox();
+            this.tbSettingsConfirmNewPassword = new System.Windows.Forms.TextBox();
             this.bnSettingsSave = new System.Windows.Forms.Button();
             this.bnSettingsCancel = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbNewPassword
@@ -54,21 +55,21 @@
             this.lbNewPasswordAgain.TabIndex = 2;
             this.lbNewPasswordAgain.Text = "Új jelszó mégegyszer:";
             // 
-            // textBox2
+            // tbSettingsNewPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(226, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(161, 22);
-            this.textBox2.TabIndex = 4;
+            this.tbSettingsNewPassword.Location = new System.Drawing.Point(226, 35);
+            this.tbSettingsNewPassword.Name = "tbSettingsNewPassword";
+            this.tbSettingsNewPassword.PasswordChar = '*';
+            this.tbSettingsNewPassword.Size = new System.Drawing.Size(161, 22);
+            this.tbSettingsNewPassword.TabIndex = 4;
             // 
-            // textBox3
+            // tbSettingsConfirmNewPassword
             // 
-            this.textBox3.Location = new System.Drawing.Point(226, 72);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(161, 22);
-            this.textBox3.TabIndex = 5;
+            this.tbSettingsConfirmNewPassword.Location = new System.Drawing.Point(226, 72);
+            this.tbSettingsConfirmNewPassword.Name = "tbSettingsConfirmNewPassword";
+            this.tbSettingsConfirmNewPassword.PasswordChar = '*';
+            this.tbSettingsConfirmNewPassword.Size = new System.Drawing.Size(161, 22);
+            this.tbSettingsConfirmNewPassword.TabIndex = 5;
             // 
             // bnSettingsSave
             // 
@@ -80,6 +81,7 @@
             this.bnSettingsSave.TabIndex = 6;
             this.bnSettingsSave.Text = "Mentés";
             this.bnSettingsSave.UseVisualStyleBackColor = false;
+            this.bnSettingsSave.Click += new System.EventHandler(this.bnSettingsSave_Click);
             // 
             // bnSettingsCancel
             // 
@@ -93,16 +95,26 @@
             this.bnSettingsCancel.UseVisualStyleBackColor = false;
             this.bnSettingsCancel.Click += new System.EventHandler(this.bnSettingsCancel_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 17);
+            this.label2.TabIndex = 8;
+            this.label2.Visible = false;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 200);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.bnSettingsCancel);
             this.Controls.Add(this.bnSettingsSave);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbSettingsConfirmNewPassword);
+            this.Controls.Add(this.tbSettingsNewPassword);
             this.Controls.Add(this.lbNewPasswordAgain);
             this.Controls.Add(this.lbNewPassword);
             this.Name = "Settings";
@@ -115,9 +127,11 @@
         #endregion
         private System.Windows.Forms.Label lbNewPassword;
         private System.Windows.Forms.Label lbNewPasswordAgain;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbSettingsNewPassword;
+        private System.Windows.Forms.TextBox tbSettingsConfirmNewPassword;
         private System.Windows.Forms.Button bnSettingsSave;
         private System.Windows.Forms.Button bnSettingsCancel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

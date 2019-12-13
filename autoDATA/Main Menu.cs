@@ -12,12 +12,11 @@ using System.Windows.Forms;
 namespace autoDATA
 {
     public partial class Form1 : Form
-    {            
-
+    {
         public Form1()
         {
             InitializeComponent();
-        }
+        }        
 
         //FORM LOAD esemény:
         private void Form1_Load(object sender, EventArgs e)
@@ -28,7 +27,9 @@ namespace autoDATA
            bnDatabase.Enabled = false;
            bnLogout.Enabled = false;
            bnLogin.Enabled = true;
-        }       
+        }     
+        
+      
 
         //KONVERTÁLÓK GOMB click esemény:
         private void bnConverters_Click(object sender, EventArgs e)
@@ -80,13 +81,15 @@ namespace autoDATA
 
         //BEÁLLÍTÁSOK GOMB click esemény:
         private void bnSettings_Click(object sender, EventArgs e)
-        {
-            Settings mysettings = new Settings();
+        { 
+            //hogy ki van belépve, paraméterként átadva a Settings form konstruktorának:
+            Settings mysettings = new Settings(lbLoggedInAs.Text);           
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
                 if (f.Text == "Beállítások")
-                {
+                {                      
                     IsOpen = true;
                     mysettings.BringToFront();
                     mysettings.Activate();
@@ -94,7 +97,7 @@ namespace autoDATA
             }
             if (IsOpen == false)
             {
-                mysettings = new Settings();
+                mysettings = new Settings(lbLoggedInAs.Text);
                 mysettings.Show();
                 mysettings.BringToFront();
                 mysettings.Activate();
@@ -139,7 +142,7 @@ namespace autoDATA
                 bnLogout.Enabled = true;
                 bnLogin.Enabled = false;
 
-                lbLoggedInAs.Text = ((Login)a).tbUsername.Text;
+                lbLoggedInAs.Text = ((Login)a).tbUsername.Text;                
 
                 if (lbLoggedInAs.Text == "admin")
                 {

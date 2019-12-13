@@ -182,7 +182,7 @@
         private System.Windows.Forms.Button bnCloseProgram;
         private System.Windows.Forms.Button bnConverters;
         private System.Windows.Forms.Button bnSettings;
-        private System.Windows.Forms.Label lbLoggedInAs;
+        public System.Windows.Forms.Label lbLoggedInAs;
         private System.Windows.Forms.Label label1;
     }
 }

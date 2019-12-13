@@ -93,7 +93,7 @@ namespace autoDATA
                 MessageBox.Show("A jelszavak nem azonosak!");
                 tbRegPassword.Clear();
                 tbRegPasswordAgain.Clear();
-                tbRegPassword.Focus(); //kruzor oda
+                tbRegPassword.Focus();
             }
         }
 
