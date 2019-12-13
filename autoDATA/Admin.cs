@@ -30,6 +30,7 @@ namespace autoDATA
             loadCarCategoriesForAdmin();
             loadCarMakesForAdminSearch();
             loadCarMakesForAdmin();
+            label2.Visible = false;
 
             //AUTÓK üzemanyagai:
             //string ARRAY:           
@@ -656,8 +657,6 @@ namespace autoDATA
             }
             else
             {
-
-
                 query = "UPDATE cars SET " +
                     "category = '" + cbAdminCarsCategory.Text + "'," +
                     "make = '" + cbAdminCarsMake.Text + "' ," +
@@ -688,23 +687,32 @@ namespace autoDATA
                 {
                     con.Open();
                 }
-
-                MySqlCommand insert = new MySqlCommand(query, con);
-                try
+                DialogResult dr = new DialogResult();
+                Confirm a = new Confirm();
+                dr = a.ShowDialog();
+                if (dr == DialogResult.Yes)
                 {
-                    if (insert.ExecuteNonQuery() == 1)
+                    MySqlCommand insert = new MySqlCommand(query, con);
+                    try
                     {
-                        MessageBox.Show("Gépjármű módosítva");
+                        if (insert.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Gépjármű módosítva");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Módosítás sikertelen");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Módosítás sikertelen");
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                catch (Exception ex)
+                else if (dr == DialogResult.No)
                 {
-                    MessageBox.Show(ex.Message);
-                }
+                    a.Dispose();
+                }               
             }
         }
 
@@ -724,27 +732,36 @@ namespace autoDATA
                     con.Open();
                 }
 
-                MySqlCommand insert = new MySqlCommand(query, con);
-                try
+                DialogResult dr = new DialogResult();
+                Confirm a = new Confirm();
+                dr = a.ShowDialog();
+                if (dr == DialogResult.Yes)
                 {
-                    if (insert.ExecuteNonQuery() == 1)
+                    MySqlCommand insert = new MySqlCommand(query, con);
+                    try
                     {
-                        MessageBox.Show("Gépjármű törölve");
+                        if (insert.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Gépjármű törölve");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Törlés sikertelen");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Törlés sikertelen");
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                catch (Exception ex)
+                else if (dr == DialogResult.No)
                 {
-                    MessageBox.Show(ex.Message);
+                    a.Dispose();
                 }
             }
-
         }
 
-        //AUTÓ KATTINTÁS esemény a datagrid-be:
+        //AUTÓ DGV KATTINTÁS:
         private void dgvAdminCars_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -988,6 +1005,219 @@ namespace autoDATA
             }
         }
 
-        
+        //FELHASZNÁLÓK KERESÉSE gomb esemény:
+        private void bnAdminUsersSearch_Click(object sender, EventArgs e)
+        {
+            tbAdminUsersID.Clear();            
+            cbAdminUsersPosition.Text = "válasszon";
+            dtpAdminUsersBirthdate.Value = DateTime.Now;
+            tbAdminEmail.Clear();            
+
+            dataGridUsers.DataSource = null;
+
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+
+            if(tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text == "")
+            {
+                query = "SELECT * FROM users";
+            }
+
+            if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text == "")
+            {
+                query = "SELECT * FROM users WHERE last_name = '"+ tbAdminUsersLastName.Text + "'";
+            }
+
+            if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text != "")
+            {
+                query = "SELECT * FROM users WHERE first_name = '" + tbAdminUsersFirstName.Text + "'";
+            }
+
+            if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text != "")
+            {
+                query = "SELECT * FROM users WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "' ";
+            }
+
+            try
+            {
+                DataTable mytable = new DataTable();
+                MySqlCommand search = new MySqlCommand(query, con);
+                MySqlDataReader open = search.ExecuteReader();
+                mytable.Load(open);
+                if (mytable.Rows.Count > 0)
+                {
+                    dataGridUsers.DataSource = mytable;
+                }
+                else
+                {
+                    dataGridUsers.DataSource = mytable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
+        }
+
+        //FELHASZNÁLÓK MÓDOSÍTÁSA gomb esemény:
+        private void bnAdminUsersMod_Click(object sender, EventArgs e)
+        {
+            if (tbAdminUsersLastName.Text == ""
+                || tbAdminUsersFirstName.Text == ""
+                || cbAdminUsersPosition.Text == "válasszon"
+                || dtpAdminUsersBirthdate.Value == DateTime.Now
+                || tbAdminEmail.Text == ""                
+                )
+            {
+                MessageBox.Show("Minden mező kitöltése kötelező!");
+            }            
+            /*else if ()
+            {
+                email regex
+            }*/
+            else
+            {
+                query = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                DialogResult dr = new DialogResult();
+                Confirm a = new Confirm();
+                dr = a.ShowDialog();
+                if (dr == DialogResult.Yes)
+                {                    
+                    try
+                    {
+                        MySqlCommand insert = new MySqlCommand(query, con);
+                        if (insert.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Felhasználó módosítva");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Módosítás sikertelen");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else if (dr == DialogResult.No)
+                {
+                    a.Dispose();
+                }
+            }
+        }
+
+        //FELHASZNÁLÓK TÖRLÉSE gomb esemény:
+        private void bnAdminUsersDel_Click(object sender, EventArgs e)
+        {
+            if (tbAdminUsersID.Text == "")
+            {
+                MessageBox.Show("Jelöljön ki egy felhasználót a törléshez!");
+            }
+            else
+            {
+                query = "DELETE FROM users WHERE id = '" + tbAdminUsersID.Text + "'";
+
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                DialogResult dr = new DialogResult();
+                Confirm a = new Confirm();
+                dr = a.ShowDialog();
+                if (dr == DialogResult.Yes)
+                {                    
+                    try
+                    {
+                        MySqlCommand insert = new MySqlCommand(query, con);
+                        if (insert.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Felhasználó törölve");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Törlés sikertelen");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else if (dr == DialogResult.No)
+                {
+                    a.Dispose();
+                }               
+            }
+        }
+
+        //FELHASZNÁLÓ MEZŐK TÖRLÉSE gomb esemény:
+        private void bnAdminUsersClearFields_Click(object sender, EventArgs e)
+        {
+            tbAdminUsersID.Clear();
+            tbAdminUsersLastName.Clear();
+            tbAdminUsersFirstName.Clear();
+            cbAdminUsersPosition.Text = "válasszon";
+            dtpAdminUsersBirthdate.Value = DateTime.Now;
+            tbAdminEmail.Clear();            
+        }
+
+        //FELHASZNÁLÓ DGV KATTINTÁS:
+        private void dataGridUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            label2.Visible = true;
+
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridUsers.Rows[e.RowIndex];
+
+                tbAdminUsersID.Text = row.Cells[0].Value.ToString();
+                tbAdminUsersLastName.Text = row.Cells[1].Value.ToString();
+                tbAdminUsersFirstName.Text = row.Cells[2].Value.ToString();
+                cbAdminUsersPosition.Text = row.Cells[3].Value.ToString();
+                dtpAdminUsersBirthdate.Value = Convert.ToDateTime(row.Cells[4].Value);
+                tbAdminEmail.Text = row.Cells[5].Value.ToString();
+                label2.Text = row.Cells[6].Value.ToString();
+            }
+        }
+
+        //ÚJ JELSZÓ adás gomb:
+        private void bnAdminUsersNewPw_Click(object sender, EventArgs e)
+        {
+            if (tbAdminUsersID.Text == "")
+            {
+                MessageBox.Show("Jelöljön ki egy felhasználót!");
+            }
+            else
+            {
+                Settings mysettings = new Settings(label2.Text);
+
+                bool IsOpen = false;
+                foreach (Form f in Application.OpenForms)
+                {
+                    if (f.Text == "Beállítások")
+                    {
+                        IsOpen = true;
+                        mysettings.BringToFront();
+                        mysettings.Activate();
+                    }
+                }
+                if (IsOpen == false)
+                {
+                    mysettings = new Settings(label2.Text);
+                    mysettings.Show();
+                    mysettings.BringToFront();
+                    mysettings.Activate();
+                }
+            }
+        }
     }
 }

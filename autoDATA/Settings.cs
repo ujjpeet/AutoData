@@ -41,8 +41,7 @@ namespace autoDATA
                 tbSettingsNewPassword.Focus();
             }
             else
-            {                
-
+            {
                 try
                 {
                     connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";

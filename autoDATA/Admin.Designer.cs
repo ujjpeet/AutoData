@@ -30,17 +30,9 @@
         {
             this.bnCloseWindow = new System.Windows.Forms.Button();
             this.cbAdminUsersPosition = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbAdminEmail3 = new System.Windows.Forms.TextBox();
-            this.tbAdminEmail2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbAdminEmail1 = new System.Windows.Forms.TextBox();
-            this.tbAdminUsersPasswordAgain = new System.Windows.Forms.TextBox();
-            this.tbAdminUsersPassword = new System.Windows.Forms.TextBox();
+            this.tbAdminEmail = new System.Windows.Forms.TextBox();
             this.dtpAdminUsersBirthdate = new System.Windows.Forms.DateTimePicker();
             this.tbAdminUsersLastName = new System.Windows.Forms.TextBox();
-            this.lbRegPasswordAgain = new System.Windows.Forms.Label();
-            this.lbRegPassword = new System.Windows.Forms.Label();
             this.lbRegEmail = new System.Windows.Forms.Label();
             this.lbRegBirthdate = new System.Windows.Forms.Label();
             this.lbRegPos = new System.Windows.Forms.Label();
@@ -55,6 +47,7 @@
             this.bnAdminUsersSearch = new System.Windows.Forms.Button();
             this.tbAdminUsersID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.tpCars = new System.Windows.Forms.TabPage();
             this.nudAdminCarsRange = new System.Windows.Forms.NumericUpDown();
             this.nudAdminCarsBatCap = new System.Windows.Forms.NumericUpDown();
@@ -123,9 +116,12 @@
             this.label66 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.lbAdminConnection = new System.Windows.Forms.Label();
-            this.dataGridUsers = new System.Windows.Forms.DataGridView();
+            this.bnAdminUsersNewPw = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.tpCars.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsBatCap)).BeginInit();
@@ -136,7 +132,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsTorque)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsPower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminCars)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // bnCloseWindow
@@ -153,76 +148,29 @@
             // 
             // cbAdminUsersPosition
             // 
+            this.cbAdminUsersPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAdminUsersPosition.FormattingEnabled = true;
-            this.cbAdminUsersPosition.Location = new System.Drawing.Point(163, 167);
+            this.cbAdminUsersPosition.Location = new System.Drawing.Point(163, 203);
             this.cbAdminUsersPosition.Name = "cbAdminUsersPosition";
             this.cbAdminUsersPosition.Size = new System.Drawing.Size(121, 24);
             this.cbAdminUsersPosition.TabIndex = 39;
             // 
-            // label2
+            // tbAdminEmail
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(405, 237);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(12, 17);
-            this.label2.TabIndex = 38;
-            this.label2.Text = ".";
-            // 
-            // tbAdminEmail3
-            // 
-            this.tbAdminEmail3.Location = new System.Drawing.Point(423, 234);
-            this.tbAdminEmail3.Name = "tbAdminEmail3";
-            this.tbAdminEmail3.Size = new System.Drawing.Size(41, 22);
-            this.tbAdminEmail3.TabIndex = 37;
-            // 
-            // tbAdminEmail2
-            // 
-            this.tbAdminEmail2.Location = new System.Drawing.Point(298, 233);
-            this.tbAdminEmail2.Name = "tbAdminEmail2";
-            this.tbAdminEmail2.Size = new System.Drawing.Size(100, 22);
-            this.tbAdminEmail2.TabIndex = 36;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(269, 233);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(22, 17);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "@";
-            // 
-            // tbAdminEmail1
-            // 
-            this.tbAdminEmail1.Location = new System.Drawing.Point(163, 233);
-            this.tbAdminEmail1.Name = "tbAdminEmail1";
-            this.tbAdminEmail1.Size = new System.Drawing.Size(100, 22);
-            this.tbAdminEmail1.TabIndex = 34;
-            // 
-            // tbAdminUsersPasswordAgain
-            // 
-            this.tbAdminUsersPasswordAgain.Location = new System.Drawing.Point(163, 304);
-            this.tbAdminUsersPasswordAgain.Name = "tbAdminUsersPasswordAgain";
-            this.tbAdminUsersPasswordAgain.PasswordChar = '*';
-            this.tbAdminUsersPasswordAgain.Size = new System.Drawing.Size(200, 22);
-            this.tbAdminUsersPasswordAgain.TabIndex = 33;
-            // 
-            // tbAdminUsersPassword
-            // 
-            this.tbAdminUsersPassword.Location = new System.Drawing.Point(163, 266);
-            this.tbAdminUsersPassword.Name = "tbAdminUsersPassword";
-            this.tbAdminUsersPassword.PasswordChar = '*';
-            this.tbAdminUsersPassword.Size = new System.Drawing.Size(200, 22);
-            this.tbAdminUsersPassword.TabIndex = 32;
+            this.tbAdminEmail.Location = new System.Drawing.Point(163, 269);
+            this.tbAdminEmail.Name = "tbAdminEmail";
+            this.tbAdminEmail.Size = new System.Drawing.Size(200, 22);
+            this.tbAdminEmail.TabIndex = 34;
             // 
             // dtpAdminUsersBirthdate
             // 
-            this.dtpAdminUsersBirthdate.Location = new System.Drawing.Point(163, 201);
-            this.dtpAdminUsersBirthdate.MaxDate = new System.DateTime(2018, 12, 31, 0, 0, 0, 0);
+            this.dtpAdminUsersBirthdate.Location = new System.Drawing.Point(163, 237);
+            this.dtpAdminUsersBirthdate.MaxDate = new System.DateTime(2029, 12, 13, 0, 0, 0, 0);
             this.dtpAdminUsersBirthdate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpAdminUsersBirthdate.Name = "dtpAdminUsersBirthdate";
             this.dtpAdminUsersBirthdate.Size = new System.Drawing.Size(200, 22);
             this.dtpAdminUsersBirthdate.TabIndex = 31;
-            this.dtpAdminUsersBirthdate.Value = new System.DateTime(2018, 12, 31, 0, 0, 0, 0);
+            this.dtpAdminUsersBirthdate.Value = new System.DateTime(2019, 12, 13, 0, 0, 0, 0);
             // 
             // tbAdminUsersLastName
             // 
@@ -231,28 +179,10 @@
             this.tbAdminUsersLastName.Size = new System.Drawing.Size(163, 22);
             this.tbAdminUsersLastName.TabIndex = 30;
             // 
-            // lbRegPasswordAgain
-            // 
-            this.lbRegPasswordAgain.AutoSize = true;
-            this.lbRegPasswordAgain.Location = new System.Drawing.Point(23, 304);
-            this.lbRegPasswordAgain.Name = "lbRegPasswordAgain";
-            this.lbRegPasswordAgain.Size = new System.Drawing.Size(89, 17);
-            this.lbRegPasswordAgain.TabIndex = 29;
-            this.lbRegPasswordAgain.Text = "Jelszó ismét:";
-            // 
-            // lbRegPassword
-            // 
-            this.lbRegPassword.AutoSize = true;
-            this.lbRegPassword.Location = new System.Drawing.Point(23, 269);
-            this.lbRegPassword.Name = "lbRegPassword";
-            this.lbRegPassword.Size = new System.Drawing.Size(52, 17);
-            this.lbRegPassword.TabIndex = 28;
-            this.lbRegPassword.Text = "Jelszó:";
-            // 
             // lbRegEmail
             // 
             this.lbRegEmail.AutoSize = true;
-            this.lbRegEmail.Location = new System.Drawing.Point(23, 236);
+            this.lbRegEmail.Location = new System.Drawing.Point(23, 272);
             this.lbRegEmail.Name = "lbRegEmail";
             this.lbRegEmail.Size = new System.Drawing.Size(46, 17);
             this.lbRegEmail.TabIndex = 27;
@@ -261,7 +191,7 @@
             // lbRegBirthdate
             // 
             this.lbRegBirthdate.AutoSize = true;
-            this.lbRegBirthdate.Location = new System.Drawing.Point(23, 204);
+            this.lbRegBirthdate.Location = new System.Drawing.Point(23, 240);
             this.lbRegBirthdate.Name = "lbRegBirthdate";
             this.lbRegBirthdate.Size = new System.Drawing.Size(112, 17);
             this.lbRegBirthdate.TabIndex = 26;
@@ -270,7 +200,7 @@
             // lbRegPos
             // 
             this.lbRegPos.AutoSize = true;
-            this.lbRegPos.Location = new System.Drawing.Point(23, 168);
+            this.lbRegPos.Location = new System.Drawing.Point(23, 204);
             this.lbRegPos.Name = "lbRegPos";
             this.lbRegPos.Size = new System.Drawing.Size(74, 17);
             this.lbRegPos.TabIndex = 25;
@@ -287,12 +217,13 @@
             // 
             // bnAdminUsersClearFields
             // 
-            this.bnAdminUsersClearFields.Location = new System.Drawing.Point(195, 336);
+            this.bnAdminUsersClearFields.Location = new System.Drawing.Point(175, 307);
             this.bnAdminUsersClearFields.Name = "bnAdminUsersClearFields";
             this.bnAdminUsersClearFields.Size = new System.Drawing.Size(127, 23);
             this.bnAdminUsersClearFields.TabIndex = 43;
             this.bnAdminUsersClearFields.Text = "Mezők törlése";
             this.bnAdminUsersClearFields.UseVisualStyleBackColor = true;
+            this.bnAdminUsersClearFields.Click += new System.EventHandler(this.bnAdminUsersClearFields_Click);
             // 
             // tabControl1
             // 
@@ -306,6 +237,9 @@
             // 
             // tpUsers
             // 
+            this.tpUsers.Controls.Add(this.label2);
+            this.tpUsers.Controls.Add(this.label1);
+            this.tpUsers.Controls.Add(this.bnAdminUsersNewPw);
             this.tpUsers.Controls.Add(this.tbAdminUsersFirstName);
             this.tpUsers.Controls.Add(this.label7);
             this.tpUsers.Controls.Add(this.bnAdminUsersDel);
@@ -313,24 +247,16 @@
             this.tpUsers.Controls.Add(this.bnAdminUsersSearch);
             this.tpUsers.Controls.Add(this.tbAdminUsersID);
             this.tpUsers.Controls.Add(this.label3);
-            this.tpUsers.Controls.Add(this.lbRegPasswordAgain);
             this.tpUsers.Controls.Add(this.bnAdminUsersClearFields);
-            this.tpUsers.Controls.Add(this.lbRegPassword);
             this.tpUsers.Controls.Add(this.dataGridUsers);
             this.tpUsers.Controls.Add(this.lbRegEmail);
             this.tpUsers.Controls.Add(this.cbAdminUsersPosition);
             this.tpUsers.Controls.Add(this.lbRegBirthdate);
             this.tpUsers.Controls.Add(this.lbRegPos);
-            this.tpUsers.Controls.Add(this.label2);
             this.tpUsers.Controls.Add(this.lbRegName);
-            this.tpUsers.Controls.Add(this.tbAdminEmail3);
             this.tpUsers.Controls.Add(this.tbAdminUsersLastName);
-            this.tpUsers.Controls.Add(this.tbAdminEmail2);
             this.tpUsers.Controls.Add(this.dtpAdminUsersBirthdate);
-            this.tpUsers.Controls.Add(this.label1);
-            this.tpUsers.Controls.Add(this.tbAdminUsersPassword);
-            this.tpUsers.Controls.Add(this.tbAdminEmail1);
-            this.tpUsers.Controls.Add(this.tbAdminUsersPasswordAgain);
+            this.tpUsers.Controls.Add(this.tbAdminEmail);
             this.tpUsers.Location = new System.Drawing.Point(4, 25);
             this.tpUsers.Name = "tpUsers";
             this.tpUsers.Padding = new System.Windows.Forms.Padding(3);
@@ -357,21 +283,23 @@
             // 
             // bnAdminUsersDel
             // 
-            this.bnAdminUsersDel.Location = new System.Drawing.Point(260, 365);
+            this.bnAdminUsersDel.Location = new System.Drawing.Point(198, 336);
             this.bnAdminUsersDel.Name = "bnAdminUsersDel";
             this.bnAdminUsersDel.Size = new System.Drawing.Size(86, 34);
             this.bnAdminUsersDel.TabIndex = 49;
             this.bnAdminUsersDel.Text = "Törlés";
             this.bnAdminUsersDel.UseVisualStyleBackColor = true;
+            this.bnAdminUsersDel.Click += new System.EventHandler(this.bnAdminUsersDel_Click);
             // 
             // bnAdminUsersMod
             // 
-            this.bnAdminUsersMod.Location = new System.Drawing.Point(143, 365);
+            this.bnAdminUsersMod.Location = new System.Drawing.Point(85, 336);
             this.bnAdminUsersMod.Name = "bnAdminUsersMod";
             this.bnAdminUsersMod.Size = new System.Drawing.Size(93, 34);
             this.bnAdminUsersMod.TabIndex = 48;
             this.bnAdminUsersMod.Text = "Módosítás";
             this.bnAdminUsersMod.UseVisualStyleBackColor = true;
+            this.bnAdminUsersMod.Click += new System.EventHandler(this.bnAdminUsersMod_Click);
             // 
             // bnAdminUsersSearch
             // 
@@ -381,6 +309,7 @@
             this.bnAdminUsersSearch.TabIndex = 47;
             this.bnAdminUsersSearch.Text = "Keresés";
             this.bnAdminUsersSearch.UseVisualStyleBackColor = true;
+            this.bnAdminUsersSearch.Click += new System.EventHandler(this.bnAdminUsersSearch_Click);
             // 
             // tbAdminUsersID
             // 
@@ -398,6 +327,16 @@
             this.label3.Size = new System.Drawing.Size(67, 17);
             this.label3.TabIndex = 45;
             this.label3.Text = "Sorszám:";
+            // 
+            // dataGridUsers
+            // 
+            this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUsers.Location = new System.Drawing.Point(492, 25);
+            this.dataGridUsers.Name = "dataGridUsers";
+            this.dataGridUsers.RowTemplate.Height = 24;
+            this.dataGridUsers.Size = new System.Drawing.Size(581, 353);
+            this.dataGridUsers.TabIndex = 44;
+            this.dataGridUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsers_CellClick);
             // 
             // tpCars
             // 
@@ -1152,14 +1091,33 @@
             this.lbAdminConnection.TabIndex = 46;
             this.lbAdminConnection.Text = "Kapcsolat";
             // 
-            // dataGridUsers
+            // bnAdminUsersNewPw
             // 
-            this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridUsers.Location = new System.Drawing.Point(492, 25);
-            this.dataGridUsers.Name = "dataGridUsers";
-            this.dataGridUsers.RowTemplate.Height = 24;
-            this.dataGridUsers.Size = new System.Drawing.Size(581, 353);
-            this.dataGridUsers.TabIndex = 44;
+            this.bnAdminUsersNewPw.Location = new System.Drawing.Point(303, 336);
+            this.bnAdminUsersNewPw.Name = "bnAdminUsersNewPw";
+            this.bnAdminUsersNewPw.Size = new System.Drawing.Size(102, 34);
+            this.bnAdminUsersNewPw.TabIndex = 52;
+            this.bnAdminUsersNewPw.Text = "Új jelszó";
+            this.bnAdminUsersNewPw.UseVisualStyleBackColor = true;
+            this.bnAdminUsersNewPw.Click += new System.EventHandler(this.bnAdminUsersNewPw_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 168);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 17);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "Felhasználónév:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(163, 167);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "label2";
             // 
             // Admin
             // 
@@ -1176,6 +1134,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tpUsers.ResumeLayout(false);
             this.tpUsers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.tpCars.ResumeLayout(false);
             this.tpCars.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsRange)).EndInit();
@@ -1187,7 +1146,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsTorque)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdminCarsPower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminCars)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1197,17 +1155,9 @@
 
         private System.Windows.Forms.Button bnCloseWindow;
         private System.Windows.Forms.ComboBox cbAdminUsersPosition;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbAdminEmail3;
-        private System.Windows.Forms.TextBox tbAdminEmail2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbAdminEmail1;
-        private System.Windows.Forms.TextBox tbAdminUsersPasswordAgain;
-        private System.Windows.Forms.TextBox tbAdminUsersPassword;
+        private System.Windows.Forms.TextBox tbAdminEmail;
         private System.Windows.Forms.DateTimePicker dtpAdminUsersBirthdate;
         private System.Windows.Forms.TextBox tbAdminUsersLastName;
-        private System.Windows.Forms.Label lbRegPasswordAgain;
-        private System.Windows.Forms.Label lbRegPassword;
         private System.Windows.Forms.Label lbRegEmail;
         private System.Windows.Forms.Label lbRegBirthdate;
         private System.Windows.Forms.Label lbRegPos;
@@ -1291,5 +1241,8 @@
         private System.Windows.Forms.NumericUpDown nudAdminCarsTorque;
         private System.Windows.Forms.NumericUpDown nudAdminCarsPower;
         private System.Windows.Forms.DataGridView dataGridUsers;
+        private System.Windows.Forms.Button bnAdminUsersNewPw;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

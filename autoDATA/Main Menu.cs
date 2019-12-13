@@ -132,8 +132,7 @@ namespace autoDATA
             Login a = new Login();
             dr = a.ShowDialog();
             if (dr == DialogResult.OK)
-            {
-                
+            {                
                 bnSettings.Enabled = true;
                 bnConverters.Enabled = true;
                 bnDatabase.Enabled = true;
