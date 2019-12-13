@@ -30,26 +30,51 @@
         {
             this.bnCloseWindow = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbLE = new System.Windows.Forms.TextBox();
-            this.tbPS = new System.Windows.Forms.TextBox();
-            this.tbHP = new System.Windows.Forms.TextBox();
-            this.tbBHP = new System.Windows.Forms.TextBox();
-            this.tbkw = new System.Windows.Forms.TextBox();
-            this.tbMS = new System.Windows.Forms.TextBox();
-            this.tbMPH = new System.Windows.Forms.TextBox();
-            this.tbKMH = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tbLE = new System.Windows.Forms.NumericUpDown();
+            this.tbPS = new System.Windows.Forms.NumericUpDown();
+            this.tbHP = new System.Windows.Forms.NumericUpDown();
+            this.tbBHP = new System.Windows.Forms.NumericUpDown();
+            this.tbkw = new System.Windows.Forms.NumericUpDown();
+            this.tbKMH = new System.Windows.Forms.NumericUpDown();
+            this.tbMPH = new System.Windows.Forms.NumericUpDown();
+            this.tbMS = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.bnConvertersClearFields = new System.Windows.Forms.Button();
+            this.bnLE = new System.Windows.Forms.Button();
+            this.bnPS = new System.Windows.Forms.Button();
+            this.bnHP = new System.Windows.Forms.Button();
+            this.bnBHP = new System.Windows.Forms.Button();
+            this.bnKW = new System.Windows.Forms.Button();
+            this.bnKMH = new System.Windows.Forms.Button();
+            this.bnMPH = new System.Windows.Forms.Button();
+            this.bnMS = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.tbLE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbHP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbBHP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbkw)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbKMH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbMPH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbMS)).BeginInit();
             this.SuspendLayout();
             // 
             // bnCloseWindow
             // 
             this.bnCloseWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.bnCloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnCloseWindow.Location = new System.Drawing.Point(907, 12);
+            this.bnCloseWindow.Location = new System.Drawing.Point(319, 12);
             this.bnCloseWindow.Name = "bnCloseWindow";
-            this.bnCloseWindow.Size = new System.Drawing.Size(87, 76);
+            this.bnCloseWindow.Size = new System.Drawing.Size(87, 30);
             this.bnCloseWindow.TabIndex = 7;
-            this.bnCloseWindow.Text = "Ablak bezárása";
+            this.bnCloseWindow.Text = "Bezárás";
             this.bnCloseWindow.UseVisualStyleBackColor = false;
             this.bnCloseWindow.Click += new System.EventHandler(this.bnCloseWindow_Click);
             // 
@@ -57,131 +82,324 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(416, 58);
+            this.label1.Location = new System.Drawing.Point(42, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Teljesítmény";
             // 
-            // tbLE
-            // 
-            this.tbLE.Location = new System.Drawing.Point(142, 112);
-            this.tbLE.Name = "tbLE";
-            this.tbLE.Size = new System.Drawing.Size(100, 22);
-            this.tbLE.TabIndex = 9;
-            this.tbLE.Tag = "";
-            this.tbLE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbLE.TextChanged += new System.EventHandler(this.tbLE_TextChanged);
-            this.tbLE.Enter += new System.EventHandler(this.tbLE_Enter);
-            this.tbLE.Leave += new System.EventHandler(this.tbLE_Leave);
-            // 
-            // tbPS
-            // 
-            this.tbPS.Location = new System.Drawing.Point(282, 112);
-            this.tbPS.Name = "tbPS";
-            this.tbPS.Size = new System.Drawing.Size(100, 22);
-            this.tbPS.TabIndex = 10;
-            this.tbPS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbPS.TextChanged += new System.EventHandler(this.tbPS_TextChanged);
-            this.tbPS.Enter += new System.EventHandler(this.tbPS_Enter);
-            this.tbPS.Leave += new System.EventHandler(this.tbPS_Leave);
-            // 
-            // tbHP
-            // 
-            this.tbHP.Location = new System.Drawing.Point(422, 112);
-            this.tbHP.Name = "tbHP";
-            this.tbHP.Size = new System.Drawing.Size(100, 22);
-            this.tbHP.TabIndex = 11;
-            this.tbHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbHP.TextChanged += new System.EventHandler(this.tbHP_TextChanged);
-            this.tbHP.Enter += new System.EventHandler(this.tbHP_Enter);
-            this.tbHP.Leave += new System.EventHandler(this.tbHP_Leave);
-            // 
-            // tbBHP
-            // 
-            this.tbBHP.Location = new System.Drawing.Point(561, 112);
-            this.tbBHP.Name = "tbBHP";
-            this.tbBHP.Size = new System.Drawing.Size(100, 22);
-            this.tbBHP.TabIndex = 12;
-            this.tbBHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbBHP.TextChanged += new System.EventHandler(this.tbBHP_TextChanged);
-            this.tbBHP.Enter += new System.EventHandler(this.tbBHP_Enter);
-            this.tbBHP.Leave += new System.EventHandler(this.tbBHP_Leave);
-            // 
-            // tbkw
-            // 
-            this.tbkw.Location = new System.Drawing.Point(715, 112);
-            this.tbkw.Name = "tbkw";
-            this.tbkw.Size = new System.Drawing.Size(100, 22);
-            this.tbkw.TabIndex = 13;
-            this.tbkw.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbkw.TextChanged += new System.EventHandler(this.tbkw_TextChanged);
-            this.tbkw.Enter += new System.EventHandler(this.tbkw_Enter);
-            this.tbkw.Leave += new System.EventHandler(this.tbkw_Leave);
-            // 
-            // tbMS
-            // 
-            this.tbMS.Location = new System.Drawing.Point(578, 212);
-            this.tbMS.Name = "tbMS";
-            this.tbMS.Size = new System.Drawing.Size(100, 22);
-            this.tbMS.TabIndex = 17;
-            this.tbMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbMS.TextChanged += new System.EventHandler(this.tbMS_TextChanged);
-            this.tbMS.Enter += new System.EventHandler(this.tbMS_Enter);
-            this.tbMS.Leave += new System.EventHandler(this.tbMS_Leave);
-            // 
-            // tbMPH
-            // 
-            this.tbMPH.Location = new System.Drawing.Point(424, 212);
-            this.tbMPH.Name = "tbMPH";
-            this.tbMPH.Size = new System.Drawing.Size(100, 22);
-            this.tbMPH.TabIndex = 16;
-            this.tbMPH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbMPH.TextChanged += new System.EventHandler(this.tbMPH_TextChanged);
-            this.tbMPH.Enter += new System.EventHandler(this.tbMPH_Enter);
-            this.tbMPH.Leave += new System.EventHandler(this.tbMPH_Leave);
-            // 
-            // tbKMH
-            // 
-            this.tbKMH.Location = new System.Drawing.Point(285, 212);
-            this.tbKMH.Name = "tbKMH";
-            this.tbKMH.Size = new System.Drawing.Size(100, 22);
-            this.tbKMH.TabIndex = 15;
-            this.tbKMH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbKMH.TextChanged += new System.EventHandler(this.tbKMH_TextChanged);
-            this.tbKMH.Enter += new System.EventHandler(this.tbKMH_Enter);
-            this.tbKMH.Leave += new System.EventHandler(this.tbKMH_Leave);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(418, 162);
+            this.label2.Location = new System.Drawing.Point(249, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 14;
             this.label2.Text = "Sebesség";
             // 
+            // tbLE
+            // 
+            this.tbLE.Location = new System.Drawing.Point(37, 127);
+            this.tbLE.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbLE.Name = "tbLE";
+            this.tbLE.Size = new System.Drawing.Size(120, 22);
+            this.tbLE.TabIndex = 18;
+            // 
+            // tbPS
+            // 
+            this.tbPS.Location = new System.Drawing.Point(37, 178);
+            this.tbPS.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbPS.Name = "tbPS";
+            this.tbPS.Size = new System.Drawing.Size(120, 22);
+            this.tbPS.TabIndex = 19;
+            // 
+            // tbHP
+            // 
+            this.tbHP.Location = new System.Drawing.Point(37, 228);
+            this.tbHP.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbHP.Name = "tbHP";
+            this.tbHP.Size = new System.Drawing.Size(120, 22);
+            this.tbHP.TabIndex = 20;
+            // 
+            // tbBHP
+            // 
+            this.tbBHP.Location = new System.Drawing.Point(37, 279);
+            this.tbBHP.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbBHP.Name = "tbBHP";
+            this.tbBHP.Size = new System.Drawing.Size(120, 22);
+            this.tbBHP.TabIndex = 21;
+            // 
+            // tbkw
+            // 
+            this.tbkw.Location = new System.Drawing.Point(37, 335);
+            this.tbkw.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbkw.Name = "tbkw";
+            this.tbkw.Size = new System.Drawing.Size(120, 22);
+            this.tbkw.TabIndex = 22;
+            // 
+            // tbKMH
+            // 
+            this.tbKMH.Location = new System.Drawing.Point(237, 127);
+            this.tbKMH.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbKMH.Name = "tbKMH";
+            this.tbKMH.Size = new System.Drawing.Size(120, 22);
+            this.tbKMH.TabIndex = 23;
+            // 
+            // tbMPH
+            // 
+            this.tbMPH.Location = new System.Drawing.Point(237, 178);
+            this.tbMPH.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbMPH.Name = "tbMPH";
+            this.tbMPH.Size = new System.Drawing.Size(120, 22);
+            this.tbMPH.TabIndex = 24;
+            // 
+            // tbMS
+            // 
+            this.tbMS.Location = new System.Drawing.Point(237, 228);
+            this.tbMS.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.tbMS.Name = "tbMS";
+            this.tbMS.Size = new System.Drawing.Size(120, 22);
+            this.tbMS.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(70, 107);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 17);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Lóerő";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(77, 158);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 17);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "PS";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(79, 208);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 17);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "HP";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(73, 260);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 17);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "BHP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(83, 315);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(24, 17);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "kw";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(270, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 17);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "km/h";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(279, 158);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 17);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "mph";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(276, 208);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 17);
+            this.label10.TabIndex = 33;
+            this.label10.Text = "m/s";
+            // 
+            // bnConvertersClearFields
+            // 
+            this.bnConvertersClearFields.Location = new System.Drawing.Point(145, 404);
+            this.bnConvertersClearFields.Name = "bnConvertersClearFields";
+            this.bnConvertersClearFields.Size = new System.Drawing.Size(133, 23);
+            this.bnConvertersClearFields.TabIndex = 34;
+            this.bnConvertersClearFields.Text = "Mezők törlése";
+            this.bnConvertersClearFields.UseVisualStyleBackColor = true;
+            this.bnConvertersClearFields.Click += new System.EventHandler(this.bnConvertersClearFields_Click);
+            // 
+            // bnLE
+            // 
+            this.bnLE.Location = new System.Drawing.Point(164, 127);
+            this.bnLE.Name = "bnLE";
+            this.bnLE.Size = new System.Drawing.Size(43, 23);
+            this.bnLE.TabIndex = 35;
+            this.bnLE.Text = "Go";
+            this.bnLE.UseVisualStyleBackColor = true;
+            this.bnLE.Click += new System.EventHandler(this.bnLE_Click);
+            // 
+            // bnPS
+            // 
+            this.bnPS.Location = new System.Drawing.Point(164, 178);
+            this.bnPS.Name = "bnPS";
+            this.bnPS.Size = new System.Drawing.Size(43, 23);
+            this.bnPS.TabIndex = 36;
+            this.bnPS.Text = "Go";
+            this.bnPS.UseVisualStyleBackColor = true;
+            this.bnPS.Click += new System.EventHandler(this.bnPS_Click);
+            // 
+            // bnHP
+            // 
+            this.bnHP.Location = new System.Drawing.Point(164, 227);
+            this.bnHP.Name = "bnHP";
+            this.bnHP.Size = new System.Drawing.Size(43, 23);
+            this.bnHP.TabIndex = 37;
+            this.bnHP.Text = "Go";
+            this.bnHP.UseVisualStyleBackColor = true;
+            this.bnHP.Click += new System.EventHandler(this.bnHP_Click);
+            // 
+            // bnBHP
+            // 
+            this.bnBHP.Location = new System.Drawing.Point(164, 278);
+            this.bnBHP.Name = "bnBHP";
+            this.bnBHP.Size = new System.Drawing.Size(43, 23);
+            this.bnBHP.TabIndex = 38;
+            this.bnBHP.Text = "Go";
+            this.bnBHP.UseVisualStyleBackColor = true;
+            this.bnBHP.Click += new System.EventHandler(this.bnBHP_Click);
+            // 
+            // bnKW
+            // 
+            this.bnKW.Location = new System.Drawing.Point(164, 334);
+            this.bnKW.Name = "bnKW";
+            this.bnKW.Size = new System.Drawing.Size(43, 23);
+            this.bnKW.TabIndex = 39;
+            this.bnKW.Text = "Go";
+            this.bnKW.UseVisualStyleBackColor = true;
+            this.bnKW.Click += new System.EventHandler(this.bnKW_Click);
+            // 
+            // bnKMH
+            // 
+            this.bnKMH.Location = new System.Drawing.Point(363, 126);
+            this.bnKMH.Name = "bnKMH";
+            this.bnKMH.Size = new System.Drawing.Size(43, 23);
+            this.bnKMH.TabIndex = 40;
+            this.bnKMH.Text = "Go";
+            this.bnKMH.UseVisualStyleBackColor = true;
+            this.bnKMH.Click += new System.EventHandler(this.bnKMH_Click);
+            // 
+            // bnMPH
+            // 
+            this.bnMPH.Location = new System.Drawing.Point(363, 178);
+            this.bnMPH.Name = "bnMPH";
+            this.bnMPH.Size = new System.Drawing.Size(43, 23);
+            this.bnMPH.TabIndex = 41;
+            this.bnMPH.Text = "Go";
+            this.bnMPH.UseVisualStyleBackColor = true;
+            this.bnMPH.Click += new System.EventHandler(this.bnMPH_Click);
+            // 
+            // bnMS
+            // 
+            this.bnMS.Location = new System.Drawing.Point(363, 227);
+            this.bnMS.Name = "bnMS";
+            this.bnMS.Size = new System.Drawing.Size(43, 23);
+            this.bnMS.TabIndex = 42;
+            this.bnMS.Text = "Go";
+            this.bnMS.UseVisualStyleBackColor = true;
+            this.bnMS.Click += new System.EventHandler(this.bnMS_Click);
+            // 
             // Converters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 284);
+            this.ClientSize = new System.Drawing.Size(446, 439);
             this.ControlBox = false;
+            this.Controls.Add(this.bnMS);
+            this.Controls.Add(this.bnMPH);
+            this.Controls.Add(this.bnKMH);
+            this.Controls.Add(this.bnKW);
+            this.Controls.Add(this.bnBHP);
+            this.Controls.Add(this.bnHP);
+            this.Controls.Add(this.bnPS);
+            this.Controls.Add(this.bnLE);
+            this.Controls.Add(this.bnConvertersClearFields);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.tbMS);
             this.Controls.Add(this.tbMPH);
             this.Controls.Add(this.tbKMH);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.tbkw);
             this.Controls.Add(this.tbBHP);
             this.Controls.Add(this.tbHP);
             this.Controls.Add(this.tbPS);
             this.Controls.Add(this.tbLE);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bnCloseWindow);
             this.Name = "Converters";
             this.Text = "Konvertálók";
-            this.Load += new System.EventHandler(this.Converters_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tbLE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbHP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbBHP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbkw)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbKMH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbMPH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbMS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,14 +409,31 @@
 
         private System.Windows.Forms.Button bnCloseWindow;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbLE;
-        private System.Windows.Forms.TextBox tbPS;
-        private System.Windows.Forms.TextBox tbHP;
-        private System.Windows.Forms.TextBox tbBHP;
-        private System.Windows.Forms.TextBox tbkw;
-        private System.Windows.Forms.TextBox tbMS;
-        private System.Windows.Forms.TextBox tbMPH;
-        private System.Windows.Forms.TextBox tbKMH;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown tbLE;
+        private System.Windows.Forms.NumericUpDown tbPS;
+        private System.Windows.Forms.NumericUpDown tbHP;
+        private System.Windows.Forms.NumericUpDown tbBHP;
+        private System.Windows.Forms.NumericUpDown tbkw;
+        private System.Windows.Forms.NumericUpDown tbKMH;
+        private System.Windows.Forms.NumericUpDown tbMPH;
+        private System.Windows.Forms.NumericUpDown tbMS;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button bnConvertersClearFields;
+        private System.Windows.Forms.Button bnLE;
+        private System.Windows.Forms.Button bnPS;
+        private System.Windows.Forms.Button bnHP;
+        private System.Windows.Forms.Button bnBHP;
+        private System.Windows.Forms.Button bnKW;
+        private System.Windows.Forms.Button bnKMH;
+        private System.Windows.Forms.Button bnMPH;
+        private System.Windows.Forms.Button bnMS;
     }
 }

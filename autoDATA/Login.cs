@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace autoDATA
 {
+    
     public partial class Login : Form
     {
         static int attempt = 3;
@@ -99,6 +100,6 @@ namespace autoDATA
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }       
     }
 }

@@ -12,6 +12,15 @@ namespace autoDATA
 {
     public partial class Converters : Form
     {
+        public double loero;
+        public double ps;
+        public double hp;
+        public double bhp;
+        public double kw;
+        public double kmh;
+        public double mph;
+        public double ms;
+
         public Converters()
         {
             InitializeComponent();
@@ -30,258 +39,127 @@ namespace autoDATA
             {
                 a.Dispose();
             }
+        }  
+
+        private void bnLE_Click(object sender, EventArgs e)
+        {
+            loero = Convert.ToDouble(tbLE.Value);
+
+            ps = Math.Round(loero * 0.98592325737265);
+            hp = loero;
+            bhp = Math.Round(loero * 0.98632007061953);
+            kw = Math.Round(loero * 0.73549875);
+
+            tbPS.Value = Convert.ToDecimal(ps);
+            tbHP.Value = Convert.ToDecimal(hp);
+            tbBHP.Value = Convert.ToDecimal(bhp);
+            tbkw.Value = Convert.ToDecimal(kw);
         }
 
-        private void Converters_Load(object sender, EventArgs e)
+        private void bnPS_Click(object sender, EventArgs e)
         {
-            tbLE.Text = "Lóerő";
-            tbLE.ForeColor = Color.Gray;
+            ps = Convert.ToDouble(tbPS.Value);
 
-            tbPS.Text = "PS";
-            tbPS.ForeColor = Color.Gray;
+            loero = Math.Round(ps * 1.0142777265087);
+            hp = Math.Round(ps * 1.0142777265087);
+            bhp = Math.Round(ps * 1.01419878);
+            kw = Math.Round(ps * 0.74626866);
 
-            tbHP.Text = "HP";
-            tbHP.ForeColor = Color.Gray;
-
-            tbBHP.Text = "BHP";
-            tbBHP.ForeColor = Color.Gray;
-
-            tbkw.Text = "kw";
-            tbkw.ForeColor = Color.Gray;
-
-            tbKMH.Text = "km/h";
-            tbKMH.ForeColor = Color.Gray;
-
-            tbMPH.Text = "mph";
-            tbMPH.ForeColor = Color.Gray;
-
-            tbMS.Text = "m/s";
-            tbMS.ForeColor = Color.Gray;
-        }      
-
-        private void tbLE_Enter(object sender, EventArgs e)
-        {
-            if (tbLE.Text == "Lóerő")
-            {
-                tbLE.Text = "";
-            }
+            tbLE.Value = Convert.ToDecimal(loero);
+            tbHP.Value = Convert.ToDecimal(hp);
+            tbBHP.Value = Convert.ToDecimal(bhp);
+            tbkw.Value = Convert.ToDecimal(kw);
         }
 
-        private void tbLE_Leave(object sender, EventArgs e)
+        private void bnHP_Click(object sender, EventArgs e)
         {
-            if (tbLE.Text == "")
-            {
-                tbLE.Text = "Lóerő";
-            }
+            hp = Convert.ToDouble(tbHP.Value);
+
+            loero = hp;
+            ps = Math.Round(hp * 0.98592325737265);
+            bhp = Math.Round(hp * 0.98632007061953);
+            kw = Math.Round(hp * 0.73549875);
+
+            tbPS.Value = Convert.ToDecimal(ps);
+            tbLE.Value = Convert.ToDecimal(loero);
+            tbBHP.Value = Convert.ToDecimal(bhp);
+            tbkw.Value = Convert.ToDecimal(kw);
         }
 
-        private void tbLE_TextChanged(object sender, EventArgs e)
+        private void bnBHP_Click(object sender, EventArgs e)
         {
-            if (tbLE.Text == "Lóerő")
-            {
-                tbLE.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbLE.ForeColor = Color.Black;
-            }
+            bhp = Convert.ToDouble(tbBHP.Value);
+
+            loero = Math.Round(bhp * 1.013869665424);
+            ps = Math.Round(bhp * 1.01010101);
+            hp = Math.Round(bhp * 1.013869665424);
+            kw = Math.Round(bhp * 0.74569987158227);
+
+            tbLE.Value = Convert.ToDecimal(loero);
+            tbPS.Value = Convert.ToDecimal(ps);
+            tbHP.Value = Convert.ToDecimal(hp);
+            tbkw.Value = Convert.ToDecimal(kw);
         }
 
-        private void tbPS_Enter(object sender, EventArgs e)
+        private void bnKW_Click(object sender, EventArgs e)
         {
-            if (tbPS.Text == "PS")
-            {
-                tbPS.Text = "";
-            }
+            kw = Convert.ToDouble(tbkw.Value);
+
+            loero = Math.Round(kw * 1.3596216173039);
+            ps = Math.Round(kw * 1.34);
+            hp = Math.Round(kw * 1.3596216173039);
+            bhp = Math.Round(kw * 1.341022089595);
+
+            tbLE.Value = Convert.ToDecimal(loero);
+            tbPS.Value = Convert.ToDecimal(ps);
+            tbHP.Value = Convert.ToDecimal(hp);
+            tbBHP.Value = Convert.ToDecimal(bhp);
         }
 
-        private void tbPS_Leave(object sender, EventArgs e)
+        private void bnKMH_Click(object sender, EventArgs e)
         {
-            if (tbPS.Text == "")
-            {
-                tbPS.Text = "PS";
-            }
+            kmh = Convert.ToDouble(tbKMH.Value);
+
+            mph = Math.Round(kmh * 0.621371);
+            ms = Math.Round(kmh * 0.277778);
+
+            tbMPH.Value = Convert.ToDecimal(mph);
+            tbMS.Value = Convert.ToDecimal(ms);
         }
 
-        private void tbPS_TextChanged(object sender, EventArgs e)
+        private void bnMPH_Click(object sender, EventArgs e)
         {
-            if (tbPS.Text == "PS")
-            {
-                tbPS.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbPS.ForeColor = Color.Black;
-            }
-        }     
+            mph = Convert.ToDouble(tbMPH.Value);
 
-        private void tbHP_Enter(object sender, EventArgs e)
-        {
-            if (tbHP.Text == "HP")
-            {
-                tbHP.Text = "";
-            }
+            kmh = Math.Round(mph * 1.6);
+            ms = Math.Round(mph * 0.44704);
+
+            tbKMH.Value = Convert.ToDecimal(kmh);
+            tbMS.Value = Convert.ToDecimal(ms);
         }
 
-        private void tbHP_Leave(object sender, EventArgs e)
+        private void bnMS_Click(object sender, EventArgs e)
         {
-            if (tbHP.Text == "")
-            {
-                tbHP.Text = "HP";
-            }
+            ms = Convert.ToDouble(tbMS.Value);
+
+            kmh = Math.Round(ms * 3.6);
+            mph = Math.Round(ms * 2.23694);
+
+            tbKMH.Value = Convert.ToDecimal(kmh);
+            tbMPH.Value = Convert.ToDecimal(mph);
         }
 
-        private void tbHP_TextChanged(object sender, EventArgs e)
+        //MEZŐK TÖRLÉSE gomb esemény:
+        private void bnConvertersClearFields_Click(object sender, EventArgs e)
         {
-            if (tbHP.Text == "HP")
-            {
-                tbHP.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbHP.ForeColor = Color.Black;
-            }
-        }      
-
-        private void tbBHP_Enter(object sender, EventArgs e)
-        {
-            if (tbBHP.Text == "BHP")
-            {
-                tbBHP.Text = "";
-            }
-        }
-
-        private void tbBHP_Leave(object sender, EventArgs e)
-        {
-            if (tbBHP.Text == "")
-            {
-                tbBHP.Text = "BHP";
-            }
-        }
-
-        private void tbBHP_TextChanged(object sender, EventArgs e)
-        {
-            if (tbBHP.Text == "BHP")
-            {
-                tbBHP.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbBHP.ForeColor = Color.Black;
-            }
-        }
-
-        private void tbkw_Enter(object sender, EventArgs e)
-        {
-            if (tbkw.Text == "kw")
-            {
-                tbkw.Text = "";
-            }
-        }
-
-        private void tbkw_Leave(object sender, EventArgs e)
-        {
-            if (tbkw.Text == "")
-            {
-                tbkw.Text = "kw";
-            }
-        }
-
-        private void tbkw_TextChanged(object sender, EventArgs e)
-        {
-            if (tbkw.Text == "kw")
-            {
-                tbkw.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbkw.ForeColor = Color.Black;
-            }
-        }
-
-        private void tbKMH_Enter(object sender, EventArgs e)
-        {
-            if (tbKMH.Text == "km/h")
-            {
-                tbKMH.Text = "";
-            }
-        }
-
-        private void tbKMH_Leave(object sender, EventArgs e)
-        {
-            if (tbKMH.Text == "")
-            {
-                tbKMH.Text = "km/h";
-            }
-        }
-
-        private void tbKMH_TextChanged(object sender, EventArgs e)
-        {
-            if (tbKMH.Text == "km/h")
-            {
-                tbKMH.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbKMH.ForeColor = Color.Black;
-            }
-        }
-
-        private void tbMPH_Enter(object sender, EventArgs e)
-        {
-            if (tbMPH.Text == "mph")
-            {
-                tbMPH.Text = "";
-            }
-
-        }
-
-        private void tbMPH_Leave(object sender, EventArgs e)
-        {
-            if (tbMPH.Text == "")
-            {
-                tbMPH.Text = "mph";
-            }
-        }    
-
-        private void tbMPH_TextChanged(object sender, EventArgs e)
-        {
-            if (tbMPH.Text == "mph")
-            {
-                tbMPH.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbMPH.ForeColor = Color.Black;
-            }
-        }
-
-        private void tbMS_Enter(object sender, EventArgs e)
-        {
-            if (tbMS.Text == "m/s")
-            {
-                tbMS.Text = "";
-            }
-        }
-
-        private void tbMS_Leave(object sender, EventArgs e)
-        {
-            if (tbMS.Text == "")
-            {
-                tbMS.Text = "m/s";
-            }
-        }
-
-        private void tbMS_TextChanged(object sender, EventArgs e)
-        {
-            if (tbMS.Text == "m/s")
-            {
-                tbMS.ForeColor = Color.Gray;
-            }
-            else
-            {
-                tbMS.ForeColor = Color.Black;
-            }
+            tbLE.Value = 0;
+            tbPS.Value = 0;
+            tbHP.Value = 0;
+            tbBHP.Value = 0;
+            tbkw.Value = 0;
+            tbKMH.Value = 0;
+            tbMPH.Value = 0;
+            tbMS.Value = 0;
         }
     }    
 }
