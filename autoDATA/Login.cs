@@ -14,7 +14,7 @@ namespace autoDATA
     
     public partial class Login : Form
     {
-        static int attempt = 3;
+        static int attempt = 3;        
 
         public Login()
         {

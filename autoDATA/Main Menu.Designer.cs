@@ -89,6 +89,7 @@
             this.bnLogout.TabIndex = 3;
             this.bnLogout.Text = "Kilépés";
             this.bnLogout.UseVisualStyleBackColor = false;
+            this.bnLogout.Click += new System.EventHandler(this.bnLogout_Click);
             // 
             // bnCloseProgram
             // 
@@ -135,9 +136,8 @@
             this.lbLoggedInAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbLoggedInAs.Location = new System.Drawing.Point(109, 18);
             this.lbLoggedInAs.Name = "lbLoggedInAs";
-            this.lbLoggedInAs.Size = new System.Drawing.Size(52, 17);
+            this.lbLoggedInAs.Size = new System.Drawing.Size(0, 17);
             this.lbLoggedInAs.TabIndex = 8;
-            this.lbLoggedInAs.Text = "Admin";
             // 
             // label1
             // 

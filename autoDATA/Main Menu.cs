@@ -28,8 +28,6 @@ namespace autoDATA
            bnDatabase.Enabled = false;
            bnLogout.Enabled = false;
            bnLogin.Enabled = true;
-
-
         }       
 
         //KONVERTÁLÓK GOMB click esemény:
@@ -134,12 +132,19 @@ namespace autoDATA
             dr = a.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                bnAdmin.Enabled = true;
+                
                 bnSettings.Enabled = true;
                 bnConverters.Enabled = true;
                 bnDatabase.Enabled = true;
                 bnLogout.Enabled = true;
                 bnLogin.Enabled = false;
+
+                lbLoggedInAs.Text = ((Login)a).tbUsername.Text;
+
+                if (lbLoggedInAs.Text == "admin")
+                {
+                    bnAdmin.Enabled = true;
+                }
             }
             else
             {
@@ -161,6 +166,18 @@ namespace autoDATA
             {
                 a.Dispose();
             }
+        }
+
+        //KILÉPÉS gomb esemény:
+        private void bnLogout_Click(object sender, EventArgs e)
+        {
+            lbLoggedInAs.Text = "";
+            bnAdmin.Enabled = false;
+            bnSettings.Enabled = false;
+            bnConverters.Enabled = false;
+            bnDatabase.Enabled = false;
+            bnLogout.Enabled = false;
+            bnLogin.Enabled = true;
         }
     }
 }

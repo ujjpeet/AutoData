@@ -150,7 +150,7 @@
         private System.Windows.Forms.Label lbPassword;
         private System.Windows.Forms.Label lbReg;
         private System.Windows.Forms.Label lbForgotPassword;
-        private System.Windows.Forms.TextBox tbUsername;
+        public System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
     }
 }
