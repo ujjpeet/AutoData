@@ -40,7 +40,6 @@
             this.bnAdminUsersClearFields = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpUsers = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.bnAdminUsersNewPw = new System.Windows.Forms.Button();
             this.tbAdminUsersFirstName = new System.Windows.Forms.TextBox();
@@ -123,6 +122,7 @@
             this.lbRegBy = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lbCarRegNumber = new System.Windows.Forms.Label();
+            this.tbAdminUsername = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -241,9 +241,9 @@
             // 
             // tpUsers
             // 
+            this.tpUsers.Controls.Add(this.tbAdminUsername);
             this.tpUsers.Controls.Add(this.lbCarRegNumber);
             this.tpUsers.Controls.Add(this.label10);
-            this.tpUsers.Controls.Add(this.label2);
             this.tpUsers.Controls.Add(this.label1);
             this.tpUsers.Controls.Add(this.bnAdminUsersNewPw);
             this.tpUsers.Controls.Add(this.tbAdminUsersFirstName);
@@ -270,14 +270,6 @@
             this.tpUsers.TabIndex = 0;
             this.tpUsers.Text = "Felhasználók";
             this.tpUsers.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(217, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 17);
-            this.label2.TabIndex = 54;
             // 
             // label1
             // 
@@ -1160,6 +1152,13 @@
             this.lbCarRegNumber.Size = new System.Drawing.Size(0, 17);
             this.lbCarRegNumber.TabIndex = 56;
             // 
+            // tbAdminUsername
+            // 
+            this.tbAdminUsername.Location = new System.Drawing.Point(217, 168);
+            this.tbAdminUsername.Name = "tbAdminUsername";
+            this.tbAdminUsername.Size = new System.Drawing.Size(121, 22);
+            this.tbAdminUsername.TabIndex = 57;
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1283,11 +1282,11 @@
         private System.Windows.Forms.NumericUpDown nudAdminCarsPower;
         private System.Windows.Forms.DataGridView dataGridUsers;
         private System.Windows.Forms.Button bnAdminUsersNewPw;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbRegBy;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lbCarRegNumber;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbAdminUsername;
     }
 }

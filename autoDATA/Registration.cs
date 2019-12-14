@@ -146,12 +146,12 @@ namespace autoDATA
                 MySqlCommand regdata = new MySqlCommand(insertQuery, con);
                 if (regdata.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Felhasználó rögzítve!");
+                    MessageBox.Show("Regisztráció sikeres!");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Felhasználó rögzítése sikertelen!");
+                    MessageBox.Show("A regiszráció sikertelen!");
                 }
 
                 con.Close();

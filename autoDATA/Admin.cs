@@ -29,8 +29,7 @@ namespace autoDATA
             databaseConnect();
             loadCarCategoriesForAdmin();
             loadCarMakesForAdminSearch();
-            loadCarMakesForAdmin();
-            label2.Visible = false;
+            loadCarMakesForAdmin();           
             lbRegBy.Visible = false;
 
             //AUTÓK üzemanyagai:
@@ -1081,6 +1080,7 @@ namespace autoDATA
         {
             if (tbAdminUsersLastName.Text == ""
                 || tbAdminUsersFirstName.Text == ""
+                || tbAdminUsername.Text == ""
                 || cbAdminUsersPosition.Text == "válasszon"
                 || dtpAdminUsersBirthdate.Value == DateTime.Now
                 || tbAdminEmail.Text == ""                
@@ -1094,7 +1094,7 @@ namespace autoDATA
             }*/
             else
             {
-                query = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+                query = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
 
                 if (con.State != ConnectionState.Open)
                 {
@@ -1180,6 +1180,7 @@ namespace autoDATA
             tbAdminUsersID.Clear();
             tbAdminUsersLastName.Clear();
             tbAdminUsersFirstName.Clear();
+            tbAdminUsername.Clear();
             cbAdminUsersPosition.Text = "válasszon";
             dtpAdminUsersBirthdate.Value = DateTime.Now;
             tbAdminEmail.Clear();
@@ -1188,9 +1189,7 @@ namespace autoDATA
 
         //FELHASZNÁLÓ DGV KATTINTÁS:
         private void dataGridUsers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            label2.Visible = true;
-
+        {   
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dataGridUsers.Rows[e.RowIndex];
@@ -1201,7 +1200,7 @@ namespace autoDATA
                 cbAdminUsersPosition.Text = row.Cells[3].Value.ToString();
                 dtpAdminUsersBirthdate.Value = Convert.ToDateTime(row.Cells[4].Value);
                 tbAdminEmail.Text = row.Cells[5].Value.ToString();
-                label2.Text = row.Cells[6].Value.ToString();
+                tbAdminUsername.Text = row.Cells[6].Value.ToString();
                 lbCarRegNumber.Text = row.Cells[7].Value.ToString();
             }
         }
@@ -1215,7 +1214,7 @@ namespace autoDATA
             }
             else
             {
-                Settings mysettings = new Settings(label2.Text);
+                Settings mysettings = new Settings(tbAdminUsername.Text);
 
                 bool IsOpen = false;
                 foreach (Form f in Application.OpenForms)
@@ -1229,7 +1228,7 @@ namespace autoDATA
                 }
                 if (IsOpen == false)
                 {
-                    mysettings = new Settings(label2.Text);
+                    mysettings = new Settings(tbAdminUsername.Text);
                     mysettings.Show();
                     mysettings.BringToFront();
                     mysettings.Activate();

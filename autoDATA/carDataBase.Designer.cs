@@ -965,6 +965,7 @@
             // 
             // dgvCarSearch
             // 
+            this.dgvCarSearch.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvCarSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarSearch.Location = new System.Drawing.Point(28, 424);
             this.dgvCarSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1506,6 +1507,7 @@
             this.bnExportData.TabIndex = 8;
             this.bnExportData.Text = "Exportálás";
             this.bnExportData.UseVisualStyleBackColor = true;
+            this.bnExportData.Click += new System.EventHandler(this.bnExportData_Click);
             // 
             // bnCarSearchSearch
             // 
