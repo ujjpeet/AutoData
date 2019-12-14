@@ -606,7 +606,12 @@ namespace autoDATA
             {
                 query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "' AND model = '" + cbAdminCarsModelSearch.Text + "'";
             }
+            loadCarDataToTable();            
+        }
 
+        //ADATOK BETÖLTÉSE TÁBLÁBA metódus:
+        private void loadCarDataToTable()
+        {
             try
             {
                 DataTable mytable = new DataTable();
@@ -697,7 +702,8 @@ namespace autoDATA
                     {
                         if (insert.ExecuteNonQuery() == 1)
                         {
-                            MessageBox.Show("Gépjármű módosítva");
+                            loadCarDataToTable();
+                            MessageBox.Show("Gépjármű módosítva");                            
                         }
                         else
                         {
@@ -742,6 +748,7 @@ namespace autoDATA
                     {
                         if (insert.ExecuteNonQuery() == 1)
                         {
+                            loadCarDataToTable();
                             MessageBox.Show("Gépjármű törölve");
                         }
                         else
@@ -1053,7 +1060,12 @@ namespace autoDATA
             {
                 query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "'GROUP BY users.id";
             }
+            loadUserDataToTable();
+        }
 
+        //FELHASZNÁLÓI ADATOK BETÖLTÉSE TÁBLÁBA metódus:
+        private void loadUserDataToTable()
+        {
             try
             {
                 DataTable mytable = new DataTable();
@@ -1110,6 +1122,7 @@ namespace autoDATA
                         MySqlCommand insert = new MySqlCommand(query, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
+                            loadUserDataToTable();
                             MessageBox.Show("Felhasználó módosítva");
                         }
                         else
@@ -1155,6 +1168,7 @@ namespace autoDATA
                         MySqlCommand insert = new MySqlCommand(query, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
+                            loadUserDataToTable();
                             MessageBox.Show("Felhasználó törölve");
                         }
                         else
