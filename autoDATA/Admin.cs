@@ -1001,6 +1001,7 @@ namespace autoDATA
             cbAdminCarsProdEnd.Text = "válasszon";
             nudAdminCarsBatCap.Value = 0;
             nudAdminCarsRange.Value = 0;
+            lbRegBy.Text = "";
         }
 
         //BEZÁRÁS gomb esemény:
@@ -1036,22 +1037,22 @@ namespace autoDATA
 
             if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text == "")
             {
-                query = "SELECT id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username FROM users";
+                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
             }
 
             else if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text == "")
             {
-                query = "SELECT users.id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username, COUNT(cars.id) FROM users RIGHT JOIN cars ON users.id = cars.registered_by WHERE last_name = '" + tbAdminUsersLastName.Text + "'";
+                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id WHERE last_name = '" + tbAdminUsersLastName.Text + "'GROUP BY users.id ";
             }
 
             else if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text != "")
             {
-                query = "SELECT users.id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username, COUNT(cars.id) FROM users RIGHT JOIN cars ON users.id = cars.registered_by WHERE first_name = '" + tbAdminUsersFirstName.Text + "'";
+                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id WHERE first_name = '" + tbAdminUsersFirstName.Text + "'GROUP BY users.id";
             }
 
             else if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text != "")
             {
-                query = "SELECT users.id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username, COUNT(cars.id) FROM users RIGHT JOIN cars ON users.id = cars.registered_by WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "' ";
+                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "'GROUP BY users.id";
             }
 
             try
@@ -1181,7 +1182,8 @@ namespace autoDATA
             tbAdminUsersFirstName.Clear();
             cbAdminUsersPosition.Text = "válasszon";
             dtpAdminUsersBirthdate.Value = DateTime.Now;
-            tbAdminEmail.Clear();            
+            tbAdminEmail.Clear();
+            lbCarRegNumber.Text = "";
         }
 
         //FELHASZNÁLÓ DGV KATTINTÁS:
@@ -1200,6 +1202,7 @@ namespace autoDATA
                 dtpAdminUsersBirthdate.Value = Convert.ToDateTime(row.Cells[4].Value);
                 tbAdminEmail.Text = row.Cells[5].Value.ToString();
                 label2.Text = row.Cells[6].Value.ToString();
+                lbCarRegNumber.Text = row.Cells[7].Value.ToString();
             }
         }
 

@@ -121,6 +121,8 @@
             this.lbAdminConnection = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lbRegBy = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbCarRegNumber = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -152,21 +154,21 @@
             // 
             this.cbAdminUsersPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAdminUsersPosition.FormattingEnabled = true;
-            this.cbAdminUsersPosition.Location = new System.Drawing.Point(163, 203);
+            this.cbAdminUsersPosition.Location = new System.Drawing.Point(217, 203);
             this.cbAdminUsersPosition.Name = "cbAdminUsersPosition";
             this.cbAdminUsersPosition.Size = new System.Drawing.Size(121, 24);
             this.cbAdminUsersPosition.TabIndex = 39;
             // 
             // tbAdminEmail
             // 
-            this.tbAdminEmail.Location = new System.Drawing.Point(163, 269);
+            this.tbAdminEmail.Location = new System.Drawing.Point(217, 269);
             this.tbAdminEmail.Name = "tbAdminEmail";
             this.tbAdminEmail.Size = new System.Drawing.Size(200, 22);
             this.tbAdminEmail.TabIndex = 34;
             // 
             // dtpAdminUsersBirthdate
             // 
-            this.dtpAdminUsersBirthdate.Location = new System.Drawing.Point(163, 237);
+            this.dtpAdminUsersBirthdate.Location = new System.Drawing.Point(217, 237);
             this.dtpAdminUsersBirthdate.MaxDate = new System.DateTime(2029, 12, 13, 0, 0, 0, 0);
             this.dtpAdminUsersBirthdate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpAdminUsersBirthdate.Name = "dtpAdminUsersBirthdate";
@@ -176,7 +178,7 @@
             // 
             // tbAdminUsersLastName
             // 
-            this.tbAdminUsersLastName.Location = new System.Drawing.Point(163, 54);
+            this.tbAdminUsersLastName.Location = new System.Drawing.Point(217, 54);
             this.tbAdminUsersLastName.Name = "tbAdminUsersLastName";
             this.tbAdminUsersLastName.Size = new System.Drawing.Size(163, 22);
             this.tbAdminUsersLastName.TabIndex = 30;
@@ -219,7 +221,7 @@
             // 
             // bnAdminUsersClearFields
             // 
-            this.bnAdminUsersClearFields.Location = new System.Drawing.Point(175, 307);
+            this.bnAdminUsersClearFields.Location = new System.Drawing.Point(175, 335);
             this.bnAdminUsersClearFields.Name = "bnAdminUsersClearFields";
             this.bnAdminUsersClearFields.Size = new System.Drawing.Size(127, 23);
             this.bnAdminUsersClearFields.TabIndex = 43;
@@ -239,6 +241,8 @@
             // 
             // tpUsers
             // 
+            this.tpUsers.Controls.Add(this.lbCarRegNumber);
+            this.tpUsers.Controls.Add(this.label10);
             this.tpUsers.Controls.Add(this.label2);
             this.tpUsers.Controls.Add(this.label1);
             this.tpUsers.Controls.Add(this.bnAdminUsersNewPw);
@@ -270,11 +274,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 167);
+            this.label2.Location = new System.Drawing.Point(217, 167);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.Size = new System.Drawing.Size(0, 17);
             this.label2.TabIndex = 54;
-            this.label2.Text = "label2";
             // 
             // label1
             // 
@@ -287,7 +290,7 @@
             // 
             // bnAdminUsersNewPw
             // 
-            this.bnAdminUsersNewPw.Location = new System.Drawing.Point(303, 336);
+            this.bnAdminUsersNewPw.Location = new System.Drawing.Point(303, 364);
             this.bnAdminUsersNewPw.Name = "bnAdminUsersNewPw";
             this.bnAdminUsersNewPw.Size = new System.Drawing.Size(102, 34);
             this.bnAdminUsersNewPw.TabIndex = 52;
@@ -297,7 +300,7 @@
             // 
             // tbAdminUsersFirstName
             // 
-            this.tbAdminUsersFirstName.Location = new System.Drawing.Point(163, 85);
+            this.tbAdminUsersFirstName.Location = new System.Drawing.Point(217, 85);
             this.tbAdminUsersFirstName.Name = "tbAdminUsersFirstName";
             this.tbAdminUsersFirstName.Size = new System.Drawing.Size(163, 22);
             this.tbAdminUsersFirstName.TabIndex = 51;
@@ -313,7 +316,7 @@
             // 
             // bnAdminUsersDel
             // 
-            this.bnAdminUsersDel.Location = new System.Drawing.Point(198, 336);
+            this.bnAdminUsersDel.Location = new System.Drawing.Point(198, 364);
             this.bnAdminUsersDel.Name = "bnAdminUsersDel";
             this.bnAdminUsersDel.Size = new System.Drawing.Size(86, 34);
             this.bnAdminUsersDel.TabIndex = 49;
@@ -323,7 +326,7 @@
             // 
             // bnAdminUsersMod
             // 
-            this.bnAdminUsersMod.Location = new System.Drawing.Point(85, 336);
+            this.bnAdminUsersMod.Location = new System.Drawing.Point(85, 364);
             this.bnAdminUsersMod.Name = "bnAdminUsersMod";
             this.bnAdminUsersMod.Size = new System.Drawing.Size(93, 34);
             this.bnAdminUsersMod.TabIndex = 48;
@@ -333,7 +336,7 @@
             // 
             // bnAdminUsersSearch
             // 
-            this.bnAdminUsersSearch.Location = new System.Drawing.Point(197, 113);
+            this.bnAdminUsersSearch.Location = new System.Drawing.Point(251, 113);
             this.bnAdminUsersSearch.Name = "bnAdminUsersSearch";
             this.bnAdminUsersSearch.Size = new System.Drawing.Size(87, 31);
             this.bnAdminUsersSearch.TabIndex = 47;
@@ -344,7 +347,7 @@
             // tbAdminUsersID
             // 
             this.tbAdminUsersID.Enabled = false;
-            this.tbAdminUsersID.Location = new System.Drawing.Point(163, 25);
+            this.tbAdminUsersID.Location = new System.Drawing.Point(217, 25);
             this.tbAdminUsersID.Name = "tbAdminUsersID";
             this.tbAdminUsersID.Size = new System.Drawing.Size(56, 22);
             this.tbAdminUsersID.TabIndex = 46;
@@ -364,7 +367,7 @@
             this.dataGridUsers.Location = new System.Drawing.Point(492, 25);
             this.dataGridUsers.Name = "dataGridUsers";
             this.dataGridUsers.RowTemplate.Height = 24;
-            this.dataGridUsers.Size = new System.Drawing.Size(581, 353);
+            this.dataGridUsers.Size = new System.Drawing.Size(581, 373);
             this.dataGridUsers.TabIndex = 44;
             this.dataGridUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsers_CellClick);
             // 
@@ -1140,6 +1143,23 @@
             this.lbRegBy.Size = new System.Drawing.Size(0, 17);
             this.lbRegBy.TabIndex = 224;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(23, 306);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(166, 17);
+            this.label10.TabIndex = 55;
+            this.label10.Text = "Autóregisztrációk száma:";
+            // 
+            // lbCarRegNumber
+            // 
+            this.lbCarRegNumber.AutoSize = true;
+            this.lbCarRegNumber.Location = new System.Drawing.Point(220, 306);
+            this.lbCarRegNumber.Name = "lbCarRegNumber";
+            this.lbCarRegNumber.Size = new System.Drawing.Size(0, 17);
+            this.lbCarRegNumber.TabIndex = 56;
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1267,5 +1287,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbRegBy;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lbCarRegNumber;
+        private System.Windows.Forms.Label label10;
     }
 }
