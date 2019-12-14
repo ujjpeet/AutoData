@@ -143,7 +143,7 @@ namespace autoDATA
         {
             try
             {
-                connectionstring = "datasource = localhost; DataBase = auto_data; username = root; password = ";
+                connectionstring = "datasource = localhost; DataBase = auto_data; username = root; password = ; charset = utf8";
                 con = new MySqlConnection(connectionstring);
                 con.Open();
                 if (con.State == ConnectionState.Open)
