@@ -233,7 +233,7 @@ namespace autoDATA
             cbAdminCarsMake.DataSource = carmakes;
         }
 
-        //AUTÓMODELLEK betöltése PARAMÉTERREL TXT FÁJLBÓL:
+        //AUTÓMODELLEK metódusa PARAMÉTERREL TXT FÁJLBÓL:
         private void loadCarmodelsforAdmin(string path)
         {
             List<string> carmodels = new List<string>();
@@ -298,6 +298,9 @@ namespace autoDATA
                     break;
                 case "BMW":
                     loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+                    break;
+                case "Bugatti":
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
                     break;
                 case "Citroen":
                     loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
@@ -380,6 +383,9 @@ namespace autoDATA
                 case "SEAT":
                     loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
                     break;
+                case "Skoda":
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
+                    break;
                 case "Smart":
                     loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
                     break;
@@ -407,7 +413,7 @@ namespace autoDATA
             }
         }
 
-        //Ha egy MÁRKA ki lett választva az AUTÓ keresőben
+        //Ha egy MÁRKA ki lett választva a kereső rész alatt:
         private void cbAdminCarsMake_TextChanged(object sender, EventArgs e)
         {
             switch (cbAdminCarsMake.Text)
@@ -430,6 +436,9 @@ namespace autoDATA
                     break;
                 case "BMW":
                     loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+                    break;
+                case "Bugatti":
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
                     break;
                 case "Citroen":
                     loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
@@ -511,6 +520,9 @@ namespace autoDATA
                     break;
                 case "SEAT":
                     loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
+                    break;
+                case "Skoda":
+                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
                     break;
                 case "Smart":
                     loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
@@ -614,6 +626,7 @@ namespace autoDATA
         {
             try
             {
+                query = "SELECT id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV' FROM cars";
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -649,9 +662,7 @@ namespace autoDATA
             || cbAdminCarsDisp.Text == "válasszon" || cbAdminCarsDisp.Text == ""
             || cbAdminCarsGearbox.Text == "válasszon" || cbAdminCarsGearbox.Text == ""
             || cbAdminCarsGears.Text == "válasszon" || cbAdminCarsGears.Text == ""
-            || cbAdminCarsDrivetrain.Text == "válasszon" || cbAdminCarsDrivetrain.Text == ""
-            || nudAdminCarsAcc100.Value == 0
-            || nudAdminCarsAcc200.Value == 0
+            || cbAdminCarsDrivetrain.Text == "válasszon" || cbAdminCarsDrivetrain.Text == ""   
             || nudAdminCarsVmax.Value == 0
             || nudAdminCarsConsmp.Value == 0
             || cbAdminCarsProdStart.Text == "válasszon" || cbAdminCarsProdStart.Text == ""
@@ -1068,6 +1079,7 @@ namespace autoDATA
         {
             try
             {
+                query = "SELECT id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV' FROM users";
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();

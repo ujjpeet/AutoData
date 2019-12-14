@@ -72,7 +72,7 @@ namespace autoDATA
             bodylist.Add("terepjáró");
             cbCarRegBody.DataSource = bodylist;
             
-            //meg kell tudni h ki van belogolva és hogy milyen id tartozik a userhez:
+            //meg kell tudni h ki van belogolva és hogy milyen id tartozik a userhez, mert kell az autó rögzítéshez:
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
@@ -113,119 +113,6 @@ namespace autoDATA
             {
                 MessageBox.Show(ex.Message);
             };
-        }
-
-        //AUTÓKATEGÓRIÁK betöltése ADATBÁZISBÓL:      
-        public void loadCarCategoriesForCarReg()
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM carcategories";
-
-            try
-            {
-                DataTable mytable = new DataTable();
-                MySqlCommand search = new MySqlCommand(query, con);
-                MySqlDataReader open = search.ExecuteReader();
-                mytable.Load(open);
-                cbCarRegCategories.DisplayMember = "categories";
-                cbCarRegCategories.DataSource = mytable;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            };
-        }
-
-        //AUTÓMÁRKÁK betöltése TXT FÁJLBÓL:
-        private void loadCarMakesForCarSearch()
-        {
-            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
-            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            List<string> carmakes = new List<string>();
-
-            using (sr)
-            {
-                while (!sr.EndOfStream)
-                {
-                    carmakes.Add(sr.ReadLine());
-                }
-            }
-
-            sr.Close();
-            fs.Close();
-
-            cbCarSearchMake.DataSource = carmakes;
-        }
-
-        private void loadCarMakesForCarReg()
-        {
-            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
-            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            List<string> carmakes = new List<string>();
-
-            using (sr)
-            {
-                while (!sr.EndOfStream)
-                {
-                    carmakes.Add(sr.ReadLine());
-                }
-            }
-
-            sr.Close();
-            fs.Close();
-
-            cbCarRegMake.DataSource = carmakes;
-        }
-
-        //AUTÓMODELLEK betöltése PARAMÉTERREL TXT FÁJLBÓL:
-        private void loadCarmodelsforCarSearch(string path)
-        {
-            List<string> carmodels = new List<string>();
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            using (sr)
-            {
-                while (!sr.EndOfStream)
-                {
-                    carmodels.Add(sr.ReadLine());
-                }
-            }
-
-            cbCarSearchModel.DataSource = carmodels;
-
-            sr.Close();
-            fs.Close();
-        }
-
-        private void loadCarmodelsforCarReg(string path)
-        {
-            List<string> carmodels = new List<string>();
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            using (sr)
-            {
-                while (!sr.EndOfStream)
-                {
-                    carmodels.Add(sr.ReadLine());
-                }
-            }
-
-            cbCarRegModel.DataSource = carmodels;
-
-            sr.Close();
-            fs.Close();
         }
 
         //ÜZEMANYAGFAJTÁK betöltése STRING ARRAY:        
@@ -332,6 +219,119 @@ namespace autoDATA
             cbCarRegCyl.DataSource = cylinderarray;
         }
 
+        //AUTÓKATEGÓRIÁK betöltése ADATBÁZISBÓL:      
+        public void loadCarCategoriesForCarReg()
+        {
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+
+            query = "SELECT * FROM carcategories";
+
+            try
+            {
+                DataTable mytable = new DataTable();
+                MySqlCommand search = new MySqlCommand(query, con);
+                MySqlDataReader open = search.ExecuteReader();
+                mytable.Load(open);
+                cbCarRegCategories.DisplayMember = "categories";
+                cbCarRegCategories.DataSource = mytable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
+        }
+
+        //AUTÓMÁRKÁK betöltése TXT FÁJLBÓL:
+        private void loadCarMakesForCarSearch()
+        {
+            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
+            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            List<string> carmakes = new List<string>();
+
+            using (sr)
+            {
+                while (!sr.EndOfStream)
+                {
+                    carmakes.Add(sr.ReadLine());
+                }
+            }
+
+            sr.Close();
+            fs.Close();
+
+            cbCarSearchMake.DataSource = carmakes;
+        }
+
+        private void loadCarMakesForCarReg()
+        {
+            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
+            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            List<string> carmakes = new List<string>();
+
+            using (sr)
+            {
+                while (!sr.EndOfStream)
+                {
+                    carmakes.Add(sr.ReadLine());
+                }
+            }
+
+            sr.Close();
+            fs.Close();
+
+            cbCarRegMake.DataSource = carmakes;
+        }
+
+        //AUTÓMODELLEK metódusa PARAMÉTERREL TXT FÁJLBÓL:
+        private void loadCarmodelsforCarSearch(string path)
+        {
+            List<string> carmodels = new List<string>();
+
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            using (sr)
+            {
+                while (!sr.EndOfStream)
+                {
+                    carmodels.Add(sr.ReadLine());
+                }
+            }
+
+            cbCarSearchModel.DataSource = carmodels;
+
+            sr.Close();
+            fs.Close();
+        }
+
+        private void loadCarmodelsforCarReg(string path)
+        {
+            List<string> carmodels = new List<string>();
+
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            using (sr)
+            {
+                while (!sr.EndOfStream)
+                {
+                    carmodels.Add(sr.ReadLine());
+                }
+            }
+
+            cbCarRegModel.DataSource = carmodels;
+
+            sr.Close();
+            fs.Close();
+        }        
+
         //ha egy MÁRKA ki lett választva, akkor csak ezeket a MODELLEKET mutassa (textchanged események):
         //SWITCH CASE elágazásokkal:
         private void cbCarSearchMake_TextChanged(object sender, EventArgs e)
@@ -356,6 +356,9 @@ namespace autoDATA
                     break;
                 case "BMW":
                     loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+                    break;
+                case "Bugatti":
+                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
                     break;
                 case "Citroen":
                     loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
@@ -438,6 +441,9 @@ namespace autoDATA
                 case "SEAT":
                     loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
                     break;
+                case "Skoda":
+                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
+                    break;
                 case "Smart":
                     loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
                     break;
@@ -491,6 +497,10 @@ namespace autoDATA
             else if (cbCarRegMake.Text == "BMW")
             {
                 loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+            }
+            else if (cbCarRegMake.Text == "Bugatti")
+            {
+                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
             }
             else if (cbCarRegMake.Text == "Citroen")
             {
@@ -600,6 +610,10 @@ namespace autoDATA
             {
                 loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
             }
+            else if (cbCarRegMake.Text == "Skoda")
+            {
+                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
+            }
             else if (cbCarRegMake.Text == "Smart")
             {
                 loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
@@ -677,14 +691,15 @@ namespace autoDATA
             {
                 query = "SELECT id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV' FROM cars WHERE make = '" + cbCarSearchMake.Text + "' AND model = '" + cbCarSearchModel.Text + "'";
             }
-            loadCarDataToTable();
+            loadCarSearchDataToTable();
         }
 
-        //ADATOK BETÖLTÉSE TÁBLÁBA metódus:
-        private void loadCarDataToTable()
+        //ADATOK BETÖLTÉSE TÁBLÁBA metódusok:
+        private void loadCarSearchDataToTable()
         {
             try
             {
+               query = "SELECT id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV' FROM cars";
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -696,6 +711,30 @@ namespace autoDATA
                 else
                 {
                     dgvCarSearch.DataSource = mytable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
+        }
+
+        private void loadCarRegDataToTable()
+        {
+            try
+            {
+                query = "SELECT id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV' FROM cars";
+                DataTable mytable = new DataTable();
+                MySqlCommand search = new MySqlCommand(query, con);
+                MySqlDataReader open = search.ExecuteReader();
+                mytable.Load(open);
+                if (mytable.Rows.Count > 0)
+                {
+                    dgvCarReg.DataSource = mytable;
+                }
+                else
+                {
+                    dgvCarReg.DataSource = mytable;
                 }
             }
             catch (Exception ex)
@@ -723,11 +762,7 @@ namespace autoDATA
                 lbCarRegBatCapkwh.Visible = true;
                 lbCarRegRange.Visible = true;
                 nudCarRegRange.Visible = true;
-                lbCarRegFuelRangekm.Visible = true;
-                cbCarRegCyl.Text = "nincs";
-                cbCarRegCylArr.Text = "n/a";
-                cbCarRegAsp.Text = "n/a";
-                cbCarRegDisp.Text = "n/a";
+                lbCarRegFuelRangekm.Visible = true;               
 
             }
             else if (cbCarRegFuel.Text == "hibrid")
@@ -778,9 +813,7 @@ namespace autoDATA
                 || cbCarRegDisp.Text == "" || cbCarRegDisp.Text == "válasszon"
                 || cbCarRegGearboxType.Text == "" || cbCarRegGearboxType.Text == "válasszon"
                 || cbCarRegGearsNum.Text == "" || cbCarRegGearsNum.Text == "válasszon"
-                || cbCarRegDrivetrain.Text == "" || cbCarRegDrivetrain.Text == "válasszon"
-                || nudCarRegAcc100.Value == 0
-                || nudCarRegAcc200.Value == 0
+                || cbCarRegDrivetrain.Text == "" || cbCarRegDrivetrain.Text == "válasszon"         
                 || nudCarRegVmax.Value == 0
                 || nudCarRegConsmp.Value == 0
                 || cbCarRegProdStart.Text == "" || cbCarRegProdStart.Text == "válasszon"
@@ -832,7 +865,7 @@ namespace autoDATA
                     MySqlCommand insert = new MySqlCommand(insertQuery, con);
                     if (insert.ExecuteNonQuery() == 1)
                     {
-                        loadCarDataToTable();
+                        loadCarRegDataToTable();
                         MessageBox.Show("Gépjármű regisztrálva");                        
                     }
                     else
@@ -857,20 +890,20 @@ namespace autoDATA
             cbCarRegBody.Text = "válasszon";
             cbCarRegFuel.Text = "válasszon";
             cbCarRegCyl.Text = "válasszon";
-            cbCarRegCylArr.Text = "";
-            cbCarRegAsp.Text = "";
+            cbCarRegCylArr.Text = "válasszon";
+            cbCarRegAsp.Text = "válasszon";
             nudCarRegPower.Value = 0;
             nudCarRegTorque.Value = 0;
             cbCarRegDisp.Text = "válasszon";
             cbCarRegGearboxType.Text = "válasszon";
-            cbCarRegGearsNum.Text = "";
-            cbCarRegDrivetrain.Text = "";
+            cbCarRegGearsNum.Text = "válasszon";
+            cbCarRegDrivetrain.Text = "válasszon";
             nudCarRegAcc100.Value = 0;
             nudCarRegAcc200.Value = 0;
             nudCarRegVmax.Value = 0;
             nudCarRegConsmp.Value = 0;
-            cbCarRegProdStart.Text = "";
-            cbCarRegProdEnd.Text = "";
+            cbCarRegProdStart.Text = "válasszon";
+            cbCarRegProdEnd.Text = "válasszon";
             nudCarRegBatCap.Value = 0;
             nudCarRegRange.Value = 0;
         }

@@ -572,6 +572,7 @@
             this.cbCarRegDrivetrain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCarRegDrivetrain.FormattingEnabled = true;
             this.cbCarRegDrivetrain.Items.AddRange(new object[] {
+            "válasszon",
             "elsőkerék",
             "hátsókerék",
             "összkerék"});
@@ -622,7 +623,7 @@
             this.cbCarRegGearsNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCarRegGearsNum.FormattingEnabled = true;
             this.cbCarRegGearsNum.Items.AddRange(new object[] {
-            "0",
+            "válasszon",
             "1",
             "2",
             "3",
@@ -632,7 +633,7 @@
             "7",
             "8",
             "9",
-            "n/a"});
+            "nincsenek"});
             this.cbCarRegGearsNum.Location = new System.Drawing.Point(672, 74);
             this.cbCarRegGearsNum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbCarRegGearsNum.Name = "cbCarRegGearsNum";
@@ -673,11 +674,12 @@
             this.cbCarRegAsp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCarRegAsp.FormattingEnabled = true;
             this.cbCarRegAsp.Items.AddRange(new object[] {
-            "nincs",
+            "válasszon",
+            "szívó",
             "turbó",
             "kompresszor",
             "turbó + kompresszor",
-            "n/a"});
+            "nincs"});
             this.cbCarRegAsp.Location = new System.Drawing.Point(283, 253);
             this.cbCarRegAsp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbCarRegAsp.Name = "cbCarRegAsp";
@@ -689,12 +691,13 @@
             this.cbCarRegCylArr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCarRegCylArr.FormattingEnabled = true;
             this.cbCarRegCylArr.Items.AddRange(new object[] {
+            "válasszon",
             "soros",
             "V",
             "W",
             "boxer",
             "wankel",
-            "n/a"});
+            "nincs henger"});
             this.cbCarRegCylArr.Location = new System.Drawing.Point(283, 223);
             this.cbCarRegCylArr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbCarRegCylArr.Name = "cbCarRegCylArr";

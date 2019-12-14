@@ -40,6 +40,9 @@
             this.bnAdminUsersClearFields = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpUsers = new System.Windows.Forms.TabPage();
+            this.tbAdminUsername = new System.Windows.Forms.TextBox();
+            this.lbCarRegNumber = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.bnAdminUsersNewPw = new System.Windows.Forms.Button();
             this.tbAdminUsersFirstName = new System.Windows.Forms.TextBox();
@@ -51,6 +54,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.tpCars = new System.Windows.Forms.TabPage();
+            this.lbRegBy = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.nudAdminCarsRange = new System.Windows.Forms.NumericUpDown();
             this.nudAdminCarsBatCap = new System.Windows.Forms.NumericUpDown();
             this.nudAdminCarsConsmp = new System.Windows.Forms.NumericUpDown();
@@ -118,11 +123,6 @@
             this.label66 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.lbAdminConnection = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lbRegBy = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lbCarRegNumber = new System.Windows.Forms.Label();
-            this.tbAdminUsername = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -270,6 +270,30 @@
             this.tpUsers.TabIndex = 0;
             this.tpUsers.Text = "Felhasználók";
             this.tpUsers.UseVisualStyleBackColor = true;
+            // 
+            // tbAdminUsername
+            // 
+            this.tbAdminUsername.Location = new System.Drawing.Point(217, 168);
+            this.tbAdminUsername.Name = "tbAdminUsername";
+            this.tbAdminUsername.Size = new System.Drawing.Size(121, 22);
+            this.tbAdminUsername.TabIndex = 57;
+            // 
+            // lbCarRegNumber
+            // 
+            this.lbCarRegNumber.AutoSize = true;
+            this.lbCarRegNumber.Location = new System.Drawing.Point(220, 306);
+            this.lbCarRegNumber.Name = "lbCarRegNumber";
+            this.lbCarRegNumber.Size = new System.Drawing.Size(0, 17);
+            this.lbCarRegNumber.TabIndex = 56;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(23, 306);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(166, 17);
+            this.label10.TabIndex = 55;
+            this.label10.Text = "Autóregisztrációk száma:";
             // 
             // label1
             // 
@@ -440,6 +464,23 @@
             this.tpCars.TabIndex = 1;
             this.tpCars.Text = "Autók";
             this.tpCars.UseVisualStyleBackColor = true;
+            // 
+            // lbRegBy
+            // 
+            this.lbRegBy.AutoSize = true;
+            this.lbRegBy.Location = new System.Drawing.Point(592, 336);
+            this.lbRegBy.Name = "lbRegBy";
+            this.lbRegBy.Size = new System.Drawing.Size(0, 17);
+            this.lbRegBy.TabIndex = 224;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(439, 336);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 17);
+            this.label9.TabIndex = 223;
+            this.label9.Text = "Regisztrálta:";
             // 
             // nudAdminCarsRange
             // 
@@ -831,6 +872,7 @@
             // 
             this.cbAdminCarsDrivetrain.FormattingEnabled = true;
             this.cbAdminCarsDrivetrain.Items.AddRange(new object[] {
+            "válasszon",
             "elsőkerék",
             "hátsókerék",
             "összkerék"});
@@ -880,7 +922,7 @@
             // 
             this.cbAdminCarsGears.FormattingEnabled = true;
             this.cbAdminCarsGears.Items.AddRange(new object[] {
-            "0",
+            "válasszon",
             "1",
             "2",
             "3",
@@ -889,7 +931,8 @@
             "6",
             "7",
             "8",
-            "9"});
+            "9",
+            "nincsenek"});
             this.cbAdminCarsGears.Location = new System.Drawing.Point(595, 79);
             this.cbAdminCarsGears.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsGears.Name = "cbAdminCarsGears";
@@ -927,10 +970,12 @@
             // 
             this.cbAdminCarsAsp.FormattingEnabled = true;
             this.cbAdminCarsAsp.Items.AddRange(new object[] {
-            "szívómotor",
+            "válasszon",
+            "szívó",
             "turbó",
             "kompresszor",
-            "turbó + kompresszor"});
+            "turbó + kompresszor",
+            "nincs"});
             this.cbAdminCarsAsp.Location = new System.Drawing.Point(173, 349);
             this.cbAdminCarsAsp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsAsp.Name = "cbAdminCarsAsp";
@@ -941,12 +986,13 @@
             // 
             this.cbAdminCarsCylArr.FormattingEnabled = true;
             this.cbAdminCarsCylArr.Items.AddRange(new object[] {
+            "válasszon",
             "soros",
             "V",
             "W",
             "boxer",
             "wankel",
-            "n/a"});
+            "nincs henger"});
             this.cbAdminCarsCylArr.Location = new System.Drawing.Point(173, 320);
             this.cbAdminCarsCylArr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsCylArr.Name = "cbAdminCarsCylArr";
@@ -1117,47 +1163,6 @@
             this.lbAdminConnection.Size = new System.Drawing.Size(70, 17);
             this.lbAdminConnection.TabIndex = 46;
             this.lbAdminConnection.Text = "Kapcsolat";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(439, 336);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 17);
-            this.label9.TabIndex = 223;
-            this.label9.Text = "Regisztrálta:";
-            // 
-            // lbRegBy
-            // 
-            this.lbRegBy.AutoSize = true;
-            this.lbRegBy.Location = new System.Drawing.Point(592, 336);
-            this.lbRegBy.Name = "lbRegBy";
-            this.lbRegBy.Size = new System.Drawing.Size(0, 17);
-            this.lbRegBy.TabIndex = 224;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(23, 306);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(166, 17);
-            this.label10.TabIndex = 55;
-            this.label10.Text = "Autóregisztrációk száma:";
-            // 
-            // lbCarRegNumber
-            // 
-            this.lbCarRegNumber.AutoSize = true;
-            this.lbCarRegNumber.Location = new System.Drawing.Point(220, 306);
-            this.lbCarRegNumber.Name = "lbCarRegNumber";
-            this.lbCarRegNumber.Size = new System.Drawing.Size(0, 17);
-            this.lbCarRegNumber.TabIndex = 56;
-            // 
-            // tbAdminUsername
-            // 
-            this.tbAdminUsername.Location = new System.Drawing.Point(217, 168);
-            this.tbAdminUsername.Name = "tbAdminUsername";
-            this.tbAdminUsername.Size = new System.Drawing.Size(121, 22);
-            this.tbAdminUsername.TabIndex = 57;
             // 
             // Admin
             // 
