@@ -40,6 +40,9 @@
             this.bnAdminUsersClearFields = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpUsers = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bnAdminUsersNewPw = new System.Windows.Forms.Button();
             this.tbAdminUsersFirstName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.bnAdminUsersDel = new System.Windows.Forms.Button();
@@ -116,9 +119,8 @@
             this.label66 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.lbAdminConnection = new System.Windows.Forms.Label();
-            this.bnAdminUsersNewPw = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lbRegBy = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -265,6 +267,34 @@
             this.tpUsers.Text = "Felhasználók";
             this.tpUsers.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(163, 167);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "label2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 168);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 17);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "Felhasználónév:";
+            // 
+            // bnAdminUsersNewPw
+            // 
+            this.bnAdminUsersNewPw.Location = new System.Drawing.Point(303, 336);
+            this.bnAdminUsersNewPw.Name = "bnAdminUsersNewPw";
+            this.bnAdminUsersNewPw.Size = new System.Drawing.Size(102, 34);
+            this.bnAdminUsersNewPw.TabIndex = 52;
+            this.bnAdminUsersNewPw.Text = "Új jelszó";
+            this.bnAdminUsersNewPw.UseVisualStyleBackColor = true;
+            this.bnAdminUsersNewPw.Click += new System.EventHandler(this.bnAdminUsersNewPw_Click);
+            // 
             // tbAdminUsersFirstName
             // 
             this.tbAdminUsersFirstName.Location = new System.Drawing.Point(163, 85);
@@ -340,6 +370,8 @@
             // 
             // tpCars
             // 
+            this.tpCars.Controls.Add(this.lbRegBy);
+            this.tpCars.Controls.Add(this.label9);
             this.tpCars.Controls.Add(this.nudAdminCarsRange);
             this.tpCars.Controls.Add(this.nudAdminCarsBatCap);
             this.tpCars.Controls.Add(this.nudAdminCarsConsmp);
@@ -416,7 +448,7 @@
             // 
             // nudAdminCarsRange
             // 
-            this.nudAdminCarsRange.Location = new System.Drawing.Point(607, 362);
+            this.nudAdminCarsRange.Location = new System.Drawing.Point(595, 306);
             this.nudAdminCarsRange.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -429,7 +461,7 @@
             // nudAdminCarsBatCap
             // 
             this.nudAdminCarsBatCap.DecimalPlaces = 1;
-            this.nudAdminCarsBatCap.Location = new System.Drawing.Point(607, 337);
+            this.nudAdminCarsBatCap.Location = new System.Drawing.Point(595, 281);
             this.nudAdminCarsBatCap.Maximum = new decimal(new int[] {
             999,
             0,
@@ -442,7 +474,7 @@
             // nudAdminCarsConsmp
             // 
             this.nudAdminCarsConsmp.DecimalPlaces = 1;
-            this.nudAdminCarsConsmp.Location = new System.Drawing.Point(607, 277);
+            this.nudAdminCarsConsmp.Location = new System.Drawing.Point(595, 221);
             this.nudAdminCarsConsmp.Maximum = new decimal(new int[] {
             99,
             0,
@@ -454,7 +486,7 @@
             // 
             // nudAdminCarsVmax
             // 
-            this.nudAdminCarsVmax.Location = new System.Drawing.Point(607, 248);
+            this.nudAdminCarsVmax.Location = new System.Drawing.Point(595, 192);
             this.nudAdminCarsVmax.Maximum = new decimal(new int[] {
             999,
             0,
@@ -467,7 +499,7 @@
             // nudAdminCarsAcc200
             // 
             this.nudAdminCarsAcc200.DecimalPlaces = 1;
-            this.nudAdminCarsAcc200.Location = new System.Drawing.Point(607, 221);
+            this.nudAdminCarsAcc200.Location = new System.Drawing.Point(595, 165);
             this.nudAdminCarsAcc200.Maximum = new decimal(new int[] {
             999,
             0,
@@ -480,7 +512,7 @@
             // nudAdminCarsAcc100
             // 
             this.nudAdminCarsAcc100.DecimalPlaces = 1;
-            this.nudAdminCarsAcc100.Location = new System.Drawing.Point(607, 193);
+            this.nudAdminCarsAcc100.Location = new System.Drawing.Point(595, 137);
             this.nudAdminCarsAcc100.Maximum = new decimal(new int[] {
             999,
             0,
@@ -492,7 +524,7 @@
             // 
             // nudAdminCarsTorque
             // 
-            this.nudAdminCarsTorque.Location = new System.Drawing.Point(607, 44);
+            this.nudAdminCarsTorque.Location = new System.Drawing.Point(196, 405);
             this.nudAdminCarsTorque.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -504,7 +536,7 @@
             // 
             // nudAdminCarsPower
             // 
-            this.nudAdminCarsPower.Location = new System.Drawing.Point(607, 17);
+            this.nudAdminCarsPower.Location = new System.Drawing.Point(196, 378);
             this.nudAdminCarsPower.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -642,7 +674,7 @@
             // cbAdminCarsProdEnd
             // 
             this.cbAdminCarsProdEnd.FormattingEnabled = true;
-            this.cbAdminCarsProdEnd.Location = new System.Drawing.Point(678, 307);
+            this.cbAdminCarsProdEnd.Location = new System.Drawing.Point(666, 251);
             this.cbAdminCarsProdEnd.Name = "cbAdminCarsProdEnd";
             this.cbAdminCarsProdEnd.Size = new System.Drawing.Size(65, 24);
             this.cbAdminCarsProdEnd.TabIndex = 200;
@@ -650,7 +682,7 @@
             // cbAdminCarsProdStart
             // 
             this.cbAdminCarsProdStart.FormattingEnabled = true;
-            this.cbAdminCarsProdStart.Location = new System.Drawing.Point(607, 307);
+            this.cbAdminCarsProdStart.Location = new System.Drawing.Point(595, 251);
             this.cbAdminCarsProdStart.Name = "cbAdminCarsProdStart";
             this.cbAdminCarsProdStart.Size = new System.Drawing.Size(65, 24);
             this.cbAdminCarsProdStart.TabIndex = 199;
@@ -674,7 +706,7 @@
             // 
             // bnAdminCarsClearFields
             // 
-            this.bnAdminCarsClearFields.Location = new System.Drawing.Point(365, 410);
+            this.bnAdminCarsClearFields.Location = new System.Drawing.Point(346, 422);
             this.bnAdminCarsClearFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnAdminCarsClearFields.Name = "bnAdminCarsClearFields";
             this.bnAdminCarsClearFields.Size = new System.Drawing.Size(149, 26);
@@ -686,7 +718,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(696, 366);
+            this.label39.Location = new System.Drawing.Point(684, 310);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(26, 17);
@@ -696,7 +728,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(696, 339);
+            this.label40.Location = new System.Drawing.Point(684, 283);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(36, 17);
@@ -706,7 +738,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(696, 250);
+            this.label41.Location = new System.Drawing.Point(684, 194);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(38, 17);
@@ -716,7 +748,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(681, 226);
+            this.label42.Location = new System.Drawing.Point(669, 170);
             this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(30, 17);
@@ -726,7 +758,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(681, 199);
+            this.label43.Location = new System.Drawing.Point(669, 143);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(30, 17);
@@ -736,7 +768,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(681, 78);
+            this.label44.Location = new System.Drawing.Point(669, 22);
             this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(31, 17);
@@ -746,7 +778,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(681, 51);
+            this.label45.Location = new System.Drawing.Point(271, 405);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(29, 17);
@@ -756,7 +788,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(682, 21);
+            this.label46.Location = new System.Drawing.Point(271, 382);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(25, 17);
@@ -767,7 +799,7 @@
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label47.Location = new System.Drawing.Point(682, 282);
+            this.label47.Location = new System.Drawing.Point(670, 226);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(155, 17);
             this.label47.TabIndex = 187;
@@ -776,7 +808,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(453, 362);
+            this.label48.Location = new System.Drawing.Point(441, 306);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(61, 17);
             this.label48.TabIndex = 185;
@@ -785,7 +817,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(453, 335);
+            this.label49.Location = new System.Drawing.Point(441, 279);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(154, 17);
             this.label49.TabIndex = 179;
@@ -794,7 +826,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(453, 279);
+            this.label50.Location = new System.Drawing.Point(441, 223);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(89, 17);
             this.label50.TabIndex = 178;
@@ -807,7 +839,7 @@
             "elsőkerék",
             "hátsókerék",
             "összkerék"});
-            this.cbAdminCarsDrivetrain.Location = new System.Drawing.Point(607, 164);
+            this.cbAdminCarsDrivetrain.Location = new System.Drawing.Point(595, 108);
             this.cbAdminCarsDrivetrain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsDrivetrain.Name = "cbAdminCarsDrivetrain";
             this.cbAdminCarsDrivetrain.Size = new System.Drawing.Size(148, 24);
@@ -816,7 +848,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(451, 164);
+            this.label51.Location = new System.Drawing.Point(439, 108);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(95, 17);
             this.label51.TabIndex = 176;
@@ -825,7 +857,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(451, 221);
+            this.label52.Location = new System.Drawing.Point(439, 165);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(122, 17);
             this.label52.TabIndex = 175;
@@ -834,7 +866,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(451, 195);
+            this.label53.Location = new System.Drawing.Point(439, 139);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(122, 17);
             this.label53.TabIndex = 174;
@@ -843,7 +875,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(451, 250);
+            this.label54.Location = new System.Drawing.Point(439, 194);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(103, 17);
             this.label54.TabIndex = 173;
@@ -863,7 +895,7 @@
             "7",
             "8",
             "9"});
-            this.cbAdminCarsGears.Location = new System.Drawing.Point(607, 135);
+            this.cbAdminCarsGears.Location = new System.Drawing.Point(595, 79);
             this.cbAdminCarsGears.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsGears.Name = "cbAdminCarsGears";
             this.cbAdminCarsGears.Size = new System.Drawing.Size(65, 24);
@@ -872,7 +904,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(451, 135);
+            this.label55.Location = new System.Drawing.Point(439, 79);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(127, 17);
             this.label55.TabIndex = 171;
@@ -881,7 +913,7 @@
             // cbAdminCarsGearbox
             // 
             this.cbAdminCarsGearbox.FormattingEnabled = true;
-            this.cbAdminCarsGearbox.Location = new System.Drawing.Point(607, 104);
+            this.cbAdminCarsGearbox.Location = new System.Drawing.Point(595, 48);
             this.cbAdminCarsGearbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsGearbox.Name = "cbAdminCarsGearbox";
             this.cbAdminCarsGearbox.Size = new System.Drawing.Size(149, 24);
@@ -890,7 +922,7 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(451, 104);
+            this.label56.Location = new System.Drawing.Point(439, 48);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(91, 17);
             this.label56.TabIndex = 169;
@@ -929,7 +961,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(451, 47);
+            this.label57.Location = new System.Drawing.Point(40, 408);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(80, 17);
             this.label57.TabIndex = 165;
@@ -956,7 +988,7 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(451, 307);
+            this.label60.Location = new System.Drawing.Point(439, 251);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(97, 17);
             this.label60.TabIndex = 162;
@@ -965,7 +997,7 @@
             // cbAdminCarsDisp
             // 
             this.cbAdminCarsDisp.FormattingEnabled = true;
-            this.cbAdminCarsDisp.Location = new System.Drawing.Point(607, 74);
+            this.cbAdminCarsDisp.Location = new System.Drawing.Point(595, 18);
             this.cbAdminCarsDisp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAdminCarsDisp.Name = "cbAdminCarsDisp";
             this.cbAdminCarsDisp.Size = new System.Drawing.Size(65, 24);
@@ -974,7 +1006,7 @@
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(451, 74);
+            this.label61.Location = new System.Drawing.Point(439, 18);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(101, 17);
             this.label61.TabIndex = 160;
@@ -1031,7 +1063,7 @@
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(451, 19);
+            this.label62.Location = new System.Drawing.Point(40, 380);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(96, 17);
             this.label62.TabIndex = 153;
@@ -1091,33 +1123,22 @@
             this.lbAdminConnection.TabIndex = 46;
             this.lbAdminConnection.Text = "Kapcsolat";
             // 
-            // bnAdminUsersNewPw
+            // label9
             // 
-            this.bnAdminUsersNewPw.Location = new System.Drawing.Point(303, 336);
-            this.bnAdminUsersNewPw.Name = "bnAdminUsersNewPw";
-            this.bnAdminUsersNewPw.Size = new System.Drawing.Size(102, 34);
-            this.bnAdminUsersNewPw.TabIndex = 52;
-            this.bnAdminUsersNewPw.Text = "Új jelszó";
-            this.bnAdminUsersNewPw.UseVisualStyleBackColor = true;
-            this.bnAdminUsersNewPw.Click += new System.EventHandler(this.bnAdminUsersNewPw_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(439, 336);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 17);
+            this.label9.TabIndex = 223;
+            this.label9.Text = "Regisztrálta:";
             // 
-            // label1
+            // lbRegBy
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 168);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 17);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "Felhasználónév:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 54;
-            this.label2.Text = "label2";
+            this.lbRegBy.AutoSize = true;
+            this.lbRegBy.Location = new System.Drawing.Point(592, 336);
+            this.lbRegBy.Name = "lbRegBy";
+            this.lbRegBy.Size = new System.Drawing.Size(0, 17);
+            this.lbRegBy.TabIndex = 224;
             // 
             // Admin
             // 
@@ -1244,5 +1265,7 @@
         private System.Windows.Forms.Button bnAdminUsersNewPw;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbRegBy;
+        private System.Windows.Forms.Label label9;
     }
 }

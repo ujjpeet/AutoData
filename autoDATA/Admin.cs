@@ -31,6 +31,7 @@ namespace autoDATA
             loadCarMakesForAdminSearch();
             loadCarMakesForAdmin();
             label2.Visible = false;
+            lbRegBy.Visible = false;
 
             //AUTÓK üzemanyagai:
             //string ARRAY:           
@@ -764,6 +765,8 @@ namespace autoDATA
         //AUTÓ DGV KATTINTÁS:
         private void dgvAdminCars_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            lbRegBy.Visible = true;
+
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvAdminCars.Rows[e.RowIndex];
@@ -792,6 +795,17 @@ namespace autoDATA
                 cbAdminCarsProdEnd.Text = row.Cells[21].Value.ToString();
                 nudAdminCarsBatCap.Value = Convert.ToDecimal(row.Cells[22].Value.ToString());
                 nudAdminCarsRange.Value = Convert.ToInt32(row.Cells[23].Value.ToString());
+
+                string regby = row.Cells[24].Value.ToString();
+                if (regby == "")
+                {
+                    lbRegBy.Text = "törölt felhasználó";
+                }
+                else
+                {
+                    lbRegBy.Text = regby;
+                }
+                
             }
         }
 
@@ -1018,26 +1032,26 @@ namespace autoDATA
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
+            }            
+
+            if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text == "")
+            {
+                query = "SELECT id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username FROM users";
             }
 
-            if(tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text == "")
+            else if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text == "")
             {
-                query = "SELECT * FROM users";
+                query = "SELECT users.id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username, COUNT(cars.id) FROM users RIGHT JOIN cars ON users.id = cars.registered_by WHERE last_name = '" + tbAdminUsersLastName.Text + "'";
             }
 
-            if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text == "")
+            else if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text != "")
             {
-                query = "SELECT * FROM users WHERE last_name = '"+ tbAdminUsersLastName.Text + "'";
+                query = "SELECT users.id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username, COUNT(cars.id) FROM users RIGHT JOIN cars ON users.id = cars.registered_by WHERE first_name = '" + tbAdminUsersFirstName.Text + "'";
             }
 
-            if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text != "")
+            else if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text != "")
             {
-                query = "SELECT * FROM users WHERE first_name = '" + tbAdminUsersFirstName.Text + "'";
-            }
-
-            if (tbAdminUsersLastName.Text != "" && tbAdminUsersFirstName.Text != "")
-            {
-                query = "SELECT * FROM users WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "' ";
+                query = "SELECT users.id, CONCAT(last_name, ' ', first_name), position, birthdate, email, username, COUNT(cars.id) FROM users RIGHT JOIN cars ON users.id = cars.registered_by WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "' ";
             }
 
             try
