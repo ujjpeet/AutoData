@@ -91,7 +91,7 @@ namespace autoDATA
                 }
                 else
                 {
-                    --attempt;
+                    attempt--;
                     MessageBox.Show("Sikertelen belépési kísérlet! " + "\nMaradék kísérletek száma: " + attempt);
                     this.DialogResult = DialogResult.No;
                 }  

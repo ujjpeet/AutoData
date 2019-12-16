@@ -16,7 +16,7 @@ namespace autoDATA
     {
         String connectionstring;
         MySqlConnection con;
-        public string query = "";
+        public string query;
 
         public Admin()
         {
@@ -109,7 +109,7 @@ namespace autoDATA
 
             //FELHASZNÁLÓK munkakörei string ARRAY :
             string[] positions = new string[]
-                { "válasszon", "újságíró", "szerkesztő", "főszerkesztő", "fotós", "vágó"};
+                { "válasszon", "adminisztrátor", "újságíró", "szerkesztő", "főszerkesztő", "fotós", "vágó"};
             cbAdminUsersPosition.DataSource = positions;
         }
 
@@ -584,7 +584,7 @@ namespace autoDATA
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
-            }
+            }            
 
             //ha egy mező sincs kiválasztva:
             if (cbAdminCarsMakeSearch.Text == "válasszon" && cbAdminCarsModelSearch.Text == "")
@@ -600,7 +600,7 @@ namespace autoDATA
             //ha csak a márka van kiválasztva:
             else if (cbAdminCarsMakeSearch.Text != "válasszon" && cbAdminCarsModelSearch.Text == "")
             {
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "'";
+               query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "'";
             }
 
             else if (cbAdminCarsMakeSearch.Text != "válasszon" && cbAdminCarsModelSearch.Text == "válasszon")
@@ -618,15 +618,14 @@ namespace autoDATA
             {
                 query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "' AND model = '" + cbAdminCarsModelSearch.Text + "'";
             }
-            loadCarDataToTable();            
+            loadCarDataToTable(query);            
         }
 
         //ADATOK BETÖLTÉSE TÁBLÁBA metódus:
-        private void loadCarDataToTable()
+        private void loadCarDataToTable(string query)
         {
             try
-            {
-                query = "SELECT id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV' FROM cars";
+            {                
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -673,7 +672,7 @@ namespace autoDATA
             }
             else
             {
-                query = "UPDATE cars SET " +
+                string insertquery = "UPDATE cars SET " +
                     "category = '" + cbAdminCarsCategory.Text + "'," +
                     "make = '" + cbAdminCarsMake.Text + "' ," +
                     "model = '" + cbAdminCarsModel.Text + "'," +
@@ -699,6 +698,8 @@ namespace autoDATA
                     "fuel_range = '" + nudAdminCarsRange.Value + "'" +
                     "WHERE id = '" + tbAdminCarsID.Text + "'";
 
+                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
+
                 if (con.State != ConnectionState.Open)
                 {
                     con.Open();
@@ -708,12 +709,12 @@ namespace autoDATA
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {
-                    MySqlCommand insert = new MySqlCommand(query, con);
+                    MySqlCommand insert = new MySqlCommand(insertquery, con);
                     try
                     {
                         if (insert.ExecuteNonQuery() == 1)
                         {
-                            loadCarDataToTable();
+                            loadCarDataToTable(query);
                             MessageBox.Show("Gépjármű módosítva");                            
                         }
                         else
@@ -742,7 +743,9 @@ namespace autoDATA
             }
             else
             {
-                query = "DELETE FROM cars WHERE id = '" + tbAdminCarsID.Text + "'";
+                string deletequery = "DELETE FROM cars WHERE id = '" + tbAdminCarsID.Text + "'";
+
+                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
 
                 if (con.State != ConnectionState.Open)
                 {
@@ -754,12 +757,12 @@ namespace autoDATA
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {
-                    MySqlCommand insert = new MySqlCommand(query, con);
+                    MySqlCommand insert = new MySqlCommand(deletequery, con);
                     try
                     {
                         if (insert.ExecuteNonQuery() == 1)
                         {
-                            loadCarDataToTable();
+                            loadCarDataToTable(query);
                             MessageBox.Show("Gépjármű törölve");
                         }
                         else
@@ -1071,15 +1074,14 @@ namespace autoDATA
             {
                 query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id WHERE first_name = '" + tbAdminUsersFirstName.Text + "' AND last_name ='" + tbAdminUsersLastName.Text + "'GROUP BY users.id";
             }
-            loadUserDataToTable();
+            loadUserDataToTable(query);
         }
 
         //FELHASZNÁLÓI ADATOK BETÖLTÉSE TÁBLÁBA metódus:
-        private void loadUserDataToTable()
+        private void loadUserDataToTable(string query)
         {
             try
-            {
-                query = "SELECT id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV' FROM users";
+            {               
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -1118,7 +1120,9 @@ namespace autoDATA
             }*/
             else
             {
-                query = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+                string insertquery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+
+                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
 
                 if (con.State != ConnectionState.Open)
                 {
@@ -1131,10 +1135,10 @@ namespace autoDATA
                 {                    
                     try
                     {
-                        MySqlCommand insert = new MySqlCommand(query, con);
+                        MySqlCommand insert = new MySqlCommand(insertquery, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
-                            loadUserDataToTable();
+                            loadUserDataToTable(query);
                             MessageBox.Show("Felhasználó módosítva");
                         }
                         else
@@ -1163,7 +1167,9 @@ namespace autoDATA
             }
             else
             {
-                query = "DELETE FROM users WHERE id = '" + tbAdminUsersID.Text + "'";
+                string deletequery = "DELETE FROM users WHERE id = '" + tbAdminUsersID.Text + "'";
+
+                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
 
                 if (con.State != ConnectionState.Open)
                 {
@@ -1177,10 +1183,10 @@ namespace autoDATA
                 {                    
                     try
                     {
-                        MySqlCommand insert = new MySqlCommand(query, con);
+                        MySqlCommand insert = new MySqlCommand(deletequery, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
-                            loadUserDataToTable();
+                            loadUserDataToTable(query);
                             MessageBox.Show("Felhasználó törölve");
                         }
                         else
