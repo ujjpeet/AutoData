@@ -7,11 +7,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace autoDATA
-{
+{    
     public partial class Admin : Form
     {
         String connectionstring;
@@ -28,8 +29,7 @@ namespace autoDATA
         {
             databaseConnect();
             loadCarCategoriesForAdmin();
-            loadCarMakesForAdminSearch();
-            loadCarMakesForAdmin();           
+            loadCarMakesForAdminSearch();                     
             lbRegBy.Visible = false;
 
             //AUTÓK üzemanyagai:
@@ -188,92 +188,54 @@ namespace autoDATA
             };
         }
 
-        //AUTÓMÁRKÁK betöltése TXT FÁJLBÓL:
+        //AUTÓMÁRKÁK betöltése adatbázisból:
         private void loadCarMakesForAdminSearch()
         {
-            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
-            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            List<string> carmakes = new List<string>();
-
-            using (sr)
+            if (con.State != ConnectionState.Open)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmakes.Add(sr.ReadLine());
-                }
+                con.Open();
             }
 
-            sr.Close();
-            fs.Close();
+            query = "SELECT * FROM carmakes";
 
-            cbAdminCarsMakeSearch.DataSource = carmakes;
-        }
-
-        private void loadCarMakesForAdmin()
-        {
-            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
-            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            List<string> carmakes = new List<string>();
-
-            using (sr)
+            try
             {
-                while (!sr.EndOfStream)
-                {
-                    carmakes.Add(sr.ReadLine());
-                }
+                DataTable mytable = new DataTable();
+                MySqlCommand search = new MySqlCommand(query, con);
+                MySqlDataReader open = search.ExecuteReader();
+                mytable.Load(open);
+                cbAdminCarsMakeSearch.DisplayMember = "makes";
+                cbAdminCarsMakeSearch.DataSource = mytable;
             }
-
-            sr.Close();
-            fs.Close();
-
-            cbAdminCarsMake.DataSource = carmakes;
-        }
-
-        //AUTÓMODELLEK metódusa PARAMÉTERREL TXT FÁJLBÓL:
-        private void loadCarmodelsforAdmin(string path)
-        {
-            List<string> carmodels = new List<string>();
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            using (sr)
+            catch (Exception ex)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmodels.Add(sr.ReadLine());
-                }
-            }
+                MessageBox.Show(ex.Message);
+            };
+        }       
 
-            cbAdminCarsModel.DataSource = carmodels;
-
-            sr.Close();
-            fs.Close();
-        }
-
-        private void loadCarmodelsforAdminSearch(string path)
-        {
-            List<string> carmodels = new List<string>();
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            using (sr)
+        //AUTÓMODELLEK betöltése adatbázisból:
+        private void loadCarmodels(string make)            
+        {              
+            if (con.State != ConnectionState.Open)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmodels.Add(sr.ReadLine());
-                }
+                con.Open();
+            }            
+
+            try
+            {
+                query = "SELECT model FROM " +@make;
+                MySqlCommand cmd = new MySqlCommand(query, con);                
+                cmd.Parameters.Add(new MySqlParameter("@make", make));             
+                MySqlDataReader open = cmd.ExecuteReader();
+                DataTable mytable = new DataTable();
+                mytable.Load(open);
+                cbAdminCarsModelSearch.DisplayMember = "model";
+                cbAdminCarsModelSearch.DataSource = mytable;
             }
-
-            cbAdminCarsModelSearch.DataSource = carmodels;
-
-            sr.Close();
-            fs.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
         }
 
         //Ha az AUTÓ KERESŐBEN ki lett választva egy MÁRKA:
@@ -282,282 +244,147 @@ namespace autoDATA
             switch (cbAdminCarsMakeSearch.Text)
             {
                 case "Alfa Romeo":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
+                    loadCarmodels("alfaromeo");
                     break;
                 case "Alpina":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
+                    loadCarmodels("alpina");
                     break;
                 case "Aston Martin":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
+                    loadCarmodels("astonmartin");
+                    break;                
+                case "Audi":
+                    loadCarmodels("audi");
                     break;
                 case "Bentley":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
-                    break;
-                case "Audi":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
+                    loadCarmodels("bentley");
                     break;
                 case "BMW":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+                    loadCarmodels("bmw");
                     break;
                 case "Bugatti":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
+                    loadCarmodels("bugatti");
                     break;
                 case "Citroen":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
+                    loadCarmodels("citroen");
                     break;
                 case "Dacia":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
+                    loadCarmodels("dacia");
                     break;
                 case "Ferrari":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
+                    loadCarmodels("ferrari+");
                     break;
                 case "Fiat":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
+                    loadCarmodels("fiat");
                     break;
                 case "Ford":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
+                    loadCarmodels("ford");
                     break;
                 case "Honda":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
+                    loadCarmodels("honda");
                     break;
                 case "Hyundai":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
+                    loadCarmodels("hyundai");
                     break;
                 case "Jaguar":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
+                    loadCarmodels("jaguar");
                     break;
                 case "Jeep":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
+                    loadCarmodels("jeep");
                     break;
                 case "Kia":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
+                    loadCarmodels("kia");
                     break;
                 case "Lada":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
+                    loadCarmodels("lada");
                     break;
                 case "Lamborghini":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
+                    loadCarmodels("lamborghini");
                     break;
                 case "Lancia":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
+                    loadCarmodels("lancia");
                     break;
                 case "Land Rover":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
+                    loadCarmodels("landrover");
                     break;
                 case "Lexus":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
+                    loadCarmodels("lexus");
                     break;
                 case "Mazda":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
+                    loadCarmodels("mazda");
                     break;
                 case "Mercedes-Benz":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
+                    loadCarmodels("mercedesbenz");
                     break;
                 case "Mercedes-AMG":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
+                    loadCarmodels("mercedesamg");
                     break;
                 case "Mini":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
+                    loadCarmodels("mini");
                     break;
                 case "Mitsubishi":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
+                    loadCarmodels("mitsubishi");
                     break;
                 case "Nissan":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
+                    loadCarmodels("nissan");
                     break;
                 case "Opel":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
+                    loadCarmodels("opel");
                     break;
                 case "Peugeot":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
+                    loadCarmodels("peugeot");
+                    break;
+                case "Porsche":
+                    loadCarmodels("porsche");
                     break;
                 case "Renault":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
+                    loadCarmodels("renault");
                     break;
                 case "Rolls-Royce":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
+                    loadCarmodels("rollsroyce");
                     break;
                 case "Saab":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
+                    loadCarmodels("saab");
                     break;
                 case "SEAT":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
+                    loadCarmodels("seat");
                     break;
                 case "Skoda":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
+                    loadCarmodels("skoda");
                     break;
                 case "Smart":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
+                    loadCarmodels("smart");
                     break;
                 case "Ssangyong":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
+                    loadCarmodels("ssangyong");
                     break;
                 case "Subaru":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
+                    loadCarmodels("subaru");
                     break;
                 case "Suzuki":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
+                    loadCarmodels("suzuki");
                     break;
                 case "Tesla":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
+                    loadCarmodels("tesla");
                     break;
                 case "Toyota":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
+                    loadCarmodels("toyota");
                     break;
                 case "Volkswagen":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
+                    loadCarmodels("volkswagen");
                     break;
                 case "Volvo":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
+                    loadCarmodels("volvo");
                     break;
             }
-        }
-
-        //Ha egy MÁRKA ki lett választva a kereső rész alatt:
-        private void cbAdminCarsMake_TextChanged(object sender, EventArgs e)
-        {
-            switch (cbAdminCarsMake.Text)
-            {
-
-                case "Alfa Romeo":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
-                    break;
-                case "Alpina":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
-                    break;
-                case "Aston Martin":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
-                    break;
-                case "Bentley":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
-                    break;
-                case "Audi":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
-                    break;
-                case "BMW":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
-                    break;
-                case "Bugatti":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
-                    break;
-                case "Citroen":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
-                    break;
-                case "Dacia":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
-                    break;
-                case "Ferrari":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
-                    break;
-                case "Fiat":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
-                    break;
-                case "Ford":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
-                    break;
-                case "Honda":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
-                    break;
-                case "Hyundai":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
-                    break;
-                case "Jaguar":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
-                    break;
-                case "Jeep":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
-                    break;
-                case "Kia":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
-                    break;
-                case "Lada":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
-                    break;
-                case "Lamborghini":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
-                    break;
-                case "Lancia":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
-                    break;
-                case "Land Rover":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
-                    break;
-                case "Lexus":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
-                    break;
-                case "Mazda":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
-                    break;
-                case "Mercedes-Benz":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
-                    break;
-                case "Mercedes-AMG":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
-                    break;
-                case "Mini":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
-                    break;
-                case "Mitsubishi":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
-                    break;
-                case "Nissan":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
-                    break;
-                case "Opel":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
-                    break;
-                case "Peugeot":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
-                    break;
-                case "Renault":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
-                    break;
-                case "Rolls-Royce":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
-                    break;
-                case "Saab":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
-                    break;
-                case "SEAT":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
-                    break;
-                case "Skoda":
-                    loadCarmodelsforAdminSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
-                    break;
-                case "Smart":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
-                    break;
-                case "Ssangyong":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
-                    break;
-                case "Subaru":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
-                    break;
-                case "Suzuki":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
-                    break;
-                case "Tesla":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
-                    break;
-                case "Toyota":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
-                    break;
-                case "Volkswagen":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
-                    break;
-                case "Volvo":
-                    loadCarmodelsforAdmin(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
-                    break;
-            }
-        }
+        }       
 
         //AUTÓ KERESÉS gomb esemény:
         private void bnAdminCarsSearch_Click(object sender, EventArgs e)
         {
             tbAdminCarsID.Clear();
             cbAdminCarsCategory.Text = "válasszon";
-            cbAdminCarsMake.Text = "válasszon";
-            cbAdminCarsModel.DataSource = null;
+            cbAdminCarsMakeSearch.Text = "válasszon";
+            cbAdminCarsModelSearch.DataSource = null;
             tbAdminCarsCode.Clear();
             cbAdminCarsBody.Text = "válasszon";
             cbAdminCarsFuel.Text = "válasszon";
@@ -584,40 +411,45 @@ namespace autoDATA
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
-            }            
+            }
+
+            string searchquery = "";
 
             //ha egy mező sincs kiválasztva:
             if (cbAdminCarsMakeSearch.Text == "válasszon" && cbAdminCarsModelSearch.Text == "")
             {
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
+                searchquery = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
             }
 
             if (cbAdminCarsMakeSearch.Text == "válasszon" && cbAdminCarsModelSearch.Text == "válasszon")
             {
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
+                searchquery = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
             }
 
             //ha csak a márka van kiválasztva:
             else if (cbAdminCarsMakeSearch.Text != "válasszon" && cbAdminCarsModelSearch.Text == "")
             {
-               query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "'";
+                searchquery = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "'";
             }
 
             else if (cbAdminCarsMakeSearch.Text != "válasszon" && cbAdminCarsModelSearch.Text == "válasszon")
             {
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "'";
+                searchquery = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "'";
             }
 
             //ha a márka és modell is ki van válaztva
             else if (cbAdminCarsMakeSearch.Text != "válasszon" && cbAdminCarsModelSearch.Text != "")
             {
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "' AND model = '" + cbAdminCarsModelSearch.Text + "'";
+                searchquery = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "' AND model = '" + cbAdminCarsModelSearch.Text + "'";
             }
 
             else if (cbAdminCarsMakeSearch.Text != "válasszon" && cbAdminCarsModelSearch.Text != "válasszon")
             {
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "' AND model = '" + cbAdminCarsModelSearch.Text + "'";
+                searchquery = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id WHERE make = '" + cbAdminCarsMakeSearch.Text + "' AND model = '" + cbAdminCarsModelSearch.Text + "'";
             }
+
+            query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
+
             loadCarDataToTable(query);            
         }
 
@@ -649,8 +481,8 @@ namespace autoDATA
         private void bnAdminCarsMod_Click(object sender, EventArgs e)
         {
             if (cbAdminCarsCategory.Text == "válasszon"
-            || cbAdminCarsMake.Text == "válasszon" || cbAdminCarsMake.Text == ""
-            || cbAdminCarsModel.Text == "válasszon" || cbAdminCarsModel.Text == ""
+            || cbAdminCarsMakeSearch.Text == "válasszon" || cbAdminCarsMakeSearch.Text == ""
+            || cbAdminCarsModelSearch.Text == "válasszon" || cbAdminCarsModelSearch.Text == ""
             || cbAdminCarsFuel.Text == "válasszon" || cbAdminCarsFuel.Text == ""
             || cbAdminCarsBody.Text == "válasszon" || cbAdminCarsBody.Text == ""
             || cbAdminCarsCyl.Text == "válasszon" || cbAdminCarsCyl.Text == ""
@@ -674,8 +506,8 @@ namespace autoDATA
             {
                 string insertquery = "UPDATE cars SET " +
                     "category = '" + cbAdminCarsCategory.Text + "'," +
-                    "make = '" + cbAdminCarsMake.Text + "' ," +
-                    "model = '" + cbAdminCarsModel.Text + "'," +
+                    "make = '" + cbAdminCarsMakeSearch.Text + "' ," +
+                    "model = '" + cbAdminCarsModelSearch.Text + "'," +
                     "code = '" + tbAdminCarsCode.Text + "'," +
                     "body = '" + cbAdminCarsBody.Text + "'," +
                     "fuel_type = '" + cbAdminCarsFuel.Text + "'," +
@@ -793,8 +625,8 @@ namespace autoDATA
 
                 tbAdminCarsID.Text = row.Cells[0].Value.ToString();
                 cbAdminCarsCategory.Text = row.Cells[1].Value.ToString();
-                cbAdminCarsMake.Text = row.Cells[2].Value.ToString();
-                cbAdminCarsModel.Text = row.Cells[3].Value.ToString();
+                cbAdminCarsMakeSearch.Text = row.Cells[2].Value.ToString();
+                cbAdminCarsModelSearch.Text = row.Cells[3].Value.ToString();
                 tbAdminCarsCode.Text = row.Cells[4].Value.ToString();
                 cbAdminCarsBody.Text = row.Cells[5].Value.ToString();
                 cbAdminCarsFuel.Text = row.Cells[6].Value.ToString();
@@ -829,169 +661,193 @@ namespace autoDATA
             }
         }
 
-        //ÚJ MODELL hozzáadása:
+        //ÚJ MODELL hozzáadása gomb esemény:
         private void btnAdminCarsAddModel_Click(object sender, EventArgs e)
         {
-            if ((cbAdminCarsMake.Text == "") || (cbAdminCarsMake.Text == "válasszon"))
+            if ((cbAdminCarsMakeSearch.Text == "") || (cbAdminCarsMakeSearch.Text == "válasszon"))
             {
                 MessageBox.Show("Először válasszon ki egy márkát!");
             }
-            else if (cbAdminCarsModel.Text == "válasszon")
+            else if (cbAdminCarsModelSearch.Text == "válasszon")
             {
                 MessageBox.Show("Írja be az új modellt!");
             }
             else
             {
-                switch (cbAdminCarsMake.Text)
+                switch (cbAdminCarsMakeSearch.Text)
                 {
                     case "Alfa Romeo":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
+                        addNewModel("alfaromeo");
                         break;
                     case "Alpina":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
+                        addNewModel("alpina");
                         break;
                     case "Aston Martin":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
-                        break;
-                    case "Bentley":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
+                        addNewModel("astonmartin");
                         break;
                     case "Audi":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
+                        addNewModel("audi");
+                        break;
+                    case "Bentley":
+                        addNewModel("bentley");
                         break;
                     case "BMW":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+                        addNewModel("bmw");
+                        break;
+                    case "Bugatti":
+                        addNewModel("bugatti");
                         break;
                     case "Citroen":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
+                        addNewModel("citroen");
                         break;
                     case "Dacia":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
+                        addNewModel("dacia");
                         break;
                     case "Ferrari":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
+                        addNewModel("ferrari+");
                         break;
                     case "Fiat":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
+                        addNewModel("fiat");
                         break;
                     case "Ford":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
+                        addNewModel("ford");
                         break;
                     case "Honda":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
+                        addNewModel("honda");
                         break;
                     case "Hyundai":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
+                        addNewModel("hyundai");
                         break;
                     case "Jaguar":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
+                        addNewModel("jaguar");
                         break;
                     case "Jeep":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
+                        addNewModel("jeep");
                         break;
                     case "Kia":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
+                        addNewModel("kia");
                         break;
                     case "Lada":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
+                        addNewModel("lada");
                         break;
                     case "Lamborghini":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
+                        addNewModel("lamborghini");
                         break;
                     case "Lancia":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
+                        addNewModel("lancia");
                         break;
                     case "Land Rover":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
+                        addNewModel("landrover");
                         break;
                     case "Lexus":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
+                        addNewModel("lexus");
                         break;
                     case "Mazda":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
+                        addNewModel("mazda");
                         break;
                     case "Mercedes-Benz":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
+                        addNewModel("mercedesbenz");
                         break;
                     case "Mercedes-AMG":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
+                        addNewModel("mercedesamg");
                         break;
                     case "Mini":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
+                        addNewModel("mini");
                         break;
                     case "Mitsubishi":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
+                        addNewModel("mitsubishi");
                         break;
                     case "Nissan":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
+                        addNewModel("nissan");
                         break;
                     case "Opel":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
+                        addNewModel("opel");
                         break;
                     case "Peugeot":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
+                        addNewModel("peugeot");
+                        break;
+                    case "Porsche":
+                        addNewModel("porsche");
                         break;
                     case "Renault":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
+                        addNewModel("renault");
                         break;
                     case "Rolls-Royce":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
+                        addNewModel("rollsroyce");
                         break;
                     case "Saab":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
+                        addNewModel("saab");
                         break;
                     case "SEAT":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
+                        addNewModel("seat");
+                        break;
+                    case "Skoda":
+                        addNewModel("skoda");
                         break;
                     case "Smart":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
+                        addNewModel("smart");
                         break;
                     case "Ssangyong":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
+                        addNewModel("ssangyong");
                         break;
                     case "Subaru":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
+                        addNewModel("subaru");
                         break;
                     case "Suzuki":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
+                        addNewModel("suzuki");
                         break;
                     case "Tesla":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
+                        addNewModel("tesla");
                         break;
                     case "Toyota":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
+                        addNewModel("toyota");
                         break;
                     case "Volkswagen":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
+                        addNewModel("volkswagen");
                         break;
                     case "Volvo":
-                        addNewModel(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
+                        addNewModel("volvo");
                         break;
                 }
             }
         }
 
-        private void addNewModel(string path)
+        private void addNewModel(string make)
         {
-            FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
+            string insertquery = "INSERT INTO @make VALUES ('"+ cbAdminCarsModelSearch.Text + "')";
 
-            try
+            if (con.State != ConnectionState.Open)
             {
-                using (sw)
+                con.Open();
+            }
+            DialogResult dr = new DialogResult();
+            Confirm a = new Confirm();
+            dr = a.ShowDialog();
+            if (dr == DialogResult.Yes)
+            {
+                MySqlCommand insert = new MySqlCommand(insertquery, con);
+                insert.Parameters.Add(new MySqlParameter("@make", make));
+                try
                 {
-                    sw.WriteLine("\n" + cbAdminCarsModel.Text);
+                    if (insert.ExecuteNonQuery() == 1)
+                    {
+                        loadCarDataToTable(query);
+                        MessageBox.Show("Új modell hozzáadva");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hozzáadás sikertelen");
+                    }
                 }
-
-                MessageBox.Show("Új modell regisztrálása sikeres");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else if (dr == DialogResult.No)
             {
-                MessageBox.Show("Új modell regisztrálása sikertelen" +"\n"+ex);
+                a.Dispose();
             }
-
-            sw.Close();
-            fs.Close();
         }
 
         //AUTÓ MEZŐK TÖRLÉSE gomb esemény:
@@ -999,8 +855,8 @@ namespace autoDATA
         {
             tbAdminCarsID.Clear();
             cbAdminCarsCategory.Text = "válasszon";
-            cbAdminCarsMake.Text = "válasszon";
-            cbAdminCarsModel.DataSource = null;
+            cbAdminCarsMakeSearch.Text = "válasszon";
+            cbAdminCarsModelSearch.DataSource = null;
             tbAdminCarsCode.Clear();
             cbAdminCarsBody.Text = "válasszon";
             cbAdminCarsFuel.Text = "válasszon";
@@ -1165,6 +1021,11 @@ namespace autoDATA
             {
                 MessageBox.Show("Jelöljön ki egy felhasználót a törléshez!");
             }
+
+            else if (tbAdminUsername.Text == "admin")
+            {
+                MessageBox.Show("Admint nem lehet kitörölni!");
+            }
             else
             {
                 string deletequery = "DELETE FROM users WHERE id = '" + tbAdminUsersID.Text + "'";
@@ -1180,7 +1041,7 @@ namespace autoDATA
                 Confirm a = new Confirm();
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
-                {                    
+                {
                     try
                     {
                         MySqlCommand insert = new MySqlCommand(deletequery, con);
@@ -1202,7 +1063,7 @@ namespace autoDATA
                 else if (dr == DialogResult.No)
                 {
                     a.Dispose();
-                }               
+                }
             }
         }
 

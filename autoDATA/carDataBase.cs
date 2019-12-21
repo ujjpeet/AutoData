@@ -244,92 +244,102 @@ namespace autoDATA
             };
         }
 
-        //AUTÓMÁRKÁK betöltése TXT FÁJLBÓL:
-        private void loadCarMakesForCarSearch()
+        //AUTÓMÁRKÁK betöltése adatbázisból:
+        private void loadCarMakesForCarSearch(string make)
         {
-            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
-            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            List<string> carmakes = new List<string>();
-
-            using (sr)
+            if (con.State != ConnectionState.Open)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmakes.Add(sr.ReadLine());
-                }
+                con.Open();
             }
 
-            sr.Close();
-            fs.Close();
+            query = "SELECT * FROM carmakes";
 
-            cbCarSearchMake.DataSource = carmakes;
+            try
+            {
+                DataTable mytable = new DataTable();
+                MySqlCommand search = new MySqlCommand(query, con);
+                MySqlDataReader open = search.ExecuteReader();
+                mytable.Load(open);
+                cbCarSearchMake.DisplayMember = "makes";
+                cbCarSearchMake.DataSource = mytable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
         }
 
-        private void loadCarMakesForCarReg()
+        private void loadCarMakesForCarReg(string make)
         {
-            string carmakepath = @"C:\C# projects\autoDATA\AutoDataGit\autoData\carmakes.txt";
-            FileStream fs = new FileStream(carmakepath, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            List<string> carmakes = new List<string>();
-
-            using (sr)
+            if (con.State != ConnectionState.Open)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmakes.Add(sr.ReadLine());
-                }
+                con.Open();
             }
 
-            sr.Close();
-            fs.Close();
+            query = "SELECT * FROM carmakes";
 
-            cbCarRegMake.DataSource = carmakes;
+            try
+            {
+                DataTable mytable = new DataTable();
+                MySqlCommand search = new MySqlCommand(query, con);
+                MySqlDataReader open = search.ExecuteReader();
+                mytable.Load(open);
+                cbCarRegMake.DisplayMember = "makes";
+                cbCarRegMake.DataSource = mytable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
         }
 
         //AUTÓMODELLEK metódusa PARAMÉTERREL TXT FÁJLBÓL:
-        private void loadCarmodelsforCarSearch(string path)
+        private void loadCarmodelsforCarSearch(string make)
         {
-            List<string> carmodels = new List<string>();
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            using (sr)
+            if (con.State != ConnectionState.Open)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmodels.Add(sr.ReadLine());
-                }
+                con.Open();
             }
 
-            cbCarSearchModel.DataSource = carmodels;
-
-            sr.Close();
-            fs.Close();
+            try
+            {
+                query = "SELECT model FROM " + @make;
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.Add(new MySqlParameter("@make", make));
+                MySqlDataReader open = cmd.ExecuteReader();
+                DataTable mytable = new DataTable();
+                mytable.Load(open);
+                cbCarSearchModel.DisplayMember = "model";
+                cbCarSearchModel.DataSource = mytable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
         }
 
-        private void loadCarmodelsforCarReg(string path)
+        private void loadCarmodelsforCarReg(string make)
         {
-            List<string> carmodels = new List<string>();
-
-            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            using (sr)
+            if (con.State != ConnectionState.Open)
             {
-                while (!sr.EndOfStream)
-                {
-                    carmodels.Add(sr.ReadLine());
-                }
+                con.Open();
             }
 
-            cbCarRegModel.DataSource = carmodels;
-
-            sr.Close();
-            fs.Close();
+            try
+            {
+                query = "SELECT model FROM " + @make;
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.Add(new MySqlParameter("@make", make));
+                MySqlDataReader open = cmd.ExecuteReader();
+                DataTable mytable = new DataTable();
+                mytable.Load(open);
+                cbCarRegModel.DisplayMember = "model";
+                cbCarRegModel.DataSource = mytable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            };
         }        
 
         //ha egy MÁRKA ki lett választva, akkor csak ezeket a MODELLEKET mutassa (textchanged események):
@@ -338,315 +348,279 @@ namespace autoDATA
         {
             switch (cbCarSearchMake.Text)
             {
-
                 case "Alfa Romeo":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
+                    loadCarmodelsforCarSearch("alfaromeo");
                     break;
                 case "Alpina":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
+                    loadCarmodelsforCarSearch("alpina");
                     break;
                 case "Aston Martin":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
-                    break;
-                case "Bentley":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
+                    loadCarmodelsforCarSearch("astonmartin");
                     break;
                 case "Audi":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
+                    loadCarmodelsforCarSearch("audi");
+                    break;
+                case "Bentley":
+                    loadCarmodelsforCarSearch("bentley");
                     break;
                 case "BMW":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
+                    loadCarmodelsforCarSearch("bmw");
                     break;
                 case "Bugatti":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
+                    loadCarmodelsforCarSearch("bugatti");
                     break;
                 case "Citroen":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
+                    loadCarmodelsforCarSearch("citroen");
                     break;
                 case "Dacia":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
+                    loadCarmodelsforCarSearch("dacia");
                     break;
                 case "Ferrari":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
+                    loadCarmodelsforCarSearch("ferrari+");
                     break;
                 case "Fiat":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
+                    loadCarmodelsforCarSearch("fiat");
                     break;
                 case "Ford":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
+                    loadCarmodelsforCarSearch("ford");
                     break;
                 case "Honda":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
+                    loadCarmodelsforCarSearch("honda");
                     break;
                 case "Hyundai":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
+                    loadCarmodelsforCarSearch("hyundai");
                     break;
                 case "Jaguar":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
+                    loadCarmodelsforCarSearch("jaguar");
                     break;
                 case "Jeep":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
+                    loadCarmodelsforCarSearch("jeep");
                     break;
                 case "Kia":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
+                    loadCarmodelsforCarSearch("kia");
                     break;
                 case "Lada":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
+                    loadCarmodelsforCarSearch("lada");
                     break;
                 case "Lamborghini":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
+                    loadCarmodelsforCarSearch("lamborghini");
                     break;
                 case "Lancia":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
+                    loadCarmodelsforCarSearch("lancia");
                     break;
                 case "Land Rover":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
+                    loadCarmodelsforCarSearch("landrover");
                     break;
                 case "Lexus":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
+                    loadCarmodelsforCarSearch("lexus");
                     break;
                 case "Mazda":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
+                    loadCarmodelsforCarSearch("mazda");
                     break;
                 case "Mercedes-Benz":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
+                    loadCarmodelsforCarSearch("mercedesbenz");
                     break;
                 case "Mercedes-AMG":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
+                    loadCarmodelsforCarSearch("mercedesamg");
                     break;
                 case "Mini":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
+                    loadCarmodelsforCarSearch("mini");
                     break;
                 case "Mitsubishi":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
+                    loadCarmodelsforCarSearch("mitsubishi");
                     break;
                 case "Nissan":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
+                    loadCarmodelsforCarSearch("nissan");
                     break;
                 case "Opel":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
+                    loadCarmodelsforCarSearch("opel");
                     break;
                 case "Peugeot":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
+                    loadCarmodelsforCarSearch("peugeot");
+                    break;
+                case "Porsche":
+                    loadCarmodelsforCarSearch("porsche");
                     break;
                 case "Renault":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
+                    loadCarmodelsforCarSearch("renault");
                     break;
                 case "Rolls-Royce":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
+                    loadCarmodelsforCarSearch("rollsroyce");
                     break;
                 case "Saab":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
+                    loadCarmodelsforCarSearch("saab");
                     break;
                 case "SEAT":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
+                    loadCarmodelsforCarSearch("seat");
                     break;
                 case "Skoda":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
+                    loadCarmodelsforCarSearch("skoda");
                     break;
                 case "Smart":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
+                    loadCarmodelsforCarSearch("smart");
                     break;
                 case "Ssangyong":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
+                    loadCarmodelsforCarSearch("ssangyong");
                     break;
                 case "Subaru":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
+                    loadCarmodelsforCarSearch("subaru");
                     break;
                 case "Suzuki":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
+                    loadCarmodelsforCarSearch("suzuki");
                     break;
                 case "Tesla":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
+                    loadCarmodelsforCarSearch("tesla");
                     break;
                 case "Toyota":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
+                    loadCarmodelsforCarSearch("toyota");
                     break;
                 case "Volkswagen":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
+                    loadCarmodelsforCarSearch("volkswagen");
                     break;
                 case "Volvo":
-                    loadCarmodelsforCarSearch(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
+                    loadCarmodelsforCarSearch("volvo");
                     break;
             }
         }
-
-        //IF elágazásokkal:
+               
         private void cbCarRegMake_TextChanged(object sender, EventArgs e)
-        {
-            if (cbCarRegMake.Text == "Alfa Romeo")
+        {           
+            switch (cbCarRegMake.Text)
             {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alfamodels.txt");
+                case "Alfa Romeo":
+                    loadCarmodelsforCarReg("alfaromeo");
+                    break;
+                case "Alpina":
+                    loadCarmodelsforCarReg("alpina");
+                    break;
+                case "Aston Martin":
+                    loadCarmodelsforCarReg("astonmartin");
+                    break;
+                case "Audi":
+                    loadCarmodelsforCarReg("audi");
+                    break;
+                case "Bentley":
+                    loadCarmodelsforCarReg("bentley");
+                    break;
+                case "BMW":
+                    loadCarmodelsforCarReg("bmw");
+                    break;
+                case "Bugatti":
+                    loadCarmodelsforCarReg("bugatti");
+                    break;
+                case "Citroen":
+                    loadCarmodelsforCarReg("citroen");
+                    break;
+                case "Dacia":
+                    loadCarmodelsforCarReg("dacia");
+                    break;
+                case "Ferrari":
+                    loadCarmodelsforCarReg("ferrari+");
+                    break;
+                case "Fiat":
+                    loadCarmodelsforCarReg("fiat");
+                    break;
+                case "Ford":
+                    loadCarmodelsforCarReg("ford");
+                    break;
+                case "Honda":
+                    loadCarmodelsforCarReg("honda");
+                    break;
+                case "Hyundai":
+                    loadCarmodelsforCarReg("hyundai");
+                    break;
+                case "Jaguar":
+                    loadCarmodelsforCarReg("jaguar");
+                    break;
+                case "Jeep":
+                    loadCarmodelsforCarReg("jeep");
+                    break;
+                case "Kia":
+                    loadCarmodelsforCarReg("kia");
+                    break;
+                case "Lada":
+                    loadCarmodelsforCarReg("lada");
+                    break;
+                case "Lamborghini":
+                    loadCarmodelsforCarReg("lamborghini");
+                    break;
+                case "Lancia":
+                    loadCarmodelsforCarReg("lancia");
+                    break;
+                case "Land Rover":
+                    loadCarmodelsforCarReg("landrover");
+                    break;
+                case "Lexus":
+                    loadCarmodelsforCarReg("lexus");
+                    break;
+                case "Mazda":
+                    loadCarmodelsforCarReg("mazda");
+                    break;
+                case "Mercedes-Benz":
+                    loadCarmodelsforCarReg("mercedesbenz");
+                    break;
+                case "Mercedes-AMG":
+                    loadCarmodelsforCarReg("mercedesamg");
+                    break;
+                case "Mini":
+                    loadCarmodelsforCarReg("mini");
+                    break;
+                case "Mitsubishi":
+                    loadCarmodelsforCarReg("mitsubishi");
+                    break;
+                case "Nissan":
+                    loadCarmodelsforCarReg("nissan");
+                    break;
+                case "Opel":
+                    loadCarmodelsforCarReg("opel");
+                    break;
+                case "Peugeot":
+                    loadCarmodelsforCarReg("peugeot");
+                    break;
+                case "Porsche":
+                    loadCarmodelsforCarReg("porsche");
+                    break;
+                case "Renault":
+                    loadCarmodelsforCarReg("renault");
+                    break;
+                case "Rolls-Royce":
+                    loadCarmodelsforCarReg("rollsroyce");
+                    break;
+                case "Saab":
+                    loadCarmodelsforCarReg("saab");
+                    break;
+                case "SEAT":
+                    loadCarmodelsforCarReg("seat");
+                    break;
+                case "Skoda":
+                    loadCarmodelsforCarReg("skoda");
+                    break;
+                case "Smart":
+                    loadCarmodelsforCarReg("smart");
+                    break;
+                case "Ssangyong":
+                    loadCarmodelsforCarReg("ssangyong");
+                    break;
+                case "Subaru":
+                    loadCarmodelsforCarReg("subaru");
+                    break;
+                case "Suzuki":
+                    loadCarmodelsforCarReg("suzuki");
+                    break;
+                case "Tesla":
+                    loadCarmodelsforCarReg("tesla");
+                    break;
+                case "Toyota":
+                    loadCarmodelsforCarReg("toyota");
+                    break;
+                case "Volkswagen":
+                    loadCarmodelsforCarReg("volkswagen");
+                    break;
+                case "Volvo":
+                    loadCarmodelsforCarReg("volvo");
+                    break;
             }
-            else if (cbCarRegMake.Text == "Alpina")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\alpinamodels.txt");
             }
-            else if (cbCarRegMake.Text == "Aston Martin")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\astonmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Bentley")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bentleymodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Audi")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\audimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "BMW")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bmwmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Bugatti")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\bugattimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Citroen")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\citroenmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Dacia")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\daciamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Ferrari")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ferrarimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Fiat")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fiatmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Ford")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\fordmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Honda")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hondamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Hyundai")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\hyundaimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Jaguar")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jaguarmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Jeep")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\jeepmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Kia")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\kiamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Lada")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ladamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Lamborghini")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lamborghinimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Lancia")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lanciamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Land Rover")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\landrovermodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Lexus")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\lexusmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Mazda")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mazdamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Mercedes-Benz")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesbenzmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Mercedes-AMG")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mercedesamgmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Mini")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\minimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Mitsubishi")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\mitsubishimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Nissan")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\nissanmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Opel")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\opelmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Peugeot")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\peugeotmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Renault")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\renaultmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Rolls-Royce")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\rollsroycemodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Saab")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\saabmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "SEAT")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\seatmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Skoda")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\skodamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Smart")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\smartmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Ssangyong")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\ssangyongmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Subaru")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\subarumodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Suzuki")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\suzukimodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Tesla")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\teslamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Toyota")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\toyotamodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Volkswagen")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\vwmodels.txt");
-            }
-            else if (cbCarRegMake.Text == "Volvo")
-            {
-                loadCarmodelsforCarReg(@"C:\C# projects\autoDATA\AutoDataGit\autoData\volvomodels.txt");
-            }
-        }
 
         //KERESÉS GOMB click esemény:
         private void bnCarSearch_Click(object sender, EventArgs e)
