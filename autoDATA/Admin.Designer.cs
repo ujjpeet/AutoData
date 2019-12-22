@@ -119,7 +119,6 @@
             this.label64 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.lbAdminConnection = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -1080,7 +1079,6 @@
             // 
             // cbAdminCarsModelSearch
             // 
-            this.cbAdminCarsModelSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAdminCarsModelSearch.FormattingEnabled = true;
             this.cbAdminCarsModelSearch.Location = new System.Drawing.Point(173, 46);
             this.cbAdminCarsModelSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1151,20 +1149,12 @@
             this.lbAdminConnection.TabIndex = 46;
             this.lbAdminConnection.Text = "Kapcsolat";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(319, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 47;
-            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 850);
             this.ControlBox = false;
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lbAdminConnection);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.bnCloseWindow);
@@ -1285,6 +1275,5 @@
         private System.Windows.Forms.Label lbCarRegNumber;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbAdminUsername;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

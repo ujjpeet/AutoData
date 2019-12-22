@@ -814,7 +814,8 @@ namespace autoDATA
 
         private void addNewModel(string make)
         {
-            string insertquery = "INSERT INTO @make VALUES ('"+ cbAdminCarsModelSearch.Text + "')";
+            string model = cbAdminCarsModelSearch.Text;
+            string insertquery = "INSERT INTO " +@make+ "(model) VALUES ('"+@model+"')";
 
             if (con.State != ConnectionState.Open)
             {
@@ -827,11 +828,12 @@ namespace autoDATA
             {
                 MySqlCommand insert = new MySqlCommand(insertquery, con);
                 insert.Parameters.Add(new MySqlParameter("@make", make));
+                insert.Parameters.Add(new MySqlParameter("@model", model));
+
                 try
                 {
                     if (insert.ExecuteNonQuery() == 1)
-                    {
-                        loadCarDataToTable(query);
+                    {                       
                         MessageBox.Show("Új modell hozzáadva");
                     }
                     else

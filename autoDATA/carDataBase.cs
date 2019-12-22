@@ -46,9 +46,9 @@ namespace autoDATA
             lbCarRegFuelRangekm.Visible = false;
 
             databaseConnect();
-
             loadCarMakesForCarSearch();
             loadCarMakesForCarReg();
+
             loadCarCategoriesForCarReg();
             loadFuelTypesForCarReg();
             loadDisplacementForCarReg();
@@ -245,7 +245,7 @@ namespace autoDATA
         }
 
         //AUTÓMÁRKÁK betöltése adatbázisból:
-        private void loadCarMakesForCarSearch(string make)
+        private void loadCarMakesForCarSearch()
         {
             if (con.State != ConnectionState.Open)
             {
@@ -269,7 +269,7 @@ namespace autoDATA
             };
         }
 
-        private void loadCarMakesForCarReg(string make)
+        private void loadCarMakesForCarReg()
         {
             if (con.State != ConnectionState.Open)
             {
@@ -293,7 +293,7 @@ namespace autoDATA
             };
         }
 
-        //AUTÓMODELLEK metódusa PARAMÉTERREL TXT FÁJLBÓL:
+        //AUTÓMODELLEK metódusa PARAMÉTERREL adatbázisból:
         private void loadCarmodelsforCarSearch(string make)
         {
             if (con.State != ConnectionState.Open)
