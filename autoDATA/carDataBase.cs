@@ -96,17 +96,19 @@ namespace autoDATA
             try
             {
                 connectionstring = "datasource = localhost; DataBase = auto_data; username = root; password = ; charset = utf8";
-                con = new MySqlConnection(connectionstring);
-                con.Open();
-                if (con.State == ConnectionState.Open)
+                using (con = new MySqlConnection(connectionstring))
                 {
-                    lbConnect.Text = "Kapcsolódva";
-                    lbConnect.ForeColor = Color.Green;
-                }
-                else
-                {
-                    lbConnect.Text = "Nincs kapcsolat";
-                    lbConnect.ForeColor = Color.Red;
+                    con.Open();
+                    if (con.State == ConnectionState.Open)
+                    {
+                        lbConnect.Text = "Kapcsolódva";
+                        lbConnect.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        lbConnect.Text = "Nincs kapcsolat";
+                        lbConnect.ForeColor = Color.Red;
+                    }
                 }
             }
             catch (Exception ex)
