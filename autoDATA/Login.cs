@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Mail;
 
 namespace autoDATA
 {
@@ -98,14 +100,51 @@ namespace autoDATA
             }
             catch (Exception ex)
             {
+                this.DialogResult = DialogResult.Cancel;
                 MessageBox.Show(ex.Message);
             }
         }
 
-        //ELFELEJTETT JELSZÓ kattintás:
+        //ELFELEJTETT JELSZÓ gomb kattintás:
         private void lbForgotPassword_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Küldjön egy emailt az ujjpetertamas@gmail.com emailcímre!");
+            if (tbUsername.Text == "")
+            {
+                MessageBox.Show("Először írja be a felhasználónevét!");
+            }
+            else
+            {
+                try
+                {
+                    emailSend();
+                    MessageBox.Show("Adminisztrátor értesítve. \nHamarosan megkapja új jelszavát.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        //ELFELEJTETT JELSZÓ email küldés metódus:
+        private void emailSend()
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Timeout = 20000;
+
+            mail.From = new MailAddress("csharptest.peter@gmail.com");
+            mail.To.Add("ujjpetertamas@gmail.com");
+            mail.Subject = "Elfelejtett jelszó";
+            mail.Body = "Felhasználó: "+ tbUsername.Text + " elfelejtette a jelszavát";
+
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new System.Net.NetworkCredential("csharptest.peter@gmail.com", "Lol0ka01");
+            smtp.EnableSsl = true;
+
+            smtp.Send(mail);
         }
     }
 }

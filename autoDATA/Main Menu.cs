@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Mail;
 
 namespace autoDATA
 {
@@ -27,6 +29,7 @@ namespace autoDATA
            bnDatabase.Enabled = false;
            bnLogout.Enabled = false;
            bnLogin.Enabled = true;
+           lbAdminContact.Enabled = false;
         }     
 
         //KONVERTÁLÓK GOMB click esemény:
@@ -138,6 +141,7 @@ namespace autoDATA
                 bnDatabase.Enabled = true;
                 bnLogout.Enabled = true;
                 bnLogin.Enabled = false;
+                lbAdminContact.Enabled = true;
 
                 lbLoggedInAs.Text = ((Login)a).tbUsername.Text;                
 
@@ -180,10 +184,29 @@ namespace autoDATA
             bnLogin.Enabled = true;
         }
 
-        //ADMIN KONTAKT kattintás:
+        //HIBABEJELNETÉS kattintás:
         private void lbAdminContact_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Küldjön egy emailt az ujjpetertamas@gmail.com emailcímre!");
-        }
+
+            ErrorReport myerrorreport = new ErrorReport(lbLoggedInAs.Text);
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Hibabejelentés")
+                {
+                    IsOpen = true;
+                    myerrorreport.BringToFront();
+                    myerrorreport.Activate();
+                }
+            }
+            if (IsOpen == false)
+            {
+                myerrorreport = new ErrorReport(lbLoggedInAs.Text);
+
+                myerrorreport.Show();
+                myerrorreport.BringToFront();
+                myerrorreport.Activate();
+            }           
+        }       
     }
 }
