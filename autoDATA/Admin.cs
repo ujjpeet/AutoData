@@ -105,6 +105,7 @@ namespace autoDATA
             bodylist.Add("busz");
             bodylist.Add("pickup");
             bodylist.Add("terepjáró");
+            bodylist.Add("sport");
             cbAdminCarsBody.DataSource = bodylist;
 
             //FELHASZNÁLÓK munkakörei string ARRAY :

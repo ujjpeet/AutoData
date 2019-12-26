@@ -61,7 +61,14 @@ namespace autoDATA
                 MessageBox.Show("Belépési kísérletek száma elfogyott, lépjen kapcsolatba az adminisztrátorral");
                 Application.Exit();
             }
-            checkuser();
+            if (tbUsername.Text == "" || tbPassword.Text == "")
+            {
+                MessageBox.Show("Felhasználónév és jelszó mezők kitöltése kötelező!");
+            }
+            else
+            {
+                checkuser();
+            }
         }
 
         private void checkuser()
@@ -95,7 +102,7 @@ namespace autoDATA
                 {
                     attempt--;
                     MessageBox.Show("Sikertelen belépési kísérlet! " + "\nMaradék kísérletek száma: " + attempt);
-                    this.DialogResult = DialogResult.No;
+                    this.DialogResult = DialogResult.Cancel;
                 }  
             }
             catch (Exception ex)

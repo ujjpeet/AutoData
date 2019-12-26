@@ -70,6 +70,7 @@ namespace autoDATA
             bodylist.Add("busz");
             bodylist.Add("pickup");
             bodylist.Add("terepjáró");
+            bodylist.Add("sport");
             cbCarRegBody.DataSource = bodylist;
             
             //meg kell tudni h ki van belogolva és hogy milyen id tartozik a userhez, mert kell az autó rögzítéshez:

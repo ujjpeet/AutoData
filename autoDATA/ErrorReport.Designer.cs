@@ -53,6 +53,7 @@
             this.bnCancel.TabIndex = 1;
             this.bnCancel.Text = "Mégse";
             this.bnCancel.UseVisualStyleBackColor = true;
+            this.bnCancel.Click += new System.EventHandler(this.bnCancel_Click);
             // 
             // tbErrorReport
             // 

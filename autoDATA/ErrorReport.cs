@@ -67,5 +67,10 @@ namespace autoDATA
 
             smtp.Send(mail);
         }
+
+        private void bnCancel_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
