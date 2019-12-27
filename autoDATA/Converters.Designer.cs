@@ -278,81 +278,89 @@
             // 
             // bnLE
             // 
+            this.bnLE.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnLE.Location = new System.Drawing.Point(164, 127);
             this.bnLE.Name = "bnLE";
-            this.bnLE.Size = new System.Drawing.Size(43, 23);
+            this.bnLE.Size = new System.Drawing.Size(67, 23);
             this.bnLE.TabIndex = 35;
-            this.bnLE.Text = "Go";
+            this.bnLE.Text = "számol";
             this.bnLE.UseVisualStyleBackColor = true;
             this.bnLE.Click += new System.EventHandler(this.bnLE_Click);
             // 
             // bnPS
             // 
+            this.bnPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnPS.Location = new System.Drawing.Point(164, 178);
             this.bnPS.Name = "bnPS";
-            this.bnPS.Size = new System.Drawing.Size(43, 23);
+            this.bnPS.Size = new System.Drawing.Size(67, 23);
             this.bnPS.TabIndex = 36;
-            this.bnPS.Text = "Go";
+            this.bnPS.Text = "számol";
             this.bnPS.UseVisualStyleBackColor = true;
             this.bnPS.Click += new System.EventHandler(this.bnPS_Click);
             // 
             // bnHP
             // 
+            this.bnHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnHP.Location = new System.Drawing.Point(164, 227);
             this.bnHP.Name = "bnHP";
-            this.bnHP.Size = new System.Drawing.Size(43, 23);
+            this.bnHP.Size = new System.Drawing.Size(67, 23);
             this.bnHP.TabIndex = 37;
-            this.bnHP.Text = "Go";
+            this.bnHP.Text = "számol";
             this.bnHP.UseVisualStyleBackColor = true;
             this.bnHP.Click += new System.EventHandler(this.bnHP_Click);
             // 
             // bnBHP
             // 
+            this.bnBHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnBHP.Location = new System.Drawing.Point(164, 278);
             this.bnBHP.Name = "bnBHP";
-            this.bnBHP.Size = new System.Drawing.Size(43, 23);
+            this.bnBHP.Size = new System.Drawing.Size(67, 23);
             this.bnBHP.TabIndex = 38;
-            this.bnBHP.Text = "Go";
+            this.bnBHP.Text = "számol";
             this.bnBHP.UseVisualStyleBackColor = true;
             this.bnBHP.Click += new System.EventHandler(this.bnBHP_Click);
             // 
             // bnKW
             // 
+            this.bnKW.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnKW.Location = new System.Drawing.Point(164, 334);
             this.bnKW.Name = "bnKW";
-            this.bnKW.Size = new System.Drawing.Size(43, 23);
+            this.bnKW.Size = new System.Drawing.Size(67, 23);
             this.bnKW.TabIndex = 39;
-            this.bnKW.Text = "Go";
+            this.bnKW.Text = "számol";
             this.bnKW.UseVisualStyleBackColor = true;
             this.bnKW.Click += new System.EventHandler(this.bnKW_Click);
             // 
             // bnKMH
             // 
+            this.bnKMH.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnKMH.Location = new System.Drawing.Point(363, 126);
             this.bnKMH.Name = "bnKMH";
-            this.bnKMH.Size = new System.Drawing.Size(43, 23);
+            this.bnKMH.Size = new System.Drawing.Size(61, 23);
             this.bnKMH.TabIndex = 40;
-            this.bnKMH.Text = "Go";
+            this.bnKMH.Text = "számol";
             this.bnKMH.UseVisualStyleBackColor = true;
             this.bnKMH.Click += new System.EventHandler(this.bnKMH_Click);
             // 
             // bnMPH
             // 
+            this.bnMPH.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnMPH.Location = new System.Drawing.Point(363, 178);
             this.bnMPH.Name = "bnMPH";
-            this.bnMPH.Size = new System.Drawing.Size(43, 23);
+            this.bnMPH.Size = new System.Drawing.Size(61, 23);
             this.bnMPH.TabIndex = 41;
-            this.bnMPH.Text = "Go";
+            this.bnMPH.Text = "számol";
             this.bnMPH.UseVisualStyleBackColor = true;
             this.bnMPH.Click += new System.EventHandler(this.bnMPH_Click);
             // 
             // bnMS
             // 
+            this.bnMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bnMS.Location = new System.Drawing.Point(363, 227);
             this.bnMS.Name = "bnMS";
-            this.bnMS.Size = new System.Drawing.Size(43, 23);
+            this.bnMS.Size = new System.Drawing.Size(61, 23);
             this.bnMS.TabIndex = 42;
-            this.bnMS.Text = "Go";
+            this.bnMS.Text = "számol";
             this.bnMS.UseVisualStyleBackColor = true;
             this.bnMS.Click += new System.EventHandler(this.bnMS_Click);
             // 

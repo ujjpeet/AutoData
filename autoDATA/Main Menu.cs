@@ -160,7 +160,7 @@ namespace autoDATA
         private void bnCloseProgram_Click(object sender, EventArgs e)
         {
             DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
+            Confirm a = new Confirm("Biztosan be akarja zárni a programot?");
             dr = a.ShowDialog();
             if (dr == DialogResult.Yes)
             {
@@ -175,16 +175,26 @@ namespace autoDATA
         //KILÉPÉS gomb esemény:
         private void bnLogout_Click(object sender, EventArgs e)
         {
-            lbLoggedInAs.Text = "";
-            bnAdmin.Enabled = false;
-            bnSettings.Enabled = false;
-            bnConverters.Enabled = false;
-            bnDatabase.Enabled = false;
-            bnLogout.Enabled = false;
-            bnLogin.Enabled = true;
+            DialogResult dr = new DialogResult();
+            Confirm a = new Confirm("Biztosan ki szeretne jelentkezni a programból?");
+            dr = a.ShowDialog();
+            if (dr == DialogResult.Yes)
+            {
+                lbLoggedInAs.Text = "";
+                bnAdmin.Enabled = false;
+                bnSettings.Enabled = false;
+                bnConverters.Enabled = false;
+                bnDatabase.Enabled = false;
+                bnLogout.Enabled = false;
+                bnLogin.Enabled = true;
+            }
+            else if (dr == DialogResult.No)
+            {
+                a.Dispose();
+            }            
         }
 
-        //HIBABEJELNETÉS kattintás:
+        //HIBABEJELENTÉS gomb kattintás:
         private void lbAdminContact_Click(object sender, EventArgs e)
         {
 

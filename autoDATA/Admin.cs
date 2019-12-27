@@ -145,6 +145,9 @@ namespace autoDATA
             try
             {
                 connectionstring = "datasource = localhost; DataBase = auto_data; username = root; password = ; charset = utf8";
+
+                //connectionstring = "datasource = sql305.epizy.com; Database = epiz_24976517_autodata; username = epiz_24976517; password = a9fOZmxjjbJAM1";
+
                 using (con = new MySqlConnection(connectionstring))
                 {
                     con.Open();
@@ -540,7 +543,7 @@ namespace autoDATA
                     con.Open();
                 }
                 DialogResult dr = new DialogResult();
-                Confirm a = new Confirm();
+                Confirm a = new Confirm("Biztosan módosítani kívánja a kijelölt autót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {
@@ -588,7 +591,7 @@ namespace autoDATA
                 }
 
                 DialogResult dr = new DialogResult();
-                Confirm a = new Confirm();
+                Confirm a = new Confirm("Biztosan törölni szeretné a kijelölt autót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {
@@ -825,7 +828,7 @@ namespace autoDATA
                 con.Open();
             }
             DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
+            Confirm a = new Confirm("Biztos benne, hogy hozzá szeretné adni az új modellt?");
             dr = a.ShowDialog();
             if (dr == DialogResult.Yes)
             {
@@ -889,7 +892,7 @@ namespace autoDATA
         private void bnCloseWindow_Click(object sender, EventArgs e)
         {
             DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
+            Confirm a = new Confirm("Biztosan be akarja zárni az Adminisztrációs ablakot?");
             dr = a.ShowDialog();
             if (dr == DialogResult.Yes)
             {
@@ -990,7 +993,7 @@ namespace autoDATA
                     con.Open();
                 }
                 DialogResult dr = new DialogResult();
-                Confirm a = new Confirm();
+                Confirm a = new Confirm("Biztosan módosítani szeretné a felhasználót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {                    
@@ -1043,7 +1046,7 @@ namespace autoDATA
                 }
 
                 DialogResult dr = new DialogResult();
-                Confirm a = new Confirm();
+                Confirm a = new Confirm("Biztosan törölni szeretné a felhasználót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {

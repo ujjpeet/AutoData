@@ -29,7 +29,7 @@ namespace autoDATA
         private void bnCloseWindow_Click(object sender, EventArgs e)
         {
             DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
+            Confirm a = new Confirm("Be akarja zárni a Konvertáló ablakot?");
             dr = a.ShowDialog();
             if (dr == DialogResult.Yes)
             {

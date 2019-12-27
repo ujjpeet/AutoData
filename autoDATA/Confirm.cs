@@ -12,9 +12,10 @@ namespace autoDATA
 {
     public partial class Confirm : Form
     {
-        public Confirm()
+        public Confirm(string question)
         {
             InitializeComponent();
+            lbConfirmQuestion.Text = question;
         }
     }
 }

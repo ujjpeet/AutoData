@@ -36,19 +36,18 @@
             // lbConfirmQuestion
             // 
             this.lbConfirmQuestion.AutoSize = true;
-            this.lbConfirmQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbConfirmQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lbConfirmQuestion.Location = new System.Drawing.Point(34, 25);
             this.lbConfirmQuestion.Name = "lbConfirmQuestion";
-            this.lbConfirmQuestion.Size = new System.Drawing.Size(271, 24);
+            this.lbConfirmQuestion.Size = new System.Drawing.Size(0, 18);
             this.lbConfirmQuestion.TabIndex = 0;
-            this.lbConfirmQuestion.Text = "Biztos, hogy folytatni akarja?";
             // 
             // bnConfirmYes
             // 
             this.bnConfirmYes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bnConfirmYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.bnConfirmYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnConfirmYes.Location = new System.Drawing.Point(77, 78);
+            this.bnConfirmYes.Location = new System.Drawing.Point(159, 83);
             this.bnConfirmYes.Name = "bnConfirmYes";
             this.bnConfirmYes.Size = new System.Drawing.Size(87, 35);
             this.bnConfirmYes.TabIndex = 2;
@@ -60,7 +59,7 @@
             this.bnConfirmNo.BackColor = System.Drawing.Color.Red;
             this.bnConfirmNo.DialogResult = System.Windows.Forms.DialogResult.No;
             this.bnConfirmNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnConfirmNo.Location = new System.Drawing.Point(180, 78);
+            this.bnConfirmNo.Location = new System.Drawing.Point(262, 83);
             this.bnConfirmNo.Name = "bnConfirmNo";
             this.bnConfirmNo.Size = new System.Drawing.Size(87, 35);
             this.bnConfirmNo.TabIndex = 5;
@@ -71,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 147);
+            this.ClientSize = new System.Drawing.Size(493, 147);
             this.ControlBox = false;
             this.Controls.Add(this.bnConfirmNo);
             this.Controls.Add(this.bnConfirmYes);

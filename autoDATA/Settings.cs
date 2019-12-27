@@ -42,38 +42,48 @@ namespace autoDATA
             }
             else
             {
-                try
+                DialogResult dr = new DialogResult();
+                Confirm a = new Confirm("Biztosan módosítani szeretné a jelszavát?");
+                dr = a.ShowDialog();
+                if (dr == DialogResult.Yes)
                 {
-                    connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
-
-                    con = new MySqlConnection(connectionstring);
-                    if (con.State != ConnectionState.Open)
+                    try
                     {
-                        con.Open();
-                    }  
+                        connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
 
-                    query = "UPDATE users SET password = '" + encryption.SHA2Hash(tbSettingsNewPassword.Text) + "' WHERE username = '" + label2.Text + "'";
+                        con = new MySqlConnection(connectionstring);
+                        if (con.State != ConnectionState.Open)
+                        {
+                            con.Open();
+                        }
 
-                    if (con.State != ConnectionState.Open)
-                    {
-                        con.Open();
+                        query = "UPDATE users SET password = '" + encryption.SHA2Hash(tbSettingsNewPassword.Text) + "' WHERE username = '" + label2.Text + "'";
+
+                        if (con.State != ConnectionState.Open)
+                        {
+                            con.Open();
+                        }
+
+                        MySqlCommand insert = new MySqlCommand(query, con);
+                        if (insert.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Jelszó módosítva");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Jelszó módosítása sikertelen");
+                        }
                     }
-
-                    MySqlCommand insert = new MySqlCommand(query, con);
-                    if (insert.ExecuteNonQuery() == 1)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Jelszó módosítva");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Jelszó módosítása sikertelen");
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                catch (Exception ex)
+                else if (dr == DialogResult.No)
                 {
-                    MessageBox.Show(ex.Message);
-                }
+                    a.Dispose();
+                }               
             }
         }        
     }

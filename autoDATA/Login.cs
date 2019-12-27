@@ -80,6 +80,8 @@ namespace autoDATA
             try
             {
                 connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
+                              
+                //connectionstring = "datasource = sql305.epizy.com; Database = epiz_24976517_autodata; username = epiz_24976517; password = a9fOZmxjjbJAM1";
 
                 con = new MySqlConnection(connectionstring);
                 if (con.State != ConnectionState.Open)

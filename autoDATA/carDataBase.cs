@@ -96,7 +96,10 @@ namespace autoDATA
         {
             try
             {
-                connectionstring = "datasource = localhost; DataBase = auto_data; username = root; password = ; charset = utf8";
+                connectionstring = "datasource = localhost; DataBase = auto_data; username = root; password = ; charset = utf8";          
+
+               //connectionstring = "datasource = sql305.epizy.com; Database = epiz_24976517_autodata; username = epiz_24976517; password = a9fOZmxjjbJAM1";
+
                 using (con = new MySqlConnection(connectionstring))
                 {
                     con.Open();
@@ -989,8 +992,8 @@ namespace autoDATA
         private void bnCloseWindow_Click(object sender, EventArgs e)
         {
             DialogResult dr = new DialogResult();
-            Confirm a = new Confirm();
-            dr = a.ShowDialog();
+            Confirm a = new Confirm("Biztos be akarja zárni az Autó adatbázist?");
+            dr = a.ShowDialog();          
             if (dr == DialogResult.Yes)
             {
                 this.Close();

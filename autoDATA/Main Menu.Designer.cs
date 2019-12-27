@@ -167,9 +167,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::autoDATA.Properties.Resources.autodatalogo;
-            this.pictureBox1.Location = new System.Drawing.Point(336, 80);
+            this.pictureBox1.Location = new System.Drawing.Point(333, 59);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(341, 315);
+            this.pictureBox1.Size = new System.Drawing.Size(478, 372);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
@@ -178,7 +178,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(738, 453);
+            this.ClientSize = new System.Drawing.Size(911, 511);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbAdminContact);
