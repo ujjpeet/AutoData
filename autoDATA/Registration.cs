@@ -131,7 +131,9 @@ namespace autoDATA
 
             try
             {
-                connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
+                //connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
+
+                connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar";
 
                 insertQuery = "INSERT INTO users (last_name, first_name, position, birthdate, email, username, password)  " +
                     "VALUES(" +

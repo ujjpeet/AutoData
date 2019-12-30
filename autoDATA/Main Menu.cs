@@ -187,6 +187,7 @@ namespace autoDATA
                 bnDatabase.Enabled = false;
                 bnLogout.Enabled = false;
                 bnLogin.Enabled = true;
+                lbAdminContact.Enabled = false;
             }
             else if (dr == DialogResult.No)
             {

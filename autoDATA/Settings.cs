@@ -49,7 +49,9 @@ namespace autoDATA
                 {
                     try
                     {
-                        connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
+                        //connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
+
+                        connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar";
 
                         con = new MySqlConnection(connectionstring);
                         if (con.State != ConnectionState.Open)
