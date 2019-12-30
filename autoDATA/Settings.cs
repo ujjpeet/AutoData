@@ -31,7 +31,9 @@ namespace autoDATA
 
             if (!regex.IsMatch(password))
             {
+                tbSettingsNewPassword.Clear();
                 MessageBox.Show("A jelszónak minimum 6 karakter hosszúnak kell lennie, illetve tartalmazzon legalább egy nagybetűt és egy kisbetűt!");
+                tbSettingsNewPassword.Focus();
             }
         }
 
@@ -78,7 +80,7 @@ namespace autoDATA
                     {
                         //connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
 
-                        connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar";
+                        connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar; charset = utf8";
 
                         con = new MySqlConnection(connectionstring);
                         if (con.State != ConnectionState.Open)
@@ -114,8 +116,6 @@ namespace autoDATA
                     a.Dispose();
                 }               
             }
-        }
-
-      
+        }      
     }
 }

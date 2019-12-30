@@ -101,7 +101,9 @@ namespace autoDATA
 
             if (!regex.IsMatch(password))
             {
+                tbRegPassword.Clear();
                 MessageBox.Show("A jelszónak minimum 6 karakter hosszúnak kell lennie, illetve tartalmazzon legalább egy nagybetűt és egy kisbetűt!");
+                tbRegPassword.Focus();
             }
         }
 
@@ -148,7 +150,7 @@ namespace autoDATA
             {
                 //connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
 
-                connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar";
+                connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar; charset = utf8";
 
                 insertQuery = "INSERT INTO users (last_name, first_name, position, birthdate, email, username, password)  " +
                     "VALUES(" +
