@@ -62,6 +62,7 @@
             this.tbSettingsNewPassword.PasswordChar = '*';
             this.tbSettingsNewPassword.Size = new System.Drawing.Size(161, 22);
             this.tbSettingsNewPassword.TabIndex = 4;
+            this.tbSettingsNewPassword.Leave += new System.EventHandler(this.tbSettingsNewPassword_Leave);
             // 
             // tbSettingsConfirmNewPassword
             // 
@@ -70,6 +71,7 @@
             this.tbSettingsConfirmNewPassword.PasswordChar = '*';
             this.tbSettingsConfirmNewPassword.Size = new System.Drawing.Size(161, 22);
             this.tbSettingsConfirmNewPassword.TabIndex = 5;
+            this.tbSettingsConfirmNewPassword.Leave += new System.EventHandler(this.tbSettingsConfirmNewPassword_Leave);
             // 
             // bnSettingsSave
             // 

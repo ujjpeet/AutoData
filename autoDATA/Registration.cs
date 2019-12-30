@@ -89,7 +89,21 @@ namespace autoDATA
             string result2 = RemoveAccents(toreplace2);
 
             lbAutUsername.Text = result1 + "." + result2;
-        }       
+        }
+
+        //jelszó REGEX:
+        private void tbRegPassword_Leave(object sender, EventArgs e)
+        {
+            //jelszó tartalmazzon legalább egy nagybetűt, egy kisbetűt, egy számot és legalább 6 karakter hosszúságú legyen
+            Regex regex = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$");
+
+            string password = tbRegPassword.Text;
+
+            if (!regex.IsMatch(password))
+            {
+                MessageBox.Show("A jelszónak minimum 6 karakter hosszúnak kell lennie, illetve tartalmazzon legalább egy nagybetűt és egy kisbetűt!");
+            }
+        }
 
         //beírt JELSZAVAKNAK meg kell egyezniük (textbox leave esemény):
         private void tbRegPasswordAgain_Leave(object sender, EventArgs e)
@@ -107,6 +121,7 @@ namespace autoDATA
         private void bnRegSave_Click(object sender, EventArgs e)
         {
            if (tbRegFirstName.Text == "" || tbRegFamilyName.Text == "" || cbRegPosition.Text == ""
+                ||cbRegPosition.Text == "válasszon"
                 || cbUserRegYear.Text == "válasszon"
                 || cbUserRegMonth.Text == "válasszon"
                 || cbUserRegDays.Text == "válasszon"

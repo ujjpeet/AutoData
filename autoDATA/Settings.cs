@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,8 +19,34 @@ namespace autoDATA
         {
             InitializeComponent();
             label2.Text = user;
-        }      
-      
+        }
+
+        //jelszó REGEX:
+        private void tbSettingsNewPassword_Leave(object sender, EventArgs e)
+        {
+            //jelszó tartalmazzon legalább egy nagybetűt, egy kisbetűt, egy számot és legalább 6 karakter hosszúságú legyen
+            Regex regex = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$");
+
+            string password = tbSettingsNewPassword.Text;
+
+            if (!regex.IsMatch(password))
+            {
+                MessageBox.Show("A jelszónak minimum 6 karakter hosszúnak kell lennie, illetve tartalmazzon legalább egy nagybetűt és egy kisbetűt!");
+            }
+        }
+
+        //beírt jelszavaknak azonosnak kell lenniük:
+        private void tbSettingsConfirmNewPassword_Leave(object sender, EventArgs e)
+        {
+            if (tbSettingsNewPassword.Text != tbSettingsConfirmNewPassword.Text)
+            {
+                MessageBox.Show("A jelszavak nem azonosak!");
+                tbSettingsNewPassword.Clear();
+                tbSettingsConfirmNewPassword.Clear();
+                tbSettingsNewPassword.Focus();
+            }
+        }
+
         //MÉGSE gomb esemény:
         private void bnSettingsCancel_Click(object sender, EventArgs e)
         {
@@ -87,6 +114,8 @@ namespace autoDATA
                     a.Dispose();
                 }               
             }
-        }        
+        }
+
+      
     }
 }

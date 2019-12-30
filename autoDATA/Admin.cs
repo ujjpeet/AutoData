@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -968,6 +969,9 @@ namespace autoDATA
         //FELHASZNÁLÓK MÓDOSÍTÁSA gomb esemény:
         private void bnAdminUsersMod_Click(object sender, EventArgs e)
         {
+            string email = tbAdminEmail.Text;
+            Regex regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+
             if (tbAdminUsersLastName.Text == ""
                 || tbAdminUsersFirstName.Text == ""
                 || tbAdminUsername.Text == ""
@@ -978,13 +982,13 @@ namespace autoDATA
             {
                 MessageBox.Show("Minden mező kitöltése kötelező!");
             }            
-            /*else if ()
+            else if (!regex.IsMatch(email))
             {
-                email regex
-            }*/
+                MessageBox.Show("Email cím nem megfelelő");
+            }
             else
             {
-                string insertquery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+                string updatequery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
 
                 query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
 
@@ -999,7 +1003,7 @@ namespace autoDATA
                 {                    
                     try
                     {
-                        MySqlCommand insert = new MySqlCommand(insertquery, con);
+                        MySqlCommand insert = new MySqlCommand(updatequery, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
                             loadUserDataToTable(query);
