@@ -15,6 +15,10 @@ namespace autoDATA
 {
     public partial class Registration : Form
     {
+        MySqlConnection con;
+        String connectionstring;
+        String insertQuery;
+
         public Registration()
         {
             InitializeComponent();
@@ -42,7 +46,7 @@ namespace autoDATA
             Array.Reverse(years);
             cbUserRegYear.DataSource = years;
 
-            string[] month = new string[]                {"válasszon","január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"};
+            string[] month = new string[]                {"válasszon","01","02","03","04","05","06","07","08","09","10","11","12"};
             cbUserRegMonth.DataSource = month;
 
             string[] days = new string[]               {"válasszon","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
@@ -52,6 +56,10 @@ namespace autoDATA
         //MÉGSE GOMB click esemény:
         private void bnRegCancel_Click(object sender, EventArgs e)
         {
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
             this.Close();
         }
 
@@ -99,11 +107,14 @@ namespace autoDATA
 
             string password = tbRegPassword.Text;
 
-            if (!regex.IsMatch(password))
+            if (tbRegPassword.Text != "")
             {
-                tbRegPassword.Clear();
-                MessageBox.Show("A jelszónak minimum 6 karakter hosszúnak kell lennie, illetve tartalmazzon legalább egy nagybetűt és egy kisbetűt!");
-                tbRegPassword.Focus();
+                if (!regex.IsMatch(password))
+                {
+                    tbRegPassword.Clear();
+                    MessageBox.Show("A jelszónak minimum 6 karakter hosszúnak kell lennie, illetve tartalmazzon legalább egy nagybetűt és egy kisbetűt!");
+                    tbRegPassword.Focus();
+                }
             }
         }
 
@@ -142,21 +153,14 @@ namespace autoDATA
         //USER REGISZTRÁCIÓ metódus:
         private void reguser()
         {
-            MySqlConnection con;
-            String connectionstring;
-            String insertQuery;
-
             try
             {
-                //connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
-
-                connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar; charset = utf8";
+                databaseconnect();
 
                 insertQuery = "INSERT INTO users (last_name, first_name, position, birthdate, email, username, password)  " +
                     "VALUES(" +
-                    "'" + tbRegFamilyName.Text + "','" + tbRegFirstName.Text + "','" + cbRegPosition.Text + "',CONCAT('" + cbUserRegYear.Text + "',' ', '" + cbUserRegMonth.Text + "',' ','" + cbUserRegDays.Text + "'), CONCAT('" + tbRegEmail1.Text + "','@','" + tbRegEmail2.Text + "','.','" + tbRegEmail3.Text + "'),'" + lbAutUsername.Text + "','" + encryption.SHA2Hash(tbRegPassword.Text) + "')";                                        
-
-                con = new MySqlConnection(connectionstring);
+                    "'" + tbRegFamilyName.Text + "','" + tbRegFirstName.Text + "','" + cbRegPosition.Text + "',CONCAT('" + cbUserRegYear.Text + "',' ', '" + cbUserRegMonth.Text + "',' ','" + cbUserRegDays.Text + "'), CONCAT('" + tbRegEmail1.Text + "','@','" + tbRegEmail2.Text + "','.','" + tbRegEmail3.Text + "'),'" + lbAutUsername.Text + "','" + encryption.SHA2Hash(tbRegPassword.Text) + "')";    
+              
                 if (con.State != ConnectionState.Open)
                 {
                     con.Open();
@@ -179,6 +183,21 @@ namespace autoDATA
             {
                 MessageBox.Show(ex.Message);
             }
-        }       
+        }
+
+        private void databaseconnect()
+        {
+            try
+            {
+                //connectionstring = "datasource = localhost;  DataBase= auto_data; username = root; password =";
+
+                connectionstring = "datasource = 94.76.215.115; DataBase = petersze_autodata; username = petersze_petersze; password = Rmbg5780Ar; charset = utf8";
+                con = new MySqlConnection(connectionstring);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

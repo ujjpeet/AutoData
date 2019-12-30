@@ -905,6 +905,10 @@ namespace autoDATA
             dr = a.ShowDialog();
             if (dr == DialogResult.Yes)
             {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
                 this.Close();
             }
             else if (dr == DialogResult.No)
@@ -1003,7 +1007,7 @@ namespace autoDATA
             }
             else
             {
-                string updatequery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+                string updatequery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value.ToString("yyyy/MM/dd") + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
 
                 query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
 
@@ -1134,24 +1138,24 @@ namespace autoDATA
             }
             else
             {
-                Settings mysettings = new Settings(tbAdminUsername.Text);
+                NewPw newpassword = new NewPw (tbAdminUsername.Text);
 
                 bool IsOpen = false;
                 foreach (Form f in Application.OpenForms)
                 {
-                    if (f.Text == "Beállítások")
+                    if (f.Text == "Új jelszó")
                     {
                         IsOpen = true;
-                        mysettings.BringToFront();
-                        mysettings.Activate();
+                        newpassword.BringToFront();
+                        newpassword.Activate();
                     }
                 }
                 if (IsOpen == false)
                 {
-                    mysettings = new Settings(tbAdminUsername.Text);
-                    mysettings.Show();
-                    mysettings.BringToFront();
-                    mysettings.Activate();
+                    newpassword = new NewPw(tbAdminUsername.Text);
+                    newpassword.Show();
+                    newpassword.BringToFront();
+                    newpassword.Activate();
                 }
             }
         }

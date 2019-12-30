@@ -64,6 +64,7 @@ namespace autoDATA
             if (tbUsername.Text == "" || tbPassword.Text == "")
             {
                 MessageBox.Show("Felhasználónév és jelszó mezők kitöltése kötelező!");
+                this.DialogResult = DialogResult.Cancel;
             }
             else
             {

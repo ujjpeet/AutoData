@@ -33,6 +33,7 @@ namespace autoDATA
                 {
                     emailSend();
                     MessageBox.Show("Hiba bejelentve.");
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -68,6 +69,7 @@ namespace autoDATA
             smtp.Send(mail);
         }
 
+        //MÉGSE gomb kattintás:
         private void bnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();

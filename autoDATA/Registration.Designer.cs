@@ -52,13 +52,14 @@
             this.cbUserRegYear = new System.Windows.Forms.ComboBox();
             this.cbUserRegMonth = new System.Windows.Forms.ComboBox();
             this.cbUserRegDays = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bnRegCancel
             // 
             this.bnRegCancel.BackColor = System.Drawing.Color.Red;
             this.bnRegCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnRegCancel.Location = new System.Drawing.Point(297, 315);
+            this.bnRegCancel.Location = new System.Drawing.Point(296, 334);
             this.bnRegCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnRegCancel.Name = "bnRegCancel";
             this.bnRegCancel.Size = new System.Drawing.Size(87, 34);
@@ -71,7 +72,7 @@
             // 
             this.bnRegSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bnRegSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnRegSave.Location = new System.Drawing.Point(135, 315);
+            this.bnRegSave.Location = new System.Drawing.Point(134, 334);
             this.bnRegSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bnRegSave.Name = "bnRegSave";
             this.bnRegSave.Size = new System.Drawing.Size(144, 34);
@@ -121,14 +122,14 @@
             this.lbRegPassword.AutoSize = true;
             this.lbRegPassword.Location = new System.Drawing.Point(36, 226);
             this.lbRegPassword.Name = "lbRegPassword";
-            this.lbRegPassword.Size = new System.Drawing.Size(52, 17);
+            this.lbRegPassword.Size = new System.Drawing.Size(57, 17);
             this.lbRegPassword.TabIndex = 12;
-            this.lbRegPassword.Text = "Jelszó:";
+            this.lbRegPassword.Text = "Jelszó:*";
             // 
             // lbRegPasswordAgain
             // 
             this.lbRegPasswordAgain.AutoSize = true;
-            this.lbRegPasswordAgain.Location = new System.Drawing.Point(36, 265);
+            this.lbRegPasswordAgain.Location = new System.Drawing.Point(36, 256);
             this.lbRegPasswordAgain.Name = "lbRegPasswordAgain";
             this.lbRegPasswordAgain.Size = new System.Drawing.Size(89, 17);
             this.lbRegPasswordAgain.TabIndex = 13;
@@ -155,7 +156,7 @@
             // 
             // tbRegPasswordAgain
             // 
-            this.tbRegPasswordAgain.Location = new System.Drawing.Point(157, 265);
+            this.tbRegPasswordAgain.Location = new System.Drawing.Point(157, 256);
             this.tbRegPasswordAgain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRegPasswordAgain.Name = "tbRegPasswordAgain";
             this.tbRegPasswordAgain.PasswordChar = '*';
@@ -262,20 +263,31 @@
             // cbUserRegMonth
             // 
             this.cbUserRegMonth.FormattingEnabled = true;
-            this.cbUserRegMonth.Location = new System.Drawing.Point(251, 129);
+            this.cbUserRegMonth.Location = new System.Drawing.Point(250, 129);
             this.cbUserRegMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbUserRegMonth.Name = "cbUserRegMonth";
-            this.cbUserRegMonth.Size = new System.Drawing.Size(121, 24);
+            this.cbUserRegMonth.Size = new System.Drawing.Size(97, 24);
             this.cbUserRegMonth.TabIndex = 29;
             // 
             // cbUserRegDays
             // 
             this.cbUserRegDays.FormattingEnabled = true;
-            this.cbUserRegDays.Location = new System.Drawing.Point(381, 129);
+            this.cbUserRegDays.Location = new System.Drawing.Point(354, 129);
             this.cbUserRegDays.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbUserRegDays.Name = "cbUserRegDays";
-            this.cbUserRegDays.Size = new System.Drawing.Size(61, 24);
+            this.cbUserRegDays.Size = new System.Drawing.Size(96, 24);
             this.cbUserRegDays.TabIndex = 30;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 292);
+            this.label3.MaximumSize = new System.Drawing.Size(500, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(474, 34);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "* A jelszónak legalább 6 karakterből kell állnia, tartalmazzon legalább egy nagyb" +
+    "etűt, egy kisbetűt és egy számot is";
             // 
             // Registration
             // 
@@ -283,6 +295,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 379);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.cbUserRegDays);
             this.Controls.Add(this.cbUserRegMonth);
             this.Controls.Add(this.cbUserRegYear);
@@ -342,5 +355,6 @@
         private System.Windows.Forms.ComboBox cbUserRegYear;
         private System.Windows.Forms.ComboBox cbUserRegMonth;
         private System.Windows.Forms.ComboBox cbUserRegDays;
+        private System.Windows.Forms.Label label3;
     }
 }

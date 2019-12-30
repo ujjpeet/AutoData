@@ -100,9 +100,9 @@
             // 
             // tbLE
             // 
-            this.tbLE.Location = new System.Drawing.Point(37, 127);
+            this.tbLE.Location = new System.Drawing.Point(37, 123);
             this.tbLE.Maximum = new decimal(new int[] {
-            99999,
+            999999,
             0,
             0,
             0});
@@ -112,9 +112,9 @@
             // 
             // tbPS
             // 
-            this.tbPS.Location = new System.Drawing.Point(37, 178);
+            this.tbPS.Location = new System.Drawing.Point(37, 174);
             this.tbPS.Maximum = new decimal(new int[] {
-            99999,
+            999999,
             0,
             0,
             0});
@@ -124,9 +124,9 @@
             // 
             // tbHP
             // 
-            this.tbHP.Location = new System.Drawing.Point(37, 228);
+            this.tbHP.Location = new System.Drawing.Point(37, 224);
             this.tbHP.Maximum = new decimal(new int[] {
-            99999,
+            999999,
             0,
             0,
             0});
@@ -136,9 +136,9 @@
             // 
             // tbBHP
             // 
-            this.tbBHP.Location = new System.Drawing.Point(37, 279);
+            this.tbBHP.Location = new System.Drawing.Point(37, 275);
             this.tbBHP.Maximum = new decimal(new int[] {
-            99999,
+            999999,
             0,
             0,
             0});
@@ -148,9 +148,9 @@
             // 
             // tbkw
             // 
-            this.tbkw.Location = new System.Drawing.Point(37, 335);
+            this.tbkw.Location = new System.Drawing.Point(37, 331);
             this.tbkw.Maximum = new decimal(new int[] {
-            99999,
+            999999,
             0,
             0,
             0});
@@ -160,7 +160,7 @@
             // 
             // tbKMH
             // 
-            this.tbKMH.Location = new System.Drawing.Point(237, 127);
+            this.tbKMH.Location = new System.Drawing.Point(237, 123);
             this.tbKMH.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -172,7 +172,7 @@
             // 
             // tbMPH
             // 
-            this.tbMPH.Location = new System.Drawing.Point(237, 178);
+            this.tbMPH.Location = new System.Drawing.Point(237, 174);
             this.tbMPH.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -184,7 +184,7 @@
             // 
             // tbMS
             // 
-            this.tbMS.Location = new System.Drawing.Point(237, 228);
+            this.tbMS.Location = new System.Drawing.Point(237, 224);
             this.tbMS.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -197,7 +197,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 107);
+            this.label3.Location = new System.Drawing.Point(70, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 17);
             this.label3.TabIndex = 26;
@@ -206,7 +206,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(77, 158);
+            this.label4.Location = new System.Drawing.Point(77, 154);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 17);
             this.label4.TabIndex = 27;
@@ -215,7 +215,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(79, 208);
+            this.label5.Location = new System.Drawing.Point(79, 204);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(27, 17);
             this.label5.TabIndex = 28;
@@ -224,7 +224,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(73, 260);
+            this.label6.Location = new System.Drawing.Point(73, 256);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 29;
@@ -233,7 +233,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(83, 315);
+            this.label7.Location = new System.Drawing.Point(83, 311);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(24, 17);
             this.label7.TabIndex = 30;
@@ -242,7 +242,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(270, 107);
+            this.label8.Location = new System.Drawing.Point(270, 103);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 17);
             this.label8.TabIndex = 31;
@@ -251,7 +251,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(279, 158);
+            this.label9.Location = new System.Drawing.Point(279, 154);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 17);
             this.label9.TabIndex = 32;
@@ -260,7 +260,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(276, 208);
+            this.label10.Location = new System.Drawing.Point(276, 204);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 17);
             this.label10.TabIndex = 33;
@@ -279,7 +279,7 @@
             // bnLE
             // 
             this.bnLE.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnLE.Location = new System.Drawing.Point(164, 127);
+            this.bnLE.Location = new System.Drawing.Point(164, 123);
             this.bnLE.Name = "bnLE";
             this.bnLE.Size = new System.Drawing.Size(67, 23);
             this.bnLE.TabIndex = 35;
@@ -290,7 +290,7 @@
             // bnPS
             // 
             this.bnPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnPS.Location = new System.Drawing.Point(164, 178);
+            this.bnPS.Location = new System.Drawing.Point(164, 174);
             this.bnPS.Name = "bnPS";
             this.bnPS.Size = new System.Drawing.Size(67, 23);
             this.bnPS.TabIndex = 36;
@@ -301,7 +301,7 @@
             // bnHP
             // 
             this.bnHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnHP.Location = new System.Drawing.Point(164, 227);
+            this.bnHP.Location = new System.Drawing.Point(164, 223);
             this.bnHP.Name = "bnHP";
             this.bnHP.Size = new System.Drawing.Size(67, 23);
             this.bnHP.TabIndex = 37;
@@ -312,7 +312,7 @@
             // bnBHP
             // 
             this.bnBHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnBHP.Location = new System.Drawing.Point(164, 278);
+            this.bnBHP.Location = new System.Drawing.Point(164, 274);
             this.bnBHP.Name = "bnBHP";
             this.bnBHP.Size = new System.Drawing.Size(67, 23);
             this.bnBHP.TabIndex = 38;
@@ -323,7 +323,7 @@
             // bnKW
             // 
             this.bnKW.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnKW.Location = new System.Drawing.Point(164, 334);
+            this.bnKW.Location = new System.Drawing.Point(164, 330);
             this.bnKW.Name = "bnKW";
             this.bnKW.Size = new System.Drawing.Size(67, 23);
             this.bnKW.TabIndex = 39;
@@ -334,7 +334,7 @@
             // bnKMH
             // 
             this.bnKMH.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnKMH.Location = new System.Drawing.Point(363, 126);
+            this.bnKMH.Location = new System.Drawing.Point(363, 122);
             this.bnKMH.Name = "bnKMH";
             this.bnKMH.Size = new System.Drawing.Size(61, 23);
             this.bnKMH.TabIndex = 40;
@@ -345,7 +345,7 @@
             // bnMPH
             // 
             this.bnMPH.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnMPH.Location = new System.Drawing.Point(363, 178);
+            this.bnMPH.Location = new System.Drawing.Point(363, 174);
             this.bnMPH.Name = "bnMPH";
             this.bnMPH.Size = new System.Drawing.Size(61, 23);
             this.bnMPH.TabIndex = 41;
@@ -356,7 +356,7 @@
             // bnMS
             // 
             this.bnMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bnMS.Location = new System.Drawing.Point(363, 227);
+            this.bnMS.Location = new System.Drawing.Point(363, 223);
             this.bnMS.Name = "bnMS";
             this.bnMS.Size = new System.Drawing.Size(61, 23);
             this.bnMS.TabIndex = 42;

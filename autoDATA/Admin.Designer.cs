@@ -1153,7 +1153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1133, 850);
+            this.ClientSize = new System.Drawing.Size(1133, 921);
             this.ControlBox = false;
             this.Controls.Add(this.lbAdminConnection);
             this.Controls.Add(this.tabControl1);

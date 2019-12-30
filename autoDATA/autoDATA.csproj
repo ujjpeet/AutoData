@@ -124,6 +124,12 @@
     <Compile Include="Main Menu.Designer.cs">
       <DependentUpon>Main Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewPw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPw.Designer.cs">
+      <DependentUpon>NewPw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.cs">
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main Menu.resx">
       <DependentUpon>Main Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPw.resx">
+      <DependentUpon>NewPw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
