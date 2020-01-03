@@ -117,16 +117,16 @@ namespace autoDATA
 
         //AUTÓK VÁLTÓFAJTÁK betöltése ADATBÁZISBÓL:
         private void loadGerarbox()
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM gears";
-
+        {     
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM gears";
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -173,15 +173,15 @@ namespace autoDATA
         //AUTÓKATEGÓRIÁK betöltése ADATBÁZISBÓL:      
         public void loadCarCategoriesForAdmin()
         {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM carcategories";
-
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM carcategories";
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -197,16 +197,16 @@ namespace autoDATA
 
         //AUTÓMÁRKÁK betöltése adatbázisból:
         private void loadCarMakesForAdminSearch()
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM carmakes";
-
+        {   
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM carmakes";
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -222,15 +222,16 @@ namespace autoDATA
 
         //AUTÓMODELLEK betöltése adatbázisból:
         private void loadCarmodels(string make)            
-        {              
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }            
-
+        { 
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 query = "SELECT model FROM " +@make;
+
                 MySqlCommand cmd = new MySqlCommand(query, con);                
                 cmd.Parameters.Add(new MySqlParameter("@make", make));             
                 MySqlDataReader open = cmd.ExecuteReader();
@@ -413,12 +414,7 @@ namespace autoDATA
             nudAdminCarsBatCap.Value = 0;
             nudAdminCarsRange.Value = 0;
 
-            dgvAdminCars.DataSource = null;
-
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
+            dgvAdminCars.DataSource = null;           
 
             string searchquery = "";
 
@@ -468,11 +464,16 @@ namespace autoDATA
             }                              
         }
 
-        //ADATOK BETÖLTÉSE TÁBLÁBA metódus:
+        //AUTÓ ADATOK BETÖLTÉSE TÁBLÁBA metódus:
         private void loadCarDataToTable(string query)
         {
             try
-            {                
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -495,9 +496,13 @@ namespace autoDATA
         //AUTÓ MÓDOSÍTÁS gomb esemény:
         private void bnAdminCarsMod_Click(object sender, EventArgs e)
         {
-            if (cbAdminCarsCategory.Text == "válasszon"
-            || cbAdminCarsMakeSearch.Text == "válasszon" || cbAdminCarsMakeSearch.Text == ""
-            || cbAdminCarsModelSearch.Text == "válasszon" || cbAdminCarsModelSearch.Text == ""
+            if (tbAdminCarsID.Text == "")
+            {
+                MessageBox.Show("Először jelöljön ki egy autót!");
+            }
+            else if (cbAdminCarsCategory.Text == "válasszon"
+            || tbAdminCarsMake.Text == "válasszon" || tbAdminCarsMake.Text == ""
+            || tbAdminCarsModel.Text == "válasszon" || tbAdminCarsModel.Text == ""
             || cbAdminCarsFuel.Text == "válasszon" || cbAdminCarsFuel.Text == ""
             || cbAdminCarsBody.Text == "válasszon" || cbAdminCarsBody.Text == ""
             || cbAdminCarsCyl.Text == "válasszon" || cbAdminCarsCyl.Text == ""
@@ -508,7 +513,7 @@ namespace autoDATA
             || cbAdminCarsDisp.Text == "válasszon" || cbAdminCarsDisp.Text == ""
             || cbAdminCarsGearbox.Text == "válasszon" || cbAdminCarsGearbox.Text == ""
             || cbAdminCarsGears.Text == "válasszon" || cbAdminCarsGears.Text == ""
-            || cbAdminCarsDrivetrain.Text == "válasszon" || cbAdminCarsDrivetrain.Text == ""   
+            || cbAdminCarsDrivetrain.Text == "válasszon" || cbAdminCarsDrivetrain.Text == ""
             || nudAdminCarsVmax.Value == 0
             || nudAdminCarsConsmp.Value == 0
             || cbAdminCarsProdStart.Text == "válasszon" || cbAdminCarsProdStart.Text == ""
@@ -519,10 +524,10 @@ namespace autoDATA
             }
             else
             {
-                string insertquery = "UPDATE cars SET " +
+                string modquery = "UPDATE cars SET " +
                     "category = '" + cbAdminCarsCategory.Text + "'," +
-                    "make = '" + cbAdminCarsMakeSearch.Text + "' ," +
-                    "model = '" + cbAdminCarsModelSearch.Text + "'," +
+                    "make = '" + tbAdminCarsMake.Text + "' ," +
+                    "model = '" + tbAdminCarsModel.Text + "'," +
                     "code = '" + tbAdminCarsCode.Text + "'," +
                     "body = '" + cbAdminCarsBody.Text + "'," +
                     "fuel_type = '" + cbAdminCarsFuel.Text + "'," +
@@ -543,30 +548,32 @@ namespace autoDATA
                     "production_end = '" + cbAdminCarsProdEnd.Text + "'," +
                     "bat_capacity = '" + nudAdminCarsBatCap.Value + "'," +
                     "fuel_range = '" + nudAdminCarsRange.Value + "'" +
-                    "WHERE id = '" + tbAdminCarsID.Text + "'";
+                    "WHERE id = '" + tbAdminCarsID.Text + "'";          
 
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
-
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }
                 DialogResult dr = new DialogResult();
                 Confirm a = new Confirm("Biztosan módosítani kívánja a kijelölt autót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {
-                    MySqlCommand insert = new MySqlCommand(insertquery, con);
+                    MySqlCommand modify = new MySqlCommand(modquery, con);
                     try
                     {
-                        if (insert.ExecuteNonQuery() == 1)
+                        if (con.State != ConnectionState.Open)
                         {
+                            con.Open();
+                        }
+
+                        if (modify.ExecuteNonQuery() == 1)
+                        {
+                            query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
+
+                            delCarFields();
                             loadCarDataToTable(query);
-                            MessageBox.Show("Gépjármű módosítva");                            
+                            MessageBox.Show("Gépjármű sikeresen módosítva!");
                         }
                         else
                         {
-                            MessageBox.Show("Módosítás sikertelen");
+                            MessageBox.Show("Módosítás sikertelen!");
                         }
                     }
                     catch (Exception ex)
@@ -577,7 +584,7 @@ namespace autoDATA
                 else if (dr == DialogResult.No)
                 {
                     a.Dispose();
-                }               
+                }
             }
         }
 
@@ -586,35 +593,36 @@ namespace autoDATA
         {
             if (tbAdminCarsID.Text == "")
             {
-                MessageBox.Show("Jelöljön ki egy autót a törléshez!");
+                MessageBox.Show("Először jelöljön ki egy autót!");
             }
             else
             {
-                string deletequery = "DELETE FROM cars WHERE id = '" + tbAdminCarsID.Text + "'";
-
-                query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
-
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }
+                string deletequery = "DELETE FROM cars WHERE id = '" + tbAdminCarsID.Text + "'";        
 
                 DialogResult dr = new DialogResult();
                 Confirm a = new Confirm("Biztosan törölni szeretné a kijelölt autót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
                 {
-                    MySqlCommand insert = new MySqlCommand(deletequery, con);
+                    MySqlCommand delete = new MySqlCommand(deletequery, con);
                     try
                     {
-                        if (insert.ExecuteNonQuery() == 1)
+                        if (con.State != ConnectionState.Open)
                         {
+                            con.Open();
+                        }
+
+                        if (delete.ExecuteNonQuery() == 1)
+                        {
+                            query = "SELECT cars.id AS 'ID', category AS 'KATEGÓRIA', make AS 'MÁRKA', model AS 'MODELL', code AS 'GYÁRI KÓD', body AS 'KAROSSZÉRIA', fuel_type AS 'ÜZEMANYAG', cylinder_number AS 'HENGERSZÁM', cylinder_arrangement AS 'HENGERELRENDEZÉS', aspiration AS 'FELTÖLTÉS', power AS 'TELJESÍTMÉNY', torque AS 'NYOMATÉK', displacement AS 'HENGERŰRTARTALOM', gearbox_type AS 'SEBESSÉGVÁLTÓ', gears AS 'FOKOZATOK', powertrain AS 'HAJTÁS', acceleration100 AS '0-100', acceleration200 AS '0-200', vmax AS 'VÉGSEBESSÉG', consumption AS 'FOGYASZTÁS', production_start AS 'GYÁRTÁS KEZDETE', production_end AS 'GYÁRTÁS VÉGE', bat_capacity AS 'AKKU', fuel_range AS 'HATÓTÁV', CONCAT(last_name,' ',first_name) AS 'REGISZTRÁLTA' FROM cars LEFT JOIN users ON cars.registered_by = users.id";
+
+                            delCarFields();
                             loadCarDataToTable(query);
-                            MessageBox.Show("Gépjármű törölve");
+                            MessageBox.Show("Gépjármű sikeresen törölve!");
                         }
                         else
                         {
-                            MessageBox.Show("Törlés sikertelen");
+                            MessageBox.Show("Törlés sikertelen!");
                         }
                     }
                     catch (Exception ex)
@@ -640,8 +648,8 @@ namespace autoDATA
 
                 tbAdminCarsID.Text = row.Cells[0].Value.ToString();
                 cbAdminCarsCategory.Text = row.Cells[1].Value.ToString();
-                cbAdminCarsMakeSearch.Text = row.Cells[2].Value.ToString();
-                cbAdminCarsModelSearch.Text = row.Cells[3].Value.ToString();
+                tbAdminCarsMake.Text = row.Cells[2].Value.ToString();
+                tbAdminCarsModel.Text = row.Cells[3].Value.ToString();
                 tbAdminCarsCode.Text = row.Cells[4].Value.ToString();
                 cbAdminCarsBody.Text = row.Cells[5].Value.ToString();
                 cbAdminCarsFuel.Text = row.Cells[6].Value.ToString();
@@ -663,16 +671,15 @@ namespace autoDATA
                 nudAdminCarsBatCap.Value = Convert.ToDecimal(row.Cells[22].Value.ToString());
                 nudAdminCarsRange.Value = Convert.ToInt32(row.Cells[23].Value.ToString());
 
-                string regby = row.Cells[24].Value.ToString();
-                if (regby == "")
+                string registeredby = row.Cells[24].Value.ToString();
+                if (registeredby == "")
                 {
                     lbRegBy.Text = "törölt felhasználó";
                 }
                 else
                 {
-                    lbRegBy.Text = regby;
-                }
-                
+                    lbRegBy.Text = registeredby;
+                }                
             }
         }
 
@@ -827,26 +834,28 @@ namespace autoDATA
             }
         }
 
+        //ÚJ MODEL HOZZÁADÁSA metódus:
         private void addNewModel(string make)
-        {
-            string model = cbAdminCarsModelSearch.Text;
-            string insertquery = "INSERT INTO " +@make+ "(model) VALUES ('"+@model+"')";
-
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
+        {           
             DialogResult dr = new DialogResult();
             Confirm a = new Confirm("Biztos benne, hogy hozzá szeretné adni az új modellt?");
             dr = a.ShowDialog();
             if (dr == DialogResult.Yes)
-            {
-                MySqlCommand insert = new MySqlCommand(insertquery, con);
-                insert.Parameters.Add(new MySqlParameter("@make", make));
-                insert.Parameters.Add(new MySqlParameter("@model", model));
-
+            {   
                 try
                 {
+                    string model = cbAdminCarsModelSearch.Text;
+                    string insertquery = "INSERT INTO " + @make + "(model) VALUES ('" + @model + "')";
+
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+
+                    MySqlCommand insert = new MySqlCommand(insertquery, con);
+                    insert.Parameters.Add(new MySqlParameter("@make", make));
+                    insert.Parameters.Add(new MySqlParameter("@model", model));
+
                     if (insert.ExecuteNonQuery() == 1)
                     {                       
                         MessageBox.Show("Új modell hozzáadva");
@@ -870,11 +879,19 @@ namespace autoDATA
         //AUTÓ MEZŐK TÖRLÉSE gomb esemény:
         private void bnAdminCarsClearFields_Click(object sender, EventArgs e)
         {
+            delCarFields();
+        }
+
+        //AUTÓ MEZŐK törlése metódus
+        private void delCarFields()
+        {
             tbAdminCarsID.Clear();
             cbAdminCarsCategory.Text = "válasszon";
             cbAdminCarsMakeSearch.Text = "válasszon";
             cbAdminCarsModelSearch.DataSource = null;
             tbAdminCarsCode.Clear();
+            tbAdminCarsMake.Clear();
+            tbAdminCarsModel.Clear();
             cbAdminCarsBody.Text = "válasszon";
             cbAdminCarsFuel.Text = "válasszon";
             cbAdminCarsCyl.Text = "válasszon";
@@ -925,12 +942,7 @@ namespace autoDATA
             dtpAdminUsersBirthdate.Value = DateTime.Now;
             tbAdminEmail.Clear();            
 
-            dataGridUsers.DataSource = null;
-
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }            
+            dataGridUsers.DataSource = null;                     
 
             if (tbAdminUsersLastName.Text == "" && tbAdminUsersFirstName.Text == "")
             {
@@ -965,7 +977,12 @@ namespace autoDATA
         private void loadUserDataToTable(string query)
         {
             try
-            {               
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -991,23 +1008,31 @@ namespace autoDATA
             string email = tbAdminEmail.Text;
             Regex regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
 
-            if (tbAdminUsersLastName.Text == ""
+            if (tbAdminUsersID.Text == "")
+            {
+                MessageBox.Show("Először jelöljön ki egy felhasználót");
+            }
+            else if (tbAdminUsername.Text == "admin")
+            {
+                MessageBox.Show("Az adminisztrátor nem módosítható!");
+            }
+            else if (tbAdminUsersLastName.Text == ""
                 || tbAdminUsersFirstName.Text == ""
                 || tbAdminUsername.Text == ""
                 || cbAdminUsersPosition.Text == "válasszon"
                 || dtpAdminUsersBirthdate.Value == DateTime.Now
-                || tbAdminEmail.Text == ""                
+                || tbAdminEmail.Text == ""
                 )
             {
                 MessageBox.Show("Minden mező kitöltése kötelező!");
-            }            
+            }
             else if (!regex.IsMatch(email))
             {
                 MessageBox.Show("Email cím nem megfelelő");
             }
             else
             {
-                string updatequery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '"+ tbAdminUsername.Text +"', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value.ToString("yyyy/MM/dd") + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
+                string updatequery = "UPDATE users SET last_name = '" + tbAdminUsersLastName.Text + "', first_name = '" + tbAdminUsersFirstName.Text + "', username = '" + tbAdminUsername.Text + "', position = '" + cbAdminUsersPosition.Text + "', birthdate = '" + dtpAdminUsersBirthdate.Value.ToString("yyyy/MM/dd") + "', email = '" + tbAdminEmail.Text + "' WHERE id = '" + tbAdminUsersID.Text + "'";
 
                 query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
 
@@ -1019,14 +1044,19 @@ namespace autoDATA
                 Confirm a = new Confirm("Biztosan módosítani szeretné a felhasználót?");
                 dr = a.ShowDialog();
                 if (dr == DialogResult.Yes)
-                {                    
+                {
                     try
                     {
+                        if (con.State != ConnectionState.Open)
+                        {
+                            con.Open();
+                        }
+
                         MySqlCommand insert = new MySqlCommand(updatequery, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
                             loadUserDataToTable(query);
-                            MessageBox.Show("Felhasználó módosítva");
+                            MessageBox.Show("Felhasználó sikeresen módosítva");
                         }
                         else
                         {
@@ -1050,23 +1080,16 @@ namespace autoDATA
         {
             if (tbAdminUsersID.Text == "")
             {
-                MessageBox.Show("Jelöljön ki egy felhasználót a törléshez!");
+                MessageBox.Show("Először jelöljön ki egy felhasználót!");
             }
 
             else if (tbAdminUsername.Text == "admin")
             {
-                MessageBox.Show("Admint nem lehet kitörölni!");
+                MessageBox.Show("Az adminisztrátort nem lehet kitörölni!");
             }
             else
             {
-                string deletequery = "DELETE FROM users WHERE id = '" + tbAdminUsersID.Text + "'";
-
-                query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
-
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }
+                string deletequery = "DELETE FROM users WHERE id = '" + tbAdminUsersID.Text + "'";       
 
                 DialogResult dr = new DialogResult();
                 Confirm a = new Confirm("Biztosan törölni szeretné a felhasználót?");
@@ -1075,11 +1098,19 @@ namespace autoDATA
                 {
                     try
                     {
+                        if (con.State != ConnectionState.Open)
+                        {
+                            con.Open();
+                        }
+
                         MySqlCommand insert = new MySqlCommand(deletequery, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
+                            query = "SELECT users.id AS ID, last_name AS 'VEZETÉKNÉV', first_name AS 'KERESZTNÉV', position AS 'POZÍCIÓ', birthdate AS 'SZÜLETÉSI DÁTUM', email AS 'EMAILCÍM', username AS 'FELHASZNÁLÓNÉV', COUNT(cars.id) AS 'AUTÓREGISZTRÁCIÓK SZÁMA' FROM users LEFT JOIN cars ON cars.registered_by = users.id GROUP BY users.id";
+
+                            delUserFields();
                             loadUserDataToTable(query);
-                            MessageBox.Show("Felhasználó törölve");
+                            MessageBox.Show("Felhasználó sikeresen törölve");
                         }
                         else
                         {
@@ -1100,6 +1131,12 @@ namespace autoDATA
 
         //FELHASZNÁLÓ MEZŐK TÖRLÉSE gomb esemény:
         private void bnAdminUsersClearFields_Click(object sender, EventArgs e)
+        {
+            delUserFields();
+        }
+
+        //FELHASZNÁLÓ MEZŐK TÖRLÉSE metódus:
+        private void delUserFields()
         {
             tbAdminUsersID.Clear();
             tbAdminUsersLastName.Clear();
@@ -1134,7 +1171,7 @@ namespace autoDATA
         {
             if (tbAdminUsersID.Text == "")
             {
-                MessageBox.Show("Jelöljön ki egy felhasználót!");
+                MessageBox.Show("Először jelöljön ki egy felhasználót!");
             }
             else
             {

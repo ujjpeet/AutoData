@@ -78,14 +78,14 @@ namespace autoDATA
             bodylist.Add("sport");
             cbCarRegBody.DataSource = bodylist;
             
-            //meg kell tudni hogy MILYEN ID TARTOZIK A USERHEZ, mert kell az autó rögzítéshez:
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
+            //meg kell tudni hogy MILYEN ID TARTOZIK A USERHEZ, mert kell az autó rögzítéshez:     
             try
-            {                
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 query = "SELECT id FROM users WHERE username = '" + label6.Text + "'";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 textBox1.Text = cmd.ExecuteScalar().ToString();         
@@ -200,16 +200,16 @@ namespace autoDATA
 
         //VÁLTÓFAJTÁK betöltése ADATBÁZISBÓL:
         private void loadGerarbox()
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM gears";
-
+        {          
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM gears";
+
                 DataTable mytable2 = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -233,15 +233,15 @@ namespace autoDATA
         //AUTÓKATEGÓRIÁK betöltése ADATBÁZISBÓL:      
         public void loadCarCategoriesForCarReg()
         {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM carcategories";
-
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM carcategories";
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -257,16 +257,16 @@ namespace autoDATA
 
         //AUTÓMÁRKÁK betöltése adatbázisból:
         private void loadCarMakesForCarSearch()
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM carmakes";
-
+        {  
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM carmakes";
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -281,16 +281,16 @@ namespace autoDATA
         }
 
         private void loadCarMakesForCarReg()
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM carmakes";
-
+        {    
             try
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM carmakes";
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -307,14 +307,16 @@ namespace autoDATA
         //AUTÓMODELLEK metódusa PARAMÉTERREL adatbázisból:
         private void loadCarmodelsforCarSearch(string make)
         {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
             try
             {
+
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 query = "SELECT model FROM " + @make;
+
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.Add(new MySqlParameter("@make", make));
                 MySqlDataReader open = cmd.ExecuteReader();
@@ -331,14 +333,16 @@ namespace autoDATA
 
         private void loadCarmodelsforCarReg(string make)
         {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
             try
             {
+
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 query = "SELECT model FROM " + @make;
+
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.Add(new MySqlParameter("@make", make));
                 MySqlDataReader open = cmd.ExecuteReader();
@@ -637,12 +641,7 @@ namespace autoDATA
         private void bnCarSearch_Click(object sender, EventArgs e)
         {
             clearData();
-            dgvCarSearch.DataSource = null;
-
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
+            dgvCarSearch.DataSource = null;           
 
             //ha egy mező sincs kiválasztva:
             if (cbCarSearchMake.Text == "válasszon" && cbCarSearchModel.Text == "")
@@ -695,7 +694,12 @@ namespace autoDATA
         private void loadCarSearchDataToTable(string query)
         {
             try
-            {               
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
                 DataTable mytable = new DataTable();
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
@@ -743,7 +747,7 @@ namespace autoDATA
         {
             if (cbCarRegGearboxType.Text == "nincs")
             {
-                cbCarRegGearsNum.Text = "n/a";
+                cbCarRegGearsNum.Text = "nincsenek";
             }
         }
 
@@ -818,12 +822,7 @@ namespace autoDATA
                 MessageBox.Show("A csillaggal jelölt mezők kitöltése kötelező!");
             }
             else
-            {                
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }           
-
+            {  
                 string insertQuery = "INSERT INTO cars " +
                     "(category, make, model, code, body, fuel_type, cylinder_number, cylinder_arrangement, aspiration, power, torque, " +
                     "displacement, gearbox_type, gears, powertrain, acceleration100, acceleration200, vmax, consumption," +
@@ -859,6 +858,12 @@ namespace autoDATA
 
                 try
                 {
+
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+
                     MySqlCommand insert = new MySqlCommand(insertQuery, con);
                     if (insert.ExecuteNonQuery() == 1)
                     {

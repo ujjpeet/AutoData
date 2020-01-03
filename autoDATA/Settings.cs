@@ -145,15 +145,15 @@ namespace autoDATA
 
         private void loaduserinfo()
         {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-
-            query = "SELECT * FROM users WHERE username = '"+label2.Text+"'";
-
             try
-            {                
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                query = "SELECT * FROM users WHERE username = '" + label2.Text + "'";
+
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 MySqlDataReader read = cmd.ExecuteReader();
 
@@ -167,7 +167,7 @@ namespace autoDATA
                 }
                 else
                 {
-                    MessageBox.Show("Hiba");
+                    MessageBox.Show("Hiba történt!");
                 }
                 read.Close();
             }
@@ -198,11 +198,7 @@ namespace autoDATA
             else
             {
                 string updatequery = "UPDATE users SET last_name = '" + tbSettingsFamilyName.Text + "', first_name = '" + tbSettingsFirstName.Text + "', position = '" + cbSettingsPosition.Text + "', birthdate = '" + dtpSettings.Value.ToString("yyyy/MM/dd") + "', email = '" + tbSettingsEmail.Text + "' WHERE username = '" + label2.Text + "'";
-
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }
+               
                 DialogResult dr = new DialogResult();
                 Confirm a = new Confirm("Biztosan módosítani szeretné az adatait?");
                 dr = a.ShowDialog();
@@ -210,6 +206,11 @@ namespace autoDATA
                 {
                     try
                     {
+                        if (con.State != ConnectionState.Open)
+                        {
+                            con.Open();
+                        }
+
                         MySqlCommand insert = new MySqlCommand(updatequery, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
