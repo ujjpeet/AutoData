@@ -18,7 +18,7 @@ namespace autoDATA
         String connectionstring;
         String query;
 
-        //paraméteres konstruktor:
+        //a beállítások megváltztatásához tudni kell, hogy ki van bejelentkezve:
         public Settings(string user)
         {
             InitializeComponent();
@@ -59,11 +59,7 @@ namespace autoDATA
 
         //MÉGSE gomb esemény:
         private void bnSettingsCancel_Click(object sender, EventArgs e)
-        {
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
+        {          
             this.Dispose();
         }
 
@@ -91,12 +87,7 @@ namespace autoDATA
                 {
                     try
                     {
-                        databaseConnect();
-                      
-                        if (con.State != ConnectionState.Open)
-                        {
-                            con.Open();
-                        }
+                        databaseConnect();                      
 
                         query = "UPDATE users SET password = '" + encryption.SHA2Hash(tbSettingsNewPassword.Text) + "' WHERE username = '" + label2.Text + "'";
 
@@ -108,12 +99,13 @@ namespace autoDATA
                         MySqlCommand insert = new MySqlCommand(query, con);
                         if (insert.ExecuteNonQuery() == 1)
                         {
-                            MessageBox.Show("Jelszó módosítva");
+                            MessageBox.Show("Jelszó sikeresen módosítva!");
+                            con.Close();
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Jelszó módosítása sikertelen");
+                            MessageBox.Show("Jelszó módosítása sikertelen!");
                         }
                     }
                     catch (Exception ex)
@@ -143,6 +135,7 @@ namespace autoDATA
             }
         }
 
+        //FELHASZNÁLÓ adatainak betöltése:
         private void loaduserinfo()
         {
             try
@@ -170,6 +163,7 @@ namespace autoDATA
                     MessageBox.Show("Hiba történt!");
                 }
                 read.Close();
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -177,6 +171,7 @@ namespace autoDATA
             };           
         }
 
+        //MENTÉS gomb klikk esemény:
         private void bnSaveSet_Click(object sender, EventArgs e)
         {
             string email = tbSettingsEmail.Text;
@@ -215,12 +210,13 @@ namespace autoDATA
                         if (insert.ExecuteNonQuery() == 1)
                         {
                             loaduserinfo();
-                            MessageBox.Show("Adatok sikeresen módosítva");
+                            MessageBox.Show("Adatok sikeresen módosítva!");
+                            con.Close();
                             this.Dispose();
                         }
                         else
                         {
-                            MessageBox.Show("Adatok módosítása sikertelen");
+                            MessageBox.Show("Adatok módosítása sikertelen!");
                         }
                     }
                     catch (Exception ex)

@@ -55,17 +55,13 @@ namespace autoDATA
 
         //MÉGSE GOMB click esemény:
         private void bnRegCancel_Click(object sender, EventArgs e)
-        {
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
+        {            
             this.Close();
         }
 
         //FELHASZNÁLÓNÉV mező kitöltése automatikusan:
 
-        //metódus ami átalakítja a speciális karaktereket:
+        //metódus ami átalakítja a speciális karaktereket (pl. ékezetes betűkből ékezet nékülieket csinál):
         public static string RemoveAccents(string source)
         {
             //8 bit characters 
@@ -79,7 +75,7 @@ namespace autoDATA
 
         private void tbRegFamilyName_TextChanged(object sender, EventArgs e)
         {
-            string toreplace1 = tbRegFirstName.Text.ToLower();
+            string toreplace1 = tbRegFirstName.Text.ToLower(); //nagybetűket kicsivé alakítja
             string toreplace2 = tbRegFamilyName.Text.ToLower();
 
             string result1 = RemoveAccents(toreplace1);
@@ -99,7 +95,7 @@ namespace autoDATA
             lbAutUsername.Text = result1 + "." + result2;
         }
 
-        //jelszó REGEX:
+        //jelszó REGEX ellenőrzése a jelszó mező elhagyásakor:
         private void tbRegPassword_Leave(object sender, EventArgs e)
         {
             //jelszó tartalmazzon legalább egy nagybetűt, egy kisbetűt, egy számot és legalább 6 karakter hosszúságú legyen
@@ -118,7 +114,7 @@ namespace autoDATA
             }
         }
 
-        //beírt JELSZAVAKNAK meg kell egyezniük (textbox leave esemény):
+        //beírt JELSZAVAKNAK meg kell egyezniük (megerősítő jelszó mező leave esemény):
         private void tbRegPasswordAgain_Leave(object sender, EventArgs e)
         {
             if (tbRegPassword.Text != tbRegPasswordAgain.Text)
@@ -169,15 +165,15 @@ namespace autoDATA
                 MySqlCommand regdata = new MySqlCommand(insertQuery, con);
                 if (regdata.ExecuteNonQuery() == 1)
                 {
+                    //felhasználó értesítése a felhasználónevéről és a jelszaváról:
                     MessageBox.Show("Regisztráció sikeres! Be tud jelentkezni! \nFelhasználónév: " + lbAutUsername.Text + " \nJelszó: " + tbRegPassword.Text);
+                    con.Close();
                     this.Close();
                 }
                 else
                 {
                     MessageBox.Show("A regiszráció sikertelen!");
                 }
-
-                con.Close();
             }
             catch (Exception ex)
             {

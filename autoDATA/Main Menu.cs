@@ -23,6 +23,7 @@ namespace autoDATA
         //FORM LOAD esemény:
         private void Form1_Load(object sender, EventArgs e)
         {
+           label1.Visible = false;
            bnAdmin.Enabled = false;
            bnSettings.Enabled = false;
            bnConverters.Enabled = false;
@@ -59,7 +60,7 @@ namespace autoDATA
         //AUTÓ ADATBÁZIS GOMB click esemény:
         private void bnDatabase_Click(object sender, EventArgs e)
         {
-            carDataBase mycardatabasemain = new carDataBase(lbLoggedInAs.Text);
+            carDataBase mycardatabasemain = new carDataBase(lbLoggedInAs.Text); //tudni kell, hogy ki van bejelentkezve
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -135,7 +136,8 @@ namespace autoDATA
             Login a = new Login();
             dr = a.ShowDialog();
             if (dr == DialogResult.OK)
-            {                
+            {
+                label1.Visible = true;
                 bnSettings.Enabled = true;
                 bnConverters.Enabled = true;
                 bnDatabase.Enabled = true;
@@ -147,7 +149,7 @@ namespace autoDATA
 
                 if (lbLoggedInAs.Text == "admin")
                 {
-                    bnAdmin.Enabled = true;
+                    bnAdmin.Enabled = true; //az Adminisztrátoir felület csak akkor elérhető, ha az admin van bejelentkezve
                 }
             }
             else

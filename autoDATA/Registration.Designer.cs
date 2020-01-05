@@ -253,6 +253,7 @@
             // 
             // cbUserRegYear
             // 
+            this.cbUserRegYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserRegYear.FormattingEnabled = true;
             this.cbUserRegYear.Location = new System.Drawing.Point(160, 129);
             this.cbUserRegYear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -262,6 +263,7 @@
             // 
             // cbUserRegMonth
             // 
+            this.cbUserRegMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserRegMonth.FormattingEnabled = true;
             this.cbUserRegMonth.Location = new System.Drawing.Point(250, 129);
             this.cbUserRegMonth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -271,6 +273,7 @@
             // 
             // cbUserRegDays
             // 
+            this.cbUserRegDays.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserRegDays.FormattingEnabled = true;
             this.cbUserRegDays.Location = new System.Drawing.Point(354, 129);
             this.cbUserRegDays.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

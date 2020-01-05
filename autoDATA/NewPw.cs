@@ -21,7 +21,7 @@ namespace autoDATA
         public NewPw(string user)
         {
             InitializeComponent();
-            label1.Text = user;
+            label1.Text = user; //tudni kell, hogy az Admin épp kinek készül új jelszót adni
         }
 
         private void NewPw_Load(object sender, EventArgs e)
@@ -44,6 +44,7 @@ namespace autoDATA
             }
         }
 
+        //mező elhagyáskor ellenőrzi a program, hogy a jelszó megfelel-e a követelményeknek:
         private void tbAdminGiveNewPassword_Leave(object sender, EventArgs e)
         {
             //jelszó tartalmazzon legalább egy nagybetűt, egy kisbetűt, egy számot és legalább 6 karakter hosszúságú legyen
@@ -62,6 +63,7 @@ namespace autoDATA
             }
         }
 
+        //MENTÉS gomb klikk esemény:
         private void bnAdminNewPwSave_Click(object sender, EventArgs e)
         {
             if (tbAdminGiveNewPassword.Text == "" || tbAdminConfirmNewPassword.Text == "")
@@ -84,12 +86,7 @@ namespace autoDATA
                 {
                     try
                     {
-                        databaseConnect();
-
-                        if (con.State != ConnectionState.Open)
-                        {
-                            con.Open();
-                        }
+                        databaseConnect();                      
 
                         query = "UPDATE users SET password = '" + encryption.SHA2Hash(tbAdminGiveNewPassword.Text) + "' WHERE username = '" + label1.Text + "'";
 
@@ -102,6 +99,7 @@ namespace autoDATA
                         if (insert.ExecuteNonQuery() == 1)
                         {
                             MessageBox.Show("Jelszó módosítva");
+                            con.Close();
                             this.Close();
                         }
                         else
@@ -121,12 +119,9 @@ namespace autoDATA
             }
         }
 
+        //MÉGSE gomb klikk esemény:
         private void bnAdminNewPwCancel_Click(object sender, EventArgs e)
-        {
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
+        {          
             this.Dispose();
         }
     }

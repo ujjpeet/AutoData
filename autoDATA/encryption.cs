@@ -18,7 +18,7 @@ namespace autoDATA
             return GetStringFromHash(hash);
         }
 
-        //SHA512 encryption
+        //SHA512 encryption - a használt titkosítás
         public static string SHA5Hash(string inputString)
         {
             SHA512 sha512 = SHA512Managed.Create();

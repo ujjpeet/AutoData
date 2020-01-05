@@ -216,6 +216,8 @@ namespace autoDATA
                 mytable2.Load(open);
                 cbCarRegGearboxType.DisplayMember = "gear_type";
                 cbCarRegGearboxType.DataSource = mytable2;
+
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -248,6 +250,8 @@ namespace autoDATA
                 mytable.Load(open);
                 cbCarRegCategories.DisplayMember = "categories";
                 cbCarRegCategories.DataSource = mytable;
+
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -256,6 +260,7 @@ namespace autoDATA
         }
 
         //AUTÓMÁRKÁK betöltése adatbázisból:
+        //Kereső
         private void loadCarMakesForCarSearch()
         {  
             try
@@ -280,6 +285,7 @@ namespace autoDATA
             };
         }
 
+        //Rögzítő:
         private void loadCarMakesForCarReg()
         {    
             try
@@ -305,6 +311,7 @@ namespace autoDATA
         }
 
         //AUTÓMODELLEK metódusa PARAMÉTERREL adatbázisból:
+        //Kereső:
         private void loadCarmodelsforCarSearch(string make)
         {
             try
@@ -315,6 +322,7 @@ namespace autoDATA
                     con.Open();
                 }
 
+                //biztonságos, paraméteres lekérdezés:
                 query = "SELECT model FROM " + @make;
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
@@ -324,6 +332,8 @@ namespace autoDATA
                 mytable.Load(open);
                 cbCarSearchModel.DisplayMember = "model";
                 cbCarSearchModel.DataSource = mytable;
+
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -331,6 +341,7 @@ namespace autoDATA
             };
         }
 
+        //Rögzítő:
         private void loadCarmodelsforCarReg(string make)
         {
             try
@@ -350,6 +361,8 @@ namespace autoDATA
                 mytable.Load(open);
                 cbCarRegModel.DisplayMember = "model";
                 cbCarRegModel.DataSource = mytable;
+
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -637,12 +650,13 @@ namespace autoDATA
             }
             }
 
-        //KERESÉS GOMB click esemény:
+        //KERESÉS GOMB klikk esemény:
         private void bnCarSearch_Click(object sender, EventArgs e)
         {
-            clearData();
-            dgvCarSearch.DataSource = null;           
+            clearData(); //mezők kiürítése
+            dgvCarSearch.DataSource = null; //datagridview kiürítése          
 
+            //a lekérdezés a felhasznéló által kiválasztott paraméterektől függ:
             //ha egy mező sincs kiválasztva:
             if (cbCarSearchMake.Text == "válasszon" && cbCarSearchModel.Text == "")
             {
@@ -712,6 +726,7 @@ namespace autoDATA
                 {
                     dgvCarSearch.DataSource = mytable;
                 }
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -735,6 +750,7 @@ namespace autoDATA
                 {
                     dgvCarReg.DataSource = mytable;
                 }
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -747,24 +763,14 @@ namespace autoDATA
         {
             if (cbCarRegGearboxType.Text == "nincs")
             {
-                cbCarRegGearsNum.Text = "nincsenek";
+                cbCarRegGearsNum.Text = "nincsenek"; //ha az autó regisztrálásakor nincs váltó, akkor a fokozatok száma automatikusan legyen "nincsenek"
             }
         }
 
         //ha az ELEKTROMOS üzemanyagtípus van kiválasztva, akkor változzon a FORM kinézete (textchanged esemény):
         private void cbFuelType_TextChanged(object sender, EventArgs e)
         {
-            if (cbCarRegFuel.Text == "elektromos")
-            {
-                lbCarRegBatCapacity.Visible = true;
-                nudCarRegBatCap.Visible = true;
-                lbCarRegBatCapkwh.Visible = true;
-                lbCarRegRange.Visible = true;
-                nudCarRegRange.Visible = true;
-                lbCarRegFuelRangekm.Visible = true;               
-
-            }
-            else if (cbCarRegFuel.Text == "hibrid")
+            if (cbCarRegFuel.Text == "elektromos" || cbCarRegFuel.Text == "hibrid")
             {
                 lbCarRegBatCapacity.Visible = true;
                 nudCarRegBatCap.Visible = true;
@@ -775,6 +781,7 @@ namespace autoDATA
             }
             else
             {
+                //ha nem elektromos vagy hibrid egy autó, akkor nincs szükség az akkukapacitás, elektromos hatótáv, stb mezőkre:
                 lbCarRegBatCapacity.Visible = false;
                 nudCarRegBatCap.Visible = false;
                 lbCarRegBatCapkwh.Visible = false;
@@ -797,7 +804,7 @@ namespace autoDATA
             }
         }
 
-        //RÖGZÍTÉS GOMB click esemény:
+        //RÖGZÍTÉS gomb klikk esemény:
         private void bnCarReg_Click(object sender, EventArgs e)
         {
             if (
@@ -867,13 +874,14 @@ namespace autoDATA
                     MySqlCommand insert = new MySqlCommand(insertQuery, con);
                     if (insert.ExecuteNonQuery() == 1)
                     {
-                        loadCarRegDataToTable(query);
-                        MessageBox.Show("Gépjármű regisztrálva");                        
+                        MessageBox.Show("Gépjármű regisztrálva");
+                        loadCarRegDataToTable(query);                                             
                     }
                     else
                     {
                         MessageBox.Show("Regisztráció sikertelen");
                     }
+                    con.Close();
                 }
                 catch (Exception ex)
                 {
@@ -882,7 +890,7 @@ namespace autoDATA
             }
         }
 
-        //MEZŐK TÖRLÉSE GOMBOK click eseményei:  
+        //REGISZTRÁCIÓ MEZŐK KIÜRÍTÉSE gomb klikk esemény:  
         private void bnClearFieldsCarReg_Click(object sender, EventArgs e)
         {
             cbCarRegCategories.Text = "válasszon";
@@ -916,7 +924,7 @@ namespace autoDATA
             cbCarSearchModel.DataSource = null;
         }
 
-        //KERESŐ ABLAK adatok törlése metódus:
+        //KERESŐABLAK mezők kiürítése metódus:
         private void clearData()
         {
             tbCarSearchCategory.Clear();
@@ -956,6 +964,7 @@ namespace autoDATA
                 try
                 {
                     copyAlltoClipboard();
+
                     Microsoft.Office.Interop.Excel.Application xlexcel;
                     Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
                     Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
@@ -1025,10 +1034,7 @@ namespace autoDATA
             dr = a.ShowDialog();          
             if (dr == DialogResult.Yes)
             {
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
+                con.Close();                
                 this.Close();                
             }
             else if (dr == DialogResult.No)

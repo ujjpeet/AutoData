@@ -17,7 +17,7 @@ namespace autoDATA
         public ErrorReport(string user)
         {
             InitializeComponent();
-            label2.Text = user;
+            label2.Text = user; //tudni kell, hogy melyik felhasználó küldi a hibajelentést
         }
 
         //HIBABEJELENTÉS gomb kattintás:
@@ -25,7 +25,7 @@ namespace autoDATA
         {
             if (tbErrorReport.Text == "")
             {
-                MessageBox.Show("Írja le a hibát!");
+                MessageBox.Show("Írja le a hibát!"); //a hibabejelentő nem lehet üres
             }
             else
             {

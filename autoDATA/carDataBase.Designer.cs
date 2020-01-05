@@ -391,7 +391,7 @@
             this.dgvCarReg.Location = new System.Drawing.Point(63, 407);
             this.dgvCarReg.Name = "dgvCarReg";
             this.dgvCarReg.RowTemplate.Height = 24;
-            this.dgvCarReg.Size = new System.Drawing.Size(954, 418);
+            this.dgvCarReg.Size = new System.Drawing.Size(954, 315);
             this.dgvCarReg.TabIndex = 93;
             // 
             // label1
@@ -974,7 +974,7 @@
             this.dgvCarSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCarSearch.Name = "dgvCarSearch";
             this.dgvCarSearch.RowTemplate.Height = 24;
-            this.dgvCarSearch.Size = new System.Drawing.Size(996, 412);
+            this.dgvCarSearch.Size = new System.Drawing.Size(996, 351);
             this.dgvCarSearch.TabIndex = 214;
             this.dgvCarSearch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CarSearchResult_CellClick);
             // 
@@ -1555,7 +1555,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1579, 1013);
+            this.ClientSize = new System.Drawing.Size(1579, 952);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label6);

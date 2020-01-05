@@ -16,7 +16,7 @@ namespace autoDATA
     
     public partial class Login : Form
     {
-        static int attempt = 3;        
+        static int attempt = 3; //háromszor lehet a belépéssel próbálkozni 
 
         public Login()
         {
@@ -72,6 +72,7 @@ namespace autoDATA
             }
         }
 
+        //FELHASZNÁLÓ ELLENŐRZÉSE adatbázisból metódus:
         private void checkuser()
         {
             MySqlConnection con;
@@ -96,17 +97,18 @@ namespace autoDATA
                 MySqlCommand search = new MySqlCommand(query, con);
                 MySqlDataReader open = search.ExecuteReader();
                 mytable.Load(open);
-                if (mytable.Rows.Count > 0)
+                if (mytable.Rows.Count > 0) //sikeres azonosítás ág
                 {
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                else
+                else //sikertelen azonosítás ág
                 {
                     attempt--;
                     MessageBox.Show("Sikertelen belépési kísérlet! " + "\nMaradék kísérletek száma: " + attempt);
                     this.DialogResult = DialogResult.Cancel;                   
-                }  
+                }
+                con.Close();
             }
             catch (Exception ex)
             {

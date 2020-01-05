@@ -54,6 +54,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.tpCars = new System.Windows.Forms.TabPage();
+            this.tbAdminCarsModel = new System.Windows.Forms.TextBox();
+            this.tbAdminCarsMake = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lbRegBy = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.nudAdminCarsRange = new System.Windows.Forms.NumericUpDown();
@@ -119,10 +123,6 @@
             this.label64 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.lbAdminConnection = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tbAdminCarsMake = new System.Windows.Forms.TextBox();
-            this.tbAdminCarsModel = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
@@ -483,6 +483,38 @@
             this.tpCars.Text = "Autók";
             this.tpCars.UseVisualStyleBackColor = true;
             // 
+            // tbAdminCarsModel
+            // 
+            this.tbAdminCarsModel.Location = new System.Drawing.Point(173, 189);
+            this.tbAdminCarsModel.Name = "tbAdminCarsModel";
+            this.tbAdminCarsModel.Size = new System.Drawing.Size(148, 22);
+            this.tbAdminCarsModel.TabIndex = 228;
+            // 
+            // tbAdminCarsMake
+            // 
+            this.tbAdminCarsMake.Location = new System.Drawing.Point(173, 161);
+            this.tbAdminCarsMake.Name = "tbAdminCarsMake";
+            this.tbAdminCarsMake.Size = new System.Drawing.Size(148, 22);
+            this.tbAdminCarsMake.TabIndex = 227;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(40, 189);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 17);
+            this.label11.TabIndex = 226;
+            this.label11.Text = "Modell:*";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(40, 161);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 17);
+            this.label2.TabIndex = 225;
+            this.label2.Text = "Márka*:";
+            // 
             // lbRegBy
             // 
             this.lbRegBy.AutoSize = true;
@@ -644,7 +676,7 @@
             this.dgvAdminCars.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvAdminCars.Name = "dgvAdminCars";
             this.dgvAdminCars.RowTemplate.Height = 24;
-            this.dgvAdminCars.Size = new System.Drawing.Size(1031, 295);
+            this.dgvAdminCars.Size = new System.Drawing.Size(1031, 245);
             this.dgvAdminCars.TabIndex = 210;
             this.dgvAdminCars.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdminCars_CellClick);
             // 
@@ -1156,38 +1188,6 @@
             this.lbAdminConnection.Size = new System.Drawing.Size(70, 17);
             this.lbAdminConnection.TabIndex = 46;
             this.lbAdminConnection.Text = "Kapcsolat";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 161);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 17);
-            this.label2.TabIndex = 225;
-            this.label2.Text = "Márka*:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 189);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 17);
-            this.label11.TabIndex = 226;
-            this.label11.Text = "Modell:*";
-            // 
-            // tbAdminCarsMake
-            // 
-            this.tbAdminCarsMake.Location = new System.Drawing.Point(173, 161);
-            this.tbAdminCarsMake.Name = "tbAdminCarsMake";
-            this.tbAdminCarsMake.Size = new System.Drawing.Size(148, 22);
-            this.tbAdminCarsMake.TabIndex = 227;
-            // 
-            // tbAdminCarsModel
-            // 
-            this.tbAdminCarsModel.Location = new System.Drawing.Point(173, 189);
-            this.tbAdminCarsModel.Name = "tbAdminCarsModel";
-            this.tbAdminCarsModel.Size = new System.Drawing.Size(148, 22);
-            this.tbAdminCarsModel.TabIndex = 228;
             // 
             // Admin
             // 

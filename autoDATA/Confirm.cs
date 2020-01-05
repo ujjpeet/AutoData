@@ -15,7 +15,7 @@ namespace autoDATA
         public Confirm(string question)
         {
             InitializeComponent();
-            lbConfirmQuestion.Text = question;
+            lbConfirmQuestion.Text = question; //a megerősítő kérdés annak megfelelően változik, hogy éppen mit csinál a felhasználó
         }
     }
 }
