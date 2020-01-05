@@ -169,7 +169,7 @@ namespace autoDATA
                 MySqlCommand regdata = new MySqlCommand(insertQuery, con);
                 if (regdata.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("Regisztráció sikeres!");
+                    MessageBox.Show("Regisztráció sikeres! Be tud jelentkezni! \nFelhasználónév: " + lbAutUsername.Text + " \nJelszó: " + tbRegPassword.Text);
                     this.Close();
                 }
                 else
