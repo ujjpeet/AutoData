@@ -105,7 +105,7 @@ namespace autoDATA
                 {
                     attempt--;
                     MessageBox.Show("Sikertelen belépési kísérlet! " + "\nMaradék kísérletek száma: " + attempt);
-                    this.DialogResult = DialogResult.Cancel;                    
+                    this.DialogResult = DialogResult.Cancel;                   
                 }  
             }
             catch (Exception ex)
