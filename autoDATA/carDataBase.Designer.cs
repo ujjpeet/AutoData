@@ -968,6 +968,7 @@
             // 
             // dgvCarSearch
             // 
+            this.dgvCarSearch.AllowUserToAddRows = false;
             this.dgvCarSearch.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgvCarSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarSearch.Location = new System.Drawing.Point(28, 424);

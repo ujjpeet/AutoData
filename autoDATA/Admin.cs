@@ -88,7 +88,7 @@ namespace autoDATA
                 "2011","2012","2013","2014","2015","2016","2017","2018","2019","2020",
                 "még gyártásban", "válasszon"
             };
-            Array.Reverse(prodyearsarray);
+            Array.Reverse(prodyearsarray2);
             cbAdminCarsProdEnd.DataSource = prodyearsarray2;
 
             //AUTÓK hengerszámának feltöltése:
@@ -865,14 +865,15 @@ namespace autoDATA
             {   
                 try
                 {
-                    string model = cbAdminCarsModelSearch.Text;
-                    //biztonságos, paraméteres mysql query:
-                    string insertquery = "INSERT INTO " + @make + "(model) VALUES ('" + @model + "')";
 
                     if (con.State != ConnectionState.Open)
                     {
                         con.Open();
                     }
+
+                    string model = cbAdminCarsModelSearch.Text;
+                    //biztonságos, paraméteres mysql query:
+                    string insertquery = "INSERT INTO " + @make + "(model) VALUES ('" + @model + "')";
 
                     MySqlCommand insert = new MySqlCommand(insertquery, con);
                     insert.Parameters.Add(new MySqlParameter("@make", make));
@@ -1169,8 +1170,8 @@ namespace autoDATA
 
         //FELHASZNÁLÓ datagridview kattintás:
         private void dataGridUsers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {   
-            if (e.RowIndex >= 0)
+        {
+                if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dataGridUsers.Rows[e.RowIndex];
 

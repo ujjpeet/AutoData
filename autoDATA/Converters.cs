@@ -47,7 +47,7 @@ namespace autoDATA
 
             if (loero < 0 || loero > 99999)
             {
-                MessageBox.Show("A lóerő 0 és 100 000 között lehet");
+                MessageBox.Show("A lóerő 0 és 99 999 között lehet");
                 tbLE.Value = 0;
             }
             else
@@ -76,7 +76,7 @@ namespace autoDATA
 
             if (ps < 0 || ps > 99999)
             {
-                MessageBox.Show("A PS 0 és 100 000 között lehet");
+                MessageBox.Show("A PS 0 és 99 999 között lehet");
                 tbPS.Value = 0;
             }
             else
@@ -106,7 +106,7 @@ namespace autoDATA
 
             if (hp < 0 || hp > 99999)
             {
-                MessageBox.Show("A HP 0 és 100 000 között lehet");
+                MessageBox.Show("A HP 0 és 99 999 között lehet");
                 tbHP.Value = 0;
             }
             else
@@ -136,7 +136,7 @@ namespace autoDATA
 
             if (bhp < 0 || bhp > 99999)
             {
-                MessageBox.Show("A BHP 0 és 100 000 között lehet");
+                MessageBox.Show("A BHP 0 és 99 999 között lehet");
                 tbBHP.Value = 0;
             }
             else
@@ -166,7 +166,7 @@ namespace autoDATA
 
             if (kw < 0 || kw > 99999)
             {
-                MessageBox.Show("A KW 0 és 100 000 között lehet");
+                MessageBox.Show("A KW 0 és 99 999 között lehet");
                 tbkw.Value = 0;
             }
             else
@@ -196,7 +196,7 @@ namespace autoDATA
 
             if (kmh < 0 || kmh > 9999)
             {
-                MessageBox.Show("A KM/H 0 és 10 000 között lehet");
+                MessageBox.Show("A KM/H 0 és 9 999 között lehet");
                 tbKMH.Value = 0;
             }
             else
@@ -222,7 +222,7 @@ namespace autoDATA
 
             if (mph < 0 || mph > 9999)
             {
-                MessageBox.Show("Az MPH 0 és 10 000 között lehet");
+                MessageBox.Show("Az MPH 0 és 9 999 között lehet");
                 tbMPH.Value = 0;
             }
             else
@@ -248,7 +248,7 @@ namespace autoDATA
 
             if (ms < 0 || ms > 9999)
             {
-                MessageBox.Show("A M/S 0 és 10 000 között lehet");
+                MessageBox.Show("A M/S 0 és 9 999 között lehet");
                 tbMS.Value = 0;
             }
             else

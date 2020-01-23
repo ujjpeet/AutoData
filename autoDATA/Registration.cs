@@ -61,7 +61,7 @@ namespace autoDATA
 
         //FELHASZNÁLÓNÉV mező kitöltése automatikusan:
 
-        //metódus ami átalakítja a speciális karaktereket (pl. ékezetes betűkből ékezet nékülieket csinál):
+        //függvény ami átalakítja a speciális karaktereket (pl. ékezetes betűkből ékezet nékülieket csinál):
         public static string RemoveAccents(string source)
         {
             //8 bit characters 

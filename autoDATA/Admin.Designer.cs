@@ -395,6 +395,7 @@
             // 
             // dataGridUsers
             // 
+            this.dataGridUsers.AllowUserToAddRows = false;
             this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsers.Location = new System.Drawing.Point(492, 25);
             this.dataGridUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -671,6 +672,7 @@
             // 
             // dgvAdminCars
             // 
+            this.dgvAdminCars.AllowUserToAddRows = false;
             this.dgvAdminCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdminCars.Location = new System.Drawing.Point(40, 465);
             this.dgvAdminCars.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
