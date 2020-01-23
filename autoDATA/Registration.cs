@@ -155,7 +155,7 @@ namespace autoDATA
 
                 insertQuery = "INSERT INTO users (last_name, first_name, position, birthdate, email, username, password)  " +
                     "VALUES(" +
-                    "'" + tbRegFamilyName.Text + "','" + tbRegFirstName.Text + "','" + cbRegPosition.Text + "',CONCAT('" + cbUserRegYear.Text + "',' ', '" + cbUserRegMonth.Text + "',' ','" + cbUserRegDays.Text + "'), CONCAT('" + tbRegEmail1.Text + "','@','" + tbRegEmail2.Text + "','.','" + tbRegEmail3.Text + "'),'" + lbAutUsername.Text + "','" + encryption.SHA2Hash(tbRegPassword.Text) + "')";    
+                    "'" + tbRegFamilyName.Text + "','" + tbRegFirstName.Text + "','" + cbRegPosition.Text + "',CONCAT('" + cbUserRegYear.Text + "','. ','" + cbUserRegMonth.Text + "','. ','" + cbUserRegDays.Text + "'), CONCAT('" + tbRegEmail1.Text + "','@','" + tbRegEmail2.Text + "','.','" + tbRegEmail3.Text + "'),'" + lbAutUsername.Text + "','" + encryption.SHA2Hash(tbRegPassword.Text) + "')";    
               
                 if (con.State != ConnectionState.Open)
                 {
