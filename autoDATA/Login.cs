@@ -113,7 +113,7 @@ namespace autoDATA
             catch (Exception ex)
             {
                 this.DialogResult = DialogResult.Cancel;
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "\nNincs internetkapcsolat!");
             }
         }
 

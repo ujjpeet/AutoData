@@ -1187,9 +1187,8 @@
             this.lbAdminConnection.AutoSize = true;
             this.lbAdminConnection.Location = new System.Drawing.Point(988, 30);
             this.lbAdminConnection.Name = "lbAdminConnection";
-            this.lbAdminConnection.Size = new System.Drawing.Size(70, 17);
+            this.lbAdminConnection.Size = new System.Drawing.Size(0, 17);
             this.lbAdminConnection.TabIndex = 46;
-            this.lbAdminConnection.Text = "Kapcsolat";
             // 
             // Admin
             // 

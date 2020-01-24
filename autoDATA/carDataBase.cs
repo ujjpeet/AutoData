@@ -29,7 +29,7 @@ namespace autoDATA
         private void carDataBase_Load(object sender, EventArgs e)
         {
             label6.Visible = false;    
-            textBox1.Visible = false;
+            textBox1.Visible = false;           
 
             lbCarSearchBatCap.Visible = false;
             tbCarSearchBatCap.Visible = false;
@@ -46,14 +46,55 @@ namespace autoDATA
             lbCarRegFuelRangekm.Visible = false;
 
             databaseConnect();
-            loadCarMakesForCarSearch();
-            loadCarMakesForCarReg();
 
-            loadCarCategoriesForCarReg();
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (con.State == ConnectionState.Open)
+            {
+                lbConnect.Text = "Kapcsolódva";
+                lbConnect.ForeColor = Color.Green;
+                loadGerarbox();
+                loadCarCategoriesForCarReg();
+                loadCarMakesForCarSearch();
+                loadCarMakesForCarReg();
+
+                try
+                {
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+
+                    query = "SELECT id FROM users WHERE username = '" + label6.Text + "'";
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    textBox1.Text = cmd.ExecuteScalar().ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            else
+            {
+                lbConnect.Text = "Nincs kapcsolat";
+                lbConnect.ForeColor = Color.Red;
+            }
+            
             loadFuelTypesForCarReg();
             loadDisplacementForCarReg();
             loadCylindersForCarReg();
-            loadGerarbox();
+            
             loadCarRegProdYearsStart();
             loadCarRegProdYearsEnd();
 
@@ -79,21 +120,7 @@ namespace autoDATA
             cbCarRegBody.DataSource = bodylist;
             
             //meg kell tudni hogy MILYEN ID TARTOZIK A USERHEZ, mert kell az autó rögzítéshez:     
-            try
-            {
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open();
-                }
-
-                query = "SELECT id FROM users WHERE username = '" + label6.Text + "'";
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                textBox1.Text = cmd.ExecuteScalar().ToString();         
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+           
         }
 
         //MYSQL adatbázis kapcsolat metódus:
@@ -107,22 +134,13 @@ namespace autoDATA
 
                 using (con = new MySqlConnection(connectionstring))
                 {
-                    con.Open();
-                    if (con.State == ConnectionState.Open)
-                    {
-                        lbConnect.Text = "Kapcsolódva";
-                        lbConnect.ForeColor = Color.Green;
-                    }
-                    else
-                    {
-                        lbConnect.Text = "Nincs kapcsolat";
-                        lbConnect.ForeColor = Color.Red;
-                    }
+                    con.Open();                    
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + "\nNincs internetkapcsolat vagy nem elérhető az adatbázis!");
+                lbConnect.Text = "Nincs kapcsolat";
             };
         }
 

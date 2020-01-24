@@ -28,9 +28,6 @@ namespace autoDATA
         //Form LOAD esemény:
         private void Admin_Load(object sender, EventArgs e)
         {
-            databaseConnect(); //adatbázis kapcsolódás metódusa
-            loadCarCategoriesForAdmin(); //autókategóriák betöltése
-            loadCarMakesForAdminSearch(); //autómárkák betöltése
             lbRegBy.Visible = false;
 
             //AUTÓK kiválasztható üzemanyagainak feltöltése:
@@ -115,6 +112,34 @@ namespace autoDATA
             string[] positions = new string[]
                 { "válasszon", "adminisztrátor", "újságíró", "szerkesztő", "főszerkesztő", "fotós", "vágó"};
             cbAdminUsersPosition.DataSource = positions;
+
+            databaseConnect(); //adatbázis kapcsolódás metódusának a meghívása
+
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (con.State == ConnectionState.Open)
+            {
+                lbAdminConnection.Text = "Kapcsolódva";
+                lbAdminConnection.ForeColor = Color.Green;
+                loadCarCategoriesForAdmin(); //autókategóriák betöltése
+                loadCarMakesForAdminSearch(); //autómárkák betöltése
+                loadGerarbox();
+            }
+            else
+            {
+                lbAdminConnection.Text = "Nincs kapcsolat";
+                lbAdminConnection.ForeColor = Color.Red;
+            }           
         }
 
         //AUTÓK VÁLTÓFAJTÁK betöltése ADATBÁZISBÓL:
@@ -155,22 +180,13 @@ namespace autoDATA
 
                 using (con = new MySqlConnection(connectionstring))
                 {
-                    con.Open();
-                    if (con.State == ConnectionState.Open)
-                    {
-                        lbAdminConnection.Text = "Kapcsolódva";
-                        lbAdminConnection.ForeColor = Color.Green;
-                    }
-                    else
-                    {
-                        lbAdminConnection.Text = "Nincs kapcsolat";
-                        lbAdminConnection.ForeColor = Color.Red;
-                    }
+                    con.Open();                    
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                lbAdminConnection.Text = "Nincs kapcsolat";
             };
         }
 
@@ -402,8 +418,8 @@ namespace autoDATA
             //mezők kiürítése:
             tbAdminCarsID.Clear();
             cbAdminCarsCategory.Text = "válasszon";
-            cbAdminCarsMakeSearch.Text = "válasszon";
-            cbAdminCarsModelSearch.DataSource = null;
+            tbAdminCarsMake.Clear();
+            tbAdminCarsModel.Clear();
             tbAdminCarsCode.Clear();
             cbAdminCarsBody.Text = "válasszon";
             cbAdminCarsFuel.Text = "válasszon";

@@ -177,9 +177,8 @@
             this.lbConnect.AutoSize = true;
             this.lbConnect.Location = new System.Drawing.Point(1396, 18);
             this.lbConnect.Name = "lbConnect";
-            this.lbConnect.Size = new System.Drawing.Size(70, 17);
+            this.lbConnect.Size = new System.Drawing.Size(0, 17);
             this.lbConnect.TabIndex = 9;
-            this.lbConnect.Text = "Kapcsolat";
             // 
             // bnCloseWindow
             // 
